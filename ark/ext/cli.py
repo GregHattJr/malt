@@ -270,7 +270,11 @@ def cmd_edit(parser):
             template = "---\ntitle: Record Title\ndate: %s\n---\n\n\n"
             utils.writefile(path, template % now)
 
-    paths.insert(0, os.getenv('ARK_EDITOR') or os.getenv('EDITOR') or 'vim')
+    editor = os.getenv('ARK_EDITOR') or os.getenv('EDITOR') or 'vim'
+    if not shutil.which(editor):
+        sys.exit("Error: cannot locate the editor '%s'." % editor)
+
+    paths.insert(0, editor)
     subprocess.call(paths)
 
 
