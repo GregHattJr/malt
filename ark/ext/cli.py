@@ -105,8 +105,12 @@ Flags:
 edithelp = """
 Usage: %s edit [FLAGS] ARGUMENTS
 
-  Edit a record file or files. Creates new records if the named files
-  do not exist.
+  Edit a record file or files. This command will create new records if the
+  named files do not exist.
+
+  Ark will launch the editor specified by i) the $ARK_EDITOR environment
+  variable, or ii) the $EDITOR environment variable. If neither variable
+  exists it will attempt to use vim.
 
 Arguments:
   <type>              Record type, e.g. 'posts'.
