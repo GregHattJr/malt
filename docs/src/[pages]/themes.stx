@@ -14,12 +14,20 @@ Note that you can override the currently active theme with the `build` command's
 
     $ ark build --theme debug
 
+Ark searches for a named theme first in the site's theme library, then in the global theme library specified by the `$ARK_THEMES` environment variable. Finally it searches among the default themes bundled with the application itself.
+
+
+## Theme Structure
+
 A theme directory should contain two subdirectories, `resources` and `templates`. The content of the `resources` directory is copied directly to the site's output directory during building. The `templates` directory is where Ark looks for the theme's template files.
 
-Ark has builtin support for templates written in [Jinja][] (using a `.jinja` extension) and [Ibis][] (using a `.ibis` extension). Support for other template languages can be added via extensions.
+Ark has builtin support for templates written in [Jinja][] (using a `.jinja` extension) and [Ibis][] (using a `.ibis` extension). Support for other template languages can be added via plugins.
 
 [Jinja]: http://jinja.pocoo.org
 [Ibis]: https://github.com/dmulholland/ibis
+
+
+## Template Files
 
 When Ark generates a HTML page it searches for the appropriate template file in the following order, where `<type>` indicates the record type in question, e.g. `posts`:
 
