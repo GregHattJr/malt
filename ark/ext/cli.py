@@ -234,8 +234,11 @@ def cmd_init(parser):
     if not os.path.exists('config.py'):
         shutil.copy2(os.path.join(initdir, 'config.py'), 'config.py')
 
-    for name in ('ext', 'lib'):
-        utils.copydir(os.path.join(initdir, name), name, noclobber=True)
+    ext = os.path.join(initdir, 'ext')
+    utils.copydir(ext, 'ext', noclobber=True)
+
+    theme = os.path.join(initdir, 'lib', 'twentyfifteen')
+    utils.copydir(theme, 'twentyfifteen', noclobber=True)
 
     if not parser['empty']:
         for name in ('inc', 'src'):
