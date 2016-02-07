@@ -330,8 +330,7 @@ def cmd_watch(parser):
     print("-" * 80)
 
     # Build the site at least once with the 'watching' flag.
-    print("Running intial build.")
-    subprocess.call(args)
+    subprocess.call(args + ['firstwatch'])
     print("-" * 80)
 
     # Create a hash digest of the site directory.
@@ -342,7 +341,6 @@ def cmd_watch(parser):
         while True:
             newhash = hashsite(home)
             if newhash != oldhash:
-                print("Building site.")
                 subprocess.call(args)
                 newhash = hashsite(home)
             oldhash = newhash
@@ -351,8 +349,10 @@ def cmd_watch(parser):
         pass
 
     # Build the site one last time without the 'watching' flag.
-    print("\n" + "-" * 80 + "Running final build.\n" + "-" * 80)
-    subprocess.call(arg for arg in args if arg != 'watching')
+    print("\n" + "-" * 80)
+    args.remove('watching')
+    subprocess.call(args + ['lastwatch'])
+    print("-" * 80)
 
 
 # Returns a hash digest of the site directory.
