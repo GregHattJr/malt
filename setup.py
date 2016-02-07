@@ -20,12 +20,28 @@ import io
 from setuptools import setup, find_packages
 
 
-filepath = os.path.join(os.path.dirname(__file__), 'ark', 'meta.py')
-with io.open(filepath, encoding='utf-8') as metafile:
+# MANIFEST.in file content.
+manifest = """\
+include license.txt readme.md
+recursive-include ark/ini *
+recursive-include ark/ext *
+"""
+
+
+# Write a temporary MANIFEST.in file alongside the setup.py file.
+manpath = os.path.join(os.path.dirname(__file__), 'MANIFEST.in')
+with io.open(manpath, 'w', encoding='utf-8') as manfile:
+    manfile.write(manifest)
+
+
+# Load the package's metadata into the meta dict.
+metapath = os.path.join(os.path.dirname(__file__), 'ark', 'meta.py')
+with io.open(metapath, encoding='utf-8') as metafile:
     regex = r'''^__([a-z]+)__ = ["'](.*)["']'''
     meta = dict(re.findall(regex, metafile.read(), flags=re.MULTILINE))
 
 
+# Standard setup routine.
 setup(
     name = 'ark',
     version = meta['version'],
@@ -59,3 +75,8 @@ setup(
         'Topic :: Text Processing :: Markup :: HTML',
     ],
 )
+
+
+# Delete the temporary MANIFEST.in file.
+if os.path.isfile(manpath):
+    os.remove(manpath)

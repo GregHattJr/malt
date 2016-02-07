@@ -1,3 +1,0 @@
-include license.txt readme.md
-recursive-include ark/ini *
-recursive-include ark/ext *
