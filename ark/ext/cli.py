@@ -237,8 +237,10 @@ def cmd_init(parser):
     ext = os.path.join(initdir, 'ext')
     utils.copydir(ext, 'ext', noclobber=True)
 
-    theme = os.path.join(initdir, 'lib', 'twentyfifteen')
-    utils.copydir(theme, 'twentyfifteen', noclobber=True)
+    for dirinfo in utils.subdirs(os.path.join(initdir, 'lib')):
+        if not dirinfo.name in ('debug'):
+            dstdir = os.path.join('lib', dirinfo.name)
+            utils.copydir(dirinfo.path, dstdir, noclobber=True)
 
     if not parser['empty']:
         for name in ('inc', 'src'):
