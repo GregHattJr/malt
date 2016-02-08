@@ -14,7 +14,7 @@ Note that you can override the currently active theme with the `build` command's
 
     $ ark build --theme debug
 
-Ark searches for a named theme first in the site's theme library, then in the global theme library specified by the `$ARK_THEMES` environment variable. Finally it searches among the default themes bundled with the application itself.
+Ark searches for a named theme first in the site's theme library, then in the global theme library specified by the `$ARK_THEMES` environment variable. Finally it searches among the default themes bundled with Ark itself.
 
 
 ## Theme Structure
