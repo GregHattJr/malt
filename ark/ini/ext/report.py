@@ -15,17 +15,20 @@ __version__ = "1.0.0"
 # Register a callback on the 'exit' event hook.
 @hooks.register('exit')
 def print_status_report():
+
+    # The site module maintains a count of the number of pages that have been
+    # rendered into html and written to disk.
     num_rendered, num_written = site.rendered(), site.written()
 
     # We only want to print a report after a build run.
     if num_rendered == 0:
         return
 
-    # Singluar or plural?
+    # Singluar or plural text?
     txt_rendered = "1 page" if num_rendered == 1 else "%s pages" % num_rendered
     txt_written = "1 page" if num_written == 1 else "%s pages" % num_written
 
-    # The runtime() function gives the application's runtime in seconds.
+    # The runtime() function gives the application's running time in seconds.
     time = site.runtime()
     average = time / num_rendered
 
