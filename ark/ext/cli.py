@@ -48,14 +48,16 @@ Command Help:
 buildhelp = """
 Usage: %s build [FLAGS] [OPTIONS]
 
-  Build the current site. This command can be run from the site directory
-  or any of its subdirectories.
+  Build the current site. This command can be run from the site directory or
+  any of its subdirectories.
 
-  The --theme option can be used to override the theme specified in the
-  site's config file. Its argument can be either i) a path to a theme
-  directory or ii) the name of a theme directory in the site's theme
-  library or the global theme library specififed by the $ARK_THEMES
-  environment variable.
+  The --theme option can be used to override the theme specified in the site's
+  config file. Its argument can be either i) a path to a theme directory or
+  ii) the name of a theme directory in the site's theme library or the global
+  theme library specififed by the $ARK_THEMES environment variable.
+
+  Arguments passed to this command are available as build flags to themes and
+  plugins.
 
 Options:
   -i, --inc <path>    Override the default 'inc' directory.
@@ -75,9 +77,9 @@ Flags:
 inithelp = """
 Usage: %s init [FLAGS] [ARGUMENTS]
 
-  Initialize a new site directory. If a directory path is specified,
-  that directory will be created and used. Otherwise, the current
-  directory will be used. Existing files will not be overwritten.
+  Initialize a new site directory. If a directory path is specified, that
+  directory will be created and used. Otherwise, the current directory will be
+  used. Existing files will not be overwritten.
 
 Arguments:
   [directory]         Directory name. Defaults to the current directory.
@@ -131,8 +133,8 @@ Usage: %s serve [FLAGS] [OPTIONS]
   Host IP defaults to localhost (127.0.0.1). Specify an IP address to serve
   only on that address or '0.0.0.0' to serve an all available IPs.
 
-  Port number defaults to 8080 as ports below 1024 require sudo.
-  Set to 0 to randomly select an available port.
+  Port number defaults to 8080 as ports below 1024 require sudo. Set to 0 to
+  randomly select an available port.
 
 Options:
   -h, --host <str>    Host IP address. Defaults to localhost.
@@ -149,8 +151,8 @@ Flags:
 watchhelp = """
 Usage: %s watch [FLAGS]
 
-  Monitor the site directory and automatically rebuild the site when any
-  file changes are detected.
+  Monitor the site directory and automatically rebuild the site when any file
+  changes are detected.
 
   Arguments passed to this command will be passed along to the 'build'
   command. You can pass options or flags to the 'build' command by preceding
