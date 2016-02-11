@@ -4,7 +4,7 @@
 
 import os
 
-from . import utils
+from . import loader
 from . import renderers
 from . import site
 
@@ -19,7 +19,7 @@ def includes():
     if _includes is None:
         _includes = {}
         if os.path.isdir(site.inc()):
-            for finfo in utils.srcfiles(site.inc()):
-                text, _ = utils.load(finfo.path)
+            for finfo in loader.srcfiles(site.inc()):
+                text, _ = loader.load(finfo.path)
                 _includes[finfo.base] = renderers.render(text, finfo.ext)
     return _includes

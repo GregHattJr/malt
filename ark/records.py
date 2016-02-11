@@ -10,6 +10,7 @@ from . import utils
 from . import site
 from . import hooks
 from . import renderers
+from . import loader
 
 
 # Stores an in-memory cache of record objects.
@@ -39,7 +40,7 @@ class Record(dict):
         fileinfo = utils.fileinfo(filepath)
 
         # Load the record file.
-        text, meta = utils.load(filepath)
+        text, meta = loader.load(filepath)
         self.update(meta)
 
         # Add the default set of record attributes.

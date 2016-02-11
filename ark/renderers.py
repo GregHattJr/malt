@@ -39,6 +39,11 @@ def register(ext):
     return register_callback
 
 
+# Returns a list of file extensions with registered renderers.
+def extensions():
+    return list(_renderers.keys())
+
+
 # Renders a string and returns the result.
 def render(text, ext):
     if ext in _renderers:

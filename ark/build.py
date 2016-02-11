@@ -9,6 +9,7 @@ from . import utils
 from . import pages
 from . import records
 from . import hooks
+from . import loader
 
 
 # Builds the site.
@@ -44,7 +45,7 @@ def build_site():
 # Creates a HTML page for each record file in the source directory.
 def build_record_pages(dirpath):
 
-    for fileinfo in utils.srcfiles(dirpath):
+    for fileinfo in loader.srcfiles(dirpath):
         record = records.record(fileinfo.path)
         page = pages.RecordPage(record)
         page.render()
@@ -70,7 +71,7 @@ def build_directory_indexes(dirpath, recursing=False):
         reclist.extend(build_directory_indexes(dirinfo.path, True))
 
     # Add any records in this directory to the index.
-    for fileinfo in utils.srcfiles(dirpath):
+    for fileinfo in loader.srcfiles(dirpath):
         record = records.record(fileinfo.path)
         if typeconfig['order_by'] in record:
             reclist.append(record)

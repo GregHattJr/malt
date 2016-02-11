@@ -9,8 +9,6 @@ import re
 import shutil
 import datetime
 
-import yaml
-
 
 # Named tuples for file and directory information.
 DirInfo = collections.namedtuple('DirInfo', 'path, name')
@@ -42,11 +40,6 @@ def fileinfo(path):
     name = os.path.basename(path)
     base, ext = os.path.splitext(name)
     return FileInfo(path, name, base, ext.strip('.'))
-
-
-# Returns a list of source files in the specified directory.
-def srcfiles(directory):
-    return [fi for fi in files(directory) if fi.name[0] not in ('.', '_')]
 
 
 # Returns the creation time of the specified file.
@@ -165,19 +158,3 @@ def make_redirect(filepath, url):
         os.makedirs(os.path.dirname(filepath))
     with open(filepath, 'w', encoding='utf-8') as file:
         file.write(html)
-
-
-# Loads a source file and parses its yaml header if present.
-def load(filepath):
-    with open(filepath, encoding='utf-8') as file:
-        text, meta = file.read(), {}
-
-    match = re.match(r"^---\n(.*?\n)[-.]{3}\n+", text, re.DOTALL)
-    if match:
-        text = text[match.end(0):]
-        data = yaml.load(match.group(1))
-        if isinstance(data, dict):
-            for key, value in data.items():
-                meta[key.lower().replace(' ', '_').replace('-', '_')] = value
-
-    return text, meta
