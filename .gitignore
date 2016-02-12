@@ -2,11 +2,5 @@
 __pycache__/
 *.py[cod]
 
-# Development scratch files
-dev/
-
-# Ark output files
-#ark/init/out/
-
 # Ark cache files
 .arkcache/
