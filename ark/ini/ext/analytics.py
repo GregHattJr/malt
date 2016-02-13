@@ -15,15 +15,19 @@
 import ark
 
 
+# Plugin version number.
+__version__ = "0.1.0"
+
+
 # We run our filter registration function on the `init` event hook. We could
 # just register the filter directly but we want to run a test first to see if
 # any analytics code is present in the site's `inc` directory.
 @ark.hooks.register('init')
 def register_analytics_filter():
 
-    if 'analytics' in ark.includes.includes():
+    if 'analytics' in ark.includes.inc():
         fmt_str = '<script>%s</script></body>'
-        inj_str =  fmt_str % ark.includes.includes()['analytics']
+        inj_str =  fmt_str % ark.includes.inc('analytics')
 
         # We register our filter callback on the `page_html` filter hook.
         # This hook gives us an opportunity to alter a page's html before

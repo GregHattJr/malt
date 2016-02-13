@@ -24,8 +24,7 @@ class Page(dict):
     def __init__(self, rectype):
         self['flags'] = site.flags()
         self['site'] = site.config()
-        self['inc'] = includes.includes()
-        self['includes'] = includes.includes()
+        self['inc'] = includes.inc()
         self['type'] = site.typeconfig(rectype)
         self['slugs'] = []
         self['record'] = None
@@ -43,6 +42,9 @@ class Page(dict):
         self['first_url'] = ''
         self['last_url'] = ''
         self['index_url'] = site.index_url(rectype)
+
+        # Deprecated - will be removed in a future release.
+        self['includes'] = includes.inc()
 
     # Renders the page into HTML and prints the output file.
     def render(self):
