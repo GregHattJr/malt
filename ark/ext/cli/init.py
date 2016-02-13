@@ -28,27 +28,26 @@ Flags:
 
 # Command callback.
 def callback(parser):
-    rootdir = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-    initdir = os.path.join(rootdir, 'ini')
-    sitedir = parser.get_args()[0] if parser.has_args() else '.'
-    os.makedirs(sitedir, exist_ok=True)
-    os.chdir(sitedir)
+    arkdir = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+    inidir = os.path.join(arkdir, 'ini')
+    dstdir = parser.get_args()[0] if parser.has_args() else '.'
+    os.makedirs(dstdir, exist_ok=True)
+    os.chdir(dstdir)
 
     for name in ('ext', 'inc', 'lib', 'out', 'src'):
         os.makedirs(name, exist_ok=True)
     ark.utils.writefile('.ark', '')
 
+    if parser['empty']:
+        return
+
     if not os.path.exists('config.py'):
-        shutil.copy2(os.path.join(initdir, 'config.py'), 'config.py')
+        shutil.copy2(os.path.join(inidir, 'config.py'), 'config.py')
 
-    ext = os.path.join(initdir, 'ext')
-    ark.utils.copydir(ext, 'ext', noclobber=True)
+    for name in ('ext', 'inc', 'src'):
+        ark.utils.copydir(os.path.join(inidir, name), name, noclobber=True)
 
-    for dirinfo in ark.utils.subdirs(os.path.join(initdir, 'lib')):
+    for dirinfo in ark.utils.subdirs(os.path.join(inidir, 'lib')):
         if not dirinfo.name in ('debug'):
-            dstdir = os.path.join('lib', dirinfo.name)
-            ark.utils.copydir(dirinfo.path, dstdir, noclobber=True)
-
-    if not parser['empty']:
-        for name in ('inc', 'src'):
-            ark.utils.copydir(os.path.join(initdir, name), name, noclobber=True)
+            theme = os.path.join('lib', dirinfo.name)
+            ark.utils.copydir(dirinfo.path, theme, noclobber=True)
