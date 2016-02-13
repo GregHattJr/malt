@@ -85,3 +85,6 @@ from . import templates
 from . import renderers
 from . import hashes
 from . import extensions
+from . import build
+from . import includes
+from . import loader
