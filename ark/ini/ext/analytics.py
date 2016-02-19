@@ -20,8 +20,8 @@ __version__ = "0.1.0"
 
 
 # We run our filter registration function on the `init` event hook. We could
-# just register the filter directly but we want to run a test first to see if
-# any analytics code is present in the site's `inc` directory.
+# simply register the filter directly but in this case we want to run a test
+# first to see if any analytics code is present in the site's `inc` directory.
 @ark.hooks.register('init')
 def register_analytics_filter():
 
