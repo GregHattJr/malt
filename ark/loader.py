@@ -1,11 +1,9 @@
 # --------------------------------------------------------------------------
-# Loads source files and parses their front matter.
+# Handles loading source files and parsing their metadata headers.
 # --------------------------------------------------------------------------
 
-import re
-import yaml
-
 from . import renderers
+from . import headers
 from . import utils
 
 
@@ -17,17 +15,7 @@ def srcfiles(directory):
     return [finfo for finfo in files if finfo.ext in extensions]
 
 
-# Loads a source file and parses its header.
+# Loads a source file and parses its metadata header.
 def load(filepath):
     with open(filepath, encoding='utf-8') as file:
-        text, meta = file.read(), {}
-
-    match = re.match(r"^---\n(.*?\n)[-.]{3}\n+", text, re.DOTALL)
-    if match:
-        text = text[match.end(0):]
-        data = yaml.load(match.group(1))
-        if isinstance(data, dict):
-            for key, value in data.items():
-                meta[key.lower().replace(' ', '_').replace('-', '_')] = value
-
-    return text, meta
+        return headers.parse(file.read())
