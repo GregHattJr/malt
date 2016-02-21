@@ -237,29 +237,35 @@ Files with a `.html`/`.js`/`.css`/`.txt` extension will have their contents pres
 
 
 
-## Extensions
-
-The extensions directory, `ext`, is intended for plugins that extend or enhance Ark's functionality. Python modules or packages placed in this directory will be loaded automatically and can make use of Ark's system of event and filter hooks to inject their own code into the build process.
-
-Ark is highly extensible and much of its default functionality is in fact implemented as pluggable extensions. See the sample plugins bundled with the skeleton site or the default plugins in the `ark/ext` folder for examples of extensions in action.
-
-
-
 ## Markdown Options
 
-Ark uses the [Python Markdown][mddocs] package to render Markdown files. You can make use of its optional features and extensions by including a dictionary of keyword arguments for the renderer in your site configuration file.
+Ark uses the [Markdown][mddocs] package to render record files with a `.md` extension. You can add a dictionary of keyword arguments for the renderer to your site configuration file via a `markdown` attribute.
 
-For example, to turn on the 'Markdown Extra' extension, add the following dictionary to your `config.py` file:
+For example, to turn on the 'Markdown Extra' extension, add the following snippet to your `config.py` file:
 
 ::: python
 
-    markdown = {
-        'extensions': ['markdown.extensions.extra'],
-    }
+    markdown = { 'extensions': ['markdown.extensions.extra'] }
 
 See the Markdown package's [documentation][mddocs] for details of its available options.
 
 [mddocs]: https://pythonhosted.org/Markdown/
+
+
+
+## Jinja Options
+
+Ark uses the [Jinja2][jinja] package to render template files with a `.jinja` extension. You can add a dictionary of keyword arguments for the Jinja environment to your site configuration file via a `jinja` attribute.
+
+[jinja]: http://jinja.pocoo.org
+
+
+
+## Shortcode Options
+
+Ark uses the [Shortcodes][shortcodes] package to process shortcodes in record files. You can add a dictionary of keyword arguments for the shortcode parser to your site configuration file via a `shortcodes` attribute.
+
+[shortcodes]: https://github.com/dmulholland/shortcodes
 
 
 

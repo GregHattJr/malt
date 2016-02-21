@@ -1,0 +1,87 @@
+---
+title: Plugins
+---
+
+The extensions directory, `ext`, is intended for plugins that extend or enhance Ark's functionality. Python modules or packages placed in this directory will be loaded automatically and can take advantage of Ark's extension hooks to inject their own code into the build process.
+
+(Ark will also load plugins from a global extensions directory indicated by the `$ARK_EXT` environment variable if it exists.)
+
+Ark makes three extension mechanisms available to plugins: i) event and filter [hooks](#hooks), ii) pluggable rendering and parsing [engines](#engines), and iii) WordPress-style [shortcodes](#shortcodes).
+
+
+## Hooks
+
+
+
+
+## Engines
+
+Ark relies for most of its functionality on a suite of pluggable rendering and parsing engines, e.g. the [Jinja][] template-engine for handling `.jinja` template files. Plugins can register support for additional rendering and parsing engines using a system of `@register` decorators.
+
+[jinja]: http://jinja.pocoo.org
+
+
+### Templates
+
+Ark has builtin support for [Jinja][] and [Ibis][] templates. Plugins can register support for additional formats using the `@templates.register()` decorator. Template-engine callbacks are registered per file-extension, e.g.
+
+[jinja]: http://jinja.pocoo.org
+[ibis]: https://github.com/dmulholland/ibis
+
+::: python
+
+    import ark
+
+    @ark.templates.register('jinja')
+    def jinja_callback(page, filename):
+        ...
+        return html
+
+A template-engine callback should accept a `pages.Page` object and a template filename and return a string of HTML.
+
+
+### Records
+
+Ark has builtin support for records written in [Markdown][] and [Syntex][]. Plugins can register support for additional formats using the `@renderers.register()` decorator. Rendering-engine callbacks are registered per file-extension, e.g.
+
+[markdown]: https://en.wikipedia.org/wiki/Markdown
+[syntex]: https://github.com/dmulholland/syntex
+
+::: python
+
+    import ark
+
+    @ark.renderers.register('md')
+    def markdown_callback(text):
+        ...
+        return html
+
+A rendering-engine callback should accept a single string argument containing plain text and return a string of HTML.
+
+
+### Headers
+
+Ark has builtin support for record metadata in [YAML][] format. Plugins can register support for additional formats using the `@headers.register` decorator, e.g.    
+
+[yaml]: https://en.wikipedia.org/wiki/YAML
+
+
+::: python
+
+    import ark
+
+    @ark.headers.register
+    def yaml_callback(raw_text):
+        ...
+        return handled, text, meta
+
+
+
+A header-parser callback should accept a single string argument containing
+the raw content of a source file. It should return three values:
+
+1. A boolean indicating whether or not it has handled the file.
+2. If handled, a string containing the file's text content; otherwise `None`.
+3. If handled, a dictionary containing the file's metadata; otherwise `None`.
+
+## Shortcodes

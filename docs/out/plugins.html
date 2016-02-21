@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Plugins</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/theme.css">
+	<link rel="stylesheet" href="css/pygments.css">
+	<!--[if lt IE 9]><script src="js/html5shiv.min.js"></script><![endif]-->
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/theme.js"></script>
+</head>
+
+<body class="pages single">
+
+	<header id="header" class="header meta">
+		
+			<div class="hamburger unselectable">☰</div>
+			<ul>
+<li><a href="index.html">Ark</a></li>
+<li><a href="quickstart.html">Quickstart</a></li>
+<li><a href="guide.html">Guide</a></li>
+<li><a href="themes.html">Themes</a></li>
+<li><a href="plugins.html">Plugins</a></li>
+</ul>
+		
+	</header>
+
+	<article id="content" class="content">
+		
+			<h1>Plugins</h1>
+		
+
+		<p>The extensions directory, <code>ext</code>, is intended for plugins that extend or enhance Ark's functionality. Python modules or packages placed in this directory will be loaded automatically and can take advantage of Ark's extension hooks to inject their own code into the build process.</p>
+<p>(Ark will also load plugins from a global extensions directory indicated by the <code>$ARK_EXT</code> environment variable if it exists.)</p>
+<p>Ark makes three extension mechanisms available to plugins: i) event and filter <a href="#hooks">hooks</a>, ii) pluggable rendering and parsing <a href="#engines">engines</a>, and iii) WordPress-style <a href="#shortcodes">shortcodes</a>.</p>
+<h2 id="hooks">Hooks</h2>
+<h2 id="engines">Engines</h2>
+<p>Ark relies for most of its functionality on a suite of pluggable rendering and parsing engines, e.g. the <a href="http://jinja.pocoo.org">Jinja</a> template-engine for handling <code>.jinja</code> template files. Plugins can register support for additional rendering and parsing engines using a system of <code>@register</code> decorators.</p>
+<h3 id="templates">Templates</h3>
+<p>Ark has builtin support for <a href="http://jinja.pocoo.org">Jinja</a> and <a href="https://github.com/dmulholland/ibis">Ibis</a> templates. Plugins can register support for additional formats using the <code>@templates.register()</code> decorator. Template-engine callbacks are registered per file-extension, e.g.</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="kn">import</span> <span class="nn">ark</span>
+
+<span class="nd">@ark.templates.register</span><span class="p">(</span><span class="s1">&#39;jinja&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">jinja_callback</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">return</span> <span class="n">html</span>
+</pre>
+<p>A template-engine callback should accept a <code>pages.Page</code> object and a template filename and return a string of HTML.</p>
+<h3 id="records">Records</h3>
+<p>Ark has builtin support for records written in <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> and <a href="https://github.com/dmulholland/syntex">Syntex</a>. Plugins can register support for additional formats using the <code>@renderers.register()</code> decorator. Rendering-engine callbacks are registered per file-extension, e.g.</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="kn">import</span> <span class="nn">ark</span>
+
+<span class="nd">@ark.renderers.register</span><span class="p">(</span><span class="s1">&#39;md&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">markdown_callback</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">return</span> <span class="n">html</span>
+</pre>
+<p>A rendering-engine callback should accept a single string argument containing plain text and return a string of HTML.</p>
+<h3 id="headers">Headers</h3>
+<p>Ark has builtin support for record metadata in <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> format. Plugins can register support for additional formats using the <code>@headers.register</code> decorator, e.g.</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="kn">import</span> <span class="nn">ark</span>
+
+<span class="nd">@ark.headers.register</span>
+<span class="k">def</span> <span class="nf">yaml_callback</span><span class="p">(</span><span class="n">raw_text</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">return</span> <span class="n">handled</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">meta</span>
+</pre>
+<p>A header-parser callback should accept a single string argument containing
+the raw content of a source file. It should return three values:</p>
+<ol>
+<li>A boolean indicating whether or not it has handled the file.</li>
+<li>If handled, a string containing the file's text content; otherwise <code>None</code>.</li>
+<li>If handled, a dictionary containing the file's metadata; otherwise <code>None</code>.</li>
+</ol>
+<h2 id="shortcodes">Shortcodes</h2>
+
+		
+	</article>
+
+	<footer id="footer" class="footer meta">
+		<ul>
+<li><a href="index.html">Ark</a></li>
+<li><a href="quickstart.html">Quickstart</a></li>
+<li><a href="guide.html">Guide</a></li>
+<li><a href="themes.html">Themes</a></li>
+<li><a href="plugins.html">Plugins</a></li>
+</ul>
+	</footer>
+
+</body>
+</html>
