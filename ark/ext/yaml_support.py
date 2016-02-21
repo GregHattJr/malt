@@ -10,18 +10,19 @@ import re
 import yaml
 
 
-# Register our header-parser callback.
-@ark.headers.register
-def parse_yaml(raw_text):
+# Register our preprocessor callback.
+@ark.loader.register
+def parse_yaml(text, meta):
 
-    # Give the raw text a quick sniff before firing up the regex engine.
-    if raw_text.startswith("---"):
+    # Give the text a quick sniff before firing up the regex engine.
+    if text.startswith("---\n"):
 
         # A yaml header is identified by opening and closing `---` lines.
-        match = re.match(r"^---\n(.*?\n)---\n+", raw_text, re.DOTALL)
+        match = re.match(r"^---\n(.*?\n)---\n+", text, re.DOTALL)
         if match:
-            text = raw_text[match.end(0):]
-            meta = yaml.load(match.group(1))
-            return True, text, meta if isinstance(meta, dict) else {}
+            text = text[match.end(0):]
+            data = yaml.load(match.group(1))
+            if isinstance(data, dict):
+                meta.update(data)
 
-    return False, None, None
+    return text, meta
