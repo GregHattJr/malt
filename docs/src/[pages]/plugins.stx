@@ -9,6 +9,7 @@ The extensions directory, `ext`, is intended for plugins that extend or enhance 
 Ark makes three extension mechanisms available to plugins: i) event and filter [hooks](#hooks), ii) pluggable rendering and parsing [engines](#engines), and iii) WordPress-style [shortcodes](#shortcodes).
 
 
+
 ## Hooks
 
 
@@ -59,9 +60,9 @@ Ark has builtin support for records written in [Markdown][] and [Syntex][]. Plug
 A rendering-engine callback should accept a single string argument containing plain text and return a string of HTML.
 
 
-### Headers
+### Metadata
 
-Ark has builtin support for record metadata in [YAML][] format. Plugins can register support for additional formats using the `@headers.register` decorator, e.g.    
+Ark has builtin support for record metadata in [YAML][] format. Plugins can add support for additional formats by using the `@loader.register` decorator to register custom preprocessor callbacks for source files, e.g.    
 
 [yaml]: https://en.wikipedia.org/wiki/YAML
 
@@ -70,18 +71,13 @@ Ark has builtin support for record metadata in [YAML][] format. Plugins can regi
 
     import ark
 
-    @ark.headers.register
-    def yaml_callback(raw_text):
+    @ark.loader.register
+    def yaml_callback(text, meta):
         ...
-        return handled, text, meta
+        return text, meta
+
+A preprocessor callback should accept two arguments: a string containing a source files's content and a dictionary containing metadata for that source file. It should return the processed string and updated dictionary.
 
 
-
-A header-parser callback should accept a single string argument containing
-the raw content of a source file. It should return three values:
-
-1. A boolean indicating whether or not it has handled the file.
-2. If handled, a string containing the file's text content; otherwise `None`.
-3. If handled, a dictionary containing the file's metadata; otherwise `None`.
 
 ## Shortcodes
