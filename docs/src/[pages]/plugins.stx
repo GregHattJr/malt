@@ -12,6 +12,43 @@ Ark makes three extension mechanisms available to plugins: i) event and filter [
 
 ## Hooks
 
+Ark exports a flexible framework of event and filter hooks. Plugins can extend Ark by registering callback functions on these hooks.
+
+
+
+### Events
+
+*Event callbacks* accept zero or more arguments depending on the specific hook. They may modify their arguments in place but have no return value.
+
+Here's a simple event callback that prints a count of the number of pages that have been written to disk:
+
+::: python
+
+    import ark
+
+    @ark.hooks.register('exit')
+    def page_count():
+        print(ark.site.written())
+
+This callback is registered on the `exit` hook which fires just before the application exits. (The `exit` hook can be found in the `ark/main.py` file.)
+
+
+
+### Filters
+
+*Filter callbacks* accept at least one argument - the value to be filtered. They may accept additional arguments depending on the specific hook. Filter callbacks modify and return the value of their first argument.
+
+Here's a simple filter callback that changes every instance of the word "foo" in records to "bar":
+
+::: python
+
+    import ark
+
+    @ark.hooks.register('record_text')
+    def foo_to_bar(text, record):
+        return text.replace('foo', 'bar')
+
+This callback is registered on the `record_text` hook which fires just before a record's text is rendered into HTML. (The `record_text` hook can be found in the `ark/records.py` file).
 
 
 
@@ -20,6 +57,7 @@ Ark makes three extension mechanisms available to plugins: i) event and filter [
 Ark relies for most of its functionality on a suite of pluggable rendering and parsing engines, e.g. the [Jinja][] template-engine for handling `.jinja` template files. Plugins can register support for additional rendering and parsing engines using a system of `@register` decorators.
 
 [jinja]: http://jinja.pocoo.org
+
 
 
 ### Templates
@@ -41,6 +79,7 @@ Ark has builtin support for [Jinja][] and [Ibis][] templates. Plugins can regist
 A template-engine callback should accept a `pages.Page` object and a template filename and return a string of HTML.
 
 
+
 ### Records
 
 Ark has builtin support for records written in [Markdown][] and [Syntex][]. Plugins can register support for additional formats using the `@renderers.register()` decorator. Rendering-engine callbacks are registered per file-extension, e.g.
@@ -58,6 +97,7 @@ Ark has builtin support for records written in [Markdown][] and [Syntex][]. Plug
         return html
 
 A rendering-engine callback should accept a single string argument containing plain text and return a string of HTML.
+
 
 
 ### Metadata
