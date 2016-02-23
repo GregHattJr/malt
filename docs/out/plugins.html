@@ -46,7 +46,7 @@
 <span class="k">def</span> <span class="nf">page_count</span><span class="p">():</span>
     <span class="k">print</span><span class="p">(</span><span class="n">ark</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">written</span><span class="p">())</span>
 </pre>
-<p>This callback is registered on the <code>exit</code> hook which fires just before the application exits. (The <code>exit</code> hook can be found in the <code>ark/main.py</code> file.)</p>
+<p>This callback is registered on the <code>exit</code> event hook which fires just before the application exits. (The <code>exit</code> hook can be found in the <code>ark/main.py</code> file.)</p>
 <h3 id="filters">Filters</h3>
 <p><em>Filter callbacks</em> accept at least one argument - the value to be filtered. They may accept additional arguments depending on the specific hook. Filter callbacks modify and return the value of their first argument.</p>
 <p>Here's a simple filter callback that changes every instance of the word "foo" in records to "bar":</p>
@@ -57,7 +57,7 @@
 <span class="k">def</span> <span class="nf">foo_to_bar</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
 </pre>
-<p>This callback is registered on the <code>record_text</code> hook which fires just before a record's text is rendered into HTML. (The <code>record_text</code> hook can be found in the <code>ark/records.py</code> file).</p>
+<p>This callback is registered on the <code>record_text</code> filter hook which fires just before a record's text is rendered into HTML. (The <code>record_text</code> hook can be found in the <code>ark/records.py</code> file).</p>
 <h2 id="engines">Engines</h2>
 <p>Ark relies for most of its functionality on a suite of pluggable rendering and parsing engines, e.g. the <a href="http://jinja.pocoo.org">Jinja</a> template-engine for handling <code>.jinja</code> template files. Plugins can register support for additional rendering and parsing engines using a system of <code>@register</code> decorators.</p>
 <h3 id="templates">Templates</h3>
@@ -70,7 +70,7 @@
     <span class="o">...</span>
     <span class="k">return</span> <span class="n">html</span>
 </pre>
-<p>A template-engine callback should accept a <code>pages.Page</code> object and a template filename and return a string of HTML.</p>
+<p>A template-engine callback should accept a <code>Page</code> object and a template filename and return a string of HTML.</p>
 <h3 id="records">Records</h3>
 <p>Ark has builtin support for records written in <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> and <a href="https://github.com/dmulholland/syntex">Syntex</a>. Plugins can register support for additional formats using the <code>@renderers.register()</code> decorator. Rendering-engine callbacks are registered per file-extension, e.g.</p>
 <pre class="lang-python pygments" data-lang="python">
@@ -94,6 +94,29 @@
 </pre>
 <p>A preprocessor callback should accept two arguments: a string containing a source files's content and a dictionary containing metadata for that source file. It should return the processed string and updated dictionary.</p>
 <h2 id="shortcodes">Shortcodes</h2>
+<p>Ark has builtin support for WordPress-style <a href="https://github.com/dmulholland/shortcodes">shortcodes</a> with space-separated positional and keyword arguments:</p>
+<pre>
+[% tag arg1 key=arg2 %]
+</pre>
+<p>Plugins can register shortcode tags using the <code>@shortcodes.register()</code> decorator:</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="kn">import</span> <span class="nn">shortcodes</span>
+
+<span class="nd">@shortcodes.register</span><span class="p">(</span><span class="s1">&#39;tag&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">pargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">return</span> <span class="n">replacement_text</span>
+</pre>
+<p>Handler functions should accept four arguments:</p>
+<ol>
+<li>The <code>Record</code> object for the source file containing the shortcode.</li>
+<li>A string containing the shortcode's content, if the shortcode has block scope.</li>
+<li>A list of positional arguments.</li>
+<li>A dictionary of keyword arguments.</li>
+</ol>
+<p>Positional and keyword arguments are passed as strings. The handler function itself should return a string.</p>
+<p>Note that shortcodes are processed <em>before</em> record text is rendered into HTML.</p>
+<p>Shortcodes are implemented via the <a href="https://github.com/dmulholland/shortcodes">Shortcodes</a> package. See the package documentation for further details.</p>
 
 		
 	</article>

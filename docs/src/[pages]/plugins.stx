@@ -30,7 +30,7 @@ Here's a simple event callback that prints a count of the number of pages that h
     def page_count():
         print(ark.site.written())
 
-This callback is registered on the `exit` hook which fires just before the application exits. (The `exit` hook can be found in the `ark/main.py` file.)
+This callback is registered on the `exit` event hook which fires just before the application exits. (The `exit` hook can be found in the `ark/main.py` file.)
 
 
 
@@ -48,7 +48,7 @@ Here's a simple filter callback that changes every instance of the word "foo" in
     def foo_to_bar(text, record):
         return text.replace('foo', 'bar')
 
-This callback is registered on the `record_text` hook which fires just before a record's text is rendered into HTML. (The `record_text` hook can be found in the `ark/records.py` file).
+This callback is registered on the `record_text` filter hook which fires just before a record's text is rendered into HTML. (The `record_text` hook can be found in the `ark/records.py` file).
 
 
 
@@ -76,7 +76,7 @@ Ark has builtin support for [Jinja][] and [Ibis][] templates. Plugins can regist
         ...
         return html
 
-A template-engine callback should accept a `pages.Page` object and a template filename and return a string of HTML.
+A template-engine callback should accept a `Page` object and a template filename and return a string of HTML.
 
 
 
@@ -121,3 +121,35 @@ A preprocessor callback should accept two arguments: a string containing a sourc
 
 
 ## Shortcodes
+
+Ark has builtin support for WordPress-style [shortcodes][] with space-separated positional and keyword arguments:
+
+    \[% tag arg1 key=arg2 %]
+
+Plugins can register shortcode tags using the `@shortcodes.register()` decorator:
+
+
+::: python
+
+    import shortcodes
+
+    @shortcodes.register('tag')
+    def handler(record, content, pargs, kwargs):
+        ...
+        return replacement_text
+
+
+Handler functions should accept four arguments:
+
+1. The `Record` object for the source file containing the shortcode.
+2. A string containing the shortcode's content, if the shortcode has block scope.
+3. A list of positional arguments.
+4. A dictionary of keyword arguments.
+
+Positional and keyword arguments are passed as strings. The handler function itself should return a string.
+
+Note that shortcodes are processed *before* record text is rendered into HTML.
+
+Shortcodes are implemented via the [Shortcodes][] package. See the package documentation for further details.
+
+[shortcodes]: https://github.com/dmulholland/shortcodes
