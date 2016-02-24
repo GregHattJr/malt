@@ -16,7 +16,7 @@ Usage: %s serve [FLAGS] [OPTIONS]
   Serve the site's output directory using Python's builtin web server.
 
   Host IP defaults to localhost (127.0.0.1). Specify an IP address to serve
-  only on that address or '0.0.0.0' to serve an all available IPs.
+  only on that address or '0.0.0.0' to serve on all available IPs.
 
   Port number defaults to 8080 as ports below 1024 require sudo. Set to 0 to
   randomly select an available port.
