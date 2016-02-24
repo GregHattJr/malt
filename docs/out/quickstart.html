@@ -58,8 +58,12 @@ mysite/
 <pre>
 $ ark build
 </pre>
-<p>You can run this <code>build</code> command from the site directory itself or from any of its subdirectories. It tells Ark to render the text files in the <code>src</code> directory into HTML and place the output in the <code>out</code> directory.</p>
-<p>Run the <code>build</code> command and take a look at the output - it may not be much to look at yet, but you've just built your first website using Ark. You can make it look more impressive once you've <a href="guide.html">learned more</a>.</p>
+<p>You can run the <code>build</code> command from the site directory itself or from any of its subdirectories. It tells Ark to render the text files in the <code>src</code> directory into HTML and place the output in the <code>out</code> directory.</p>
+<p>Run the <code>build</code> command and take a look at the output. You can open the HTML files directly in your browser or use Ark's builtin web server to serve the contents of the <code>out</code> directory:</p>
+<pre>
+$ ark serve -b
+</pre>
+<p>This command will start the test server and automatically launch the default web browser to view the site. Use Ctrl-C when you want to shut the server down.</p>
 
 		
 	</article>
