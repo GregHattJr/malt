@@ -22,7 +22,8 @@ from . import watch
 helptext = """
 Usage: %s [FLAGS] [COMMAND]
 
-  Static website generator.
+  Ark is a static website generator. It transforms a directory of text files
+  into a self-contained website that can be viewed locally or served remotely.
 
 Flags:
   --help              Print the application's help text and exit.
