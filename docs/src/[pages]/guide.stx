@@ -66,10 +66,9 @@ Ark has builtin support for record files written in [Markdown][] and [Syntex][].
 
 [Markdown]: http://daringfireball.net/projects/markdown/
 [Syntex]: https://github.com/dmulholland/syntex
+[YAML]: http://en.wikipedia.org/wiki/YAML
 
 A record file can begin with a [YAML][] header specifying metadata for the record:
-
-[YAML]: http://en.wikipedia.org/wiki/YAML
 
     ---
     title: My Important Document

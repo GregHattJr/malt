@@ -151,8 +151,17 @@ A record is a text file stored in a site's <code>src</code> directory. Ark searc
 Ark has builtin support for record files written in <a href="http://daringfireball.net/projects/markdown/">Markdown</a> and <a href="https://github.com/dmulholland/syntex">Syntex</a>. Files with a <code>.md</code> extension are rendered as Markdown, files with a <code>.stx</code> extension are rendered as Syntex. Ark can be extended via plugins to support other formats and extensions.
 </p>
 <p>
-A record file can begin with a <a href="http://en.wikipedia.org/wiki/YAML" title="--- title: My Important Document author: John Doe date: 2014-07-21 --- Record content begins here.">YAML</a> header specifying metadata for the record:
+A record file can begin with a <a href="http://en.wikipedia.org/wiki/YAML">YAML</a> header specifying metadata for the record:
 </p>
+<pre>
+---
+title: My Important Document
+author: John Doe
+date: 2014-07-21
+---
+
+Record content begins here.
+</pre>
 <p>
 By default, a record's url slug is generated from its filename, but you can specify a custom slug in the header:
 </p>
