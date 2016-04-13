@@ -1,88 +1,140 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>Themes</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/theme.css">
-	<link rel="stylesheet" href="css/pygments.css">
-	<!--[if lt IE 9]><script src="js/html5shiv.min.js"></script><![endif]-->
-	<script src="js/jquery-1.11.2.min.js"></script>
-	<script src="js/theme.js"></script>
+    <meta charset="utf-8">
+    <title>
+        Themes
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/pygments.css">
+    <!--[if lt IE 9]>
+        <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+    <script src="js/jquery-1.12.3.min.js"></script>
+    <script src="js/theme.js"></script>
 </head>
 
 <body class="pages single">
 
-	<header id="header" class="header meta">
-		
-			<div class="hamburger unselectable">☰</div>
-			<ul>
-<li><a href="index.html">Ark</a></li>
-<li><a href="quickstart.html">Quickstart</a></li>
-<li><a href="guide.html">Guide</a></li>
-<li><a href="themes.html">Themes</a></li>
-<li><a href="plugins.html">Plugins</a></li>
+    <header id="head" class="head">
+        <input id="togglebox" type="checkbox">
+        <label id="togglelabel" for="togglebox" class="unselectable"></label>
+        <ul>
+<li>
+<a href="index.html">Ark</a>
+</li>
+<li>
+<a href="quickstart.html">Quickstart</a>
+</li>
+<li>
+<a href="guide.html">Guide</a>
+</li>
+<li>
+<a href="themes.html">Themes</a>
+</li>
+<li>
+<a href="plugins.html">Plugins</a>
+</li>
 </ul>
-		
-	</header>
 
-	<article id="content" class="content">
-		
-			<h1>Themes</h1>
-		
+    </header>
 
-		<p>A theme is a collection of templates, styles, and scripts that together provide the look and feel for a site. Themes should be placed in the site's <code>lib</code> folder, and the name of the active theme directory specified in the <code>config.py</code> file.</p>
+    <article id="main" class="main">
+        
+            <h1>Themes</h1>
+        
+
+        <p>
+A theme is a collection of templates, styles, and scripts that together provide the look and feel for a site. Themes should be placed in the site's <code>lib</code> folder, and the name of the active theme directory specified in the <code>config.py</code> file.
+</p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="n">theme</span> <span class="o">=</span> <span class="s2">&quot;twentyfifteen&quot;</span>
 </pre>
-<p>Ark ships with two bundled themes: <code>twentyfifteen</code>, a responsive, blog-focused theme based on the default WordPress theme of the same name, and <code>debug</code>, a diagnostic tool useful when designing themes or debugging sites.</p>
-<p>Note that you can override the currently active theme with the <code>build</code> command's <code>--theme</code> flag:</p>
+<p>
+Ark ships with two bundled themes: <code>twentyfifteen</code>, a responsive, blog-focused theme based on the default WordPress theme of the same name, and <code>debug</code>, a diagnostic tool useful when designing themes or debugging sites.
+</p>
+<p>
+Note that you can override the currently active theme with the <code>build</code> command's <code>--theme</code> flag:
+</p>
 <pre>
 $ ark build --theme debug
 </pre>
-<p>Ark searches for a named theme first in the site's theme library, then in the global theme library specified by the <code>$ARK_THEMES</code> environment variable. Finally it searches among the default themes bundled with Ark itself.</p>
-<h2 id="theme-structure">Theme Structure</h2>
-<p>A theme directory should contain two subdirectories, <code>resources</code> and <code>templates</code>. The content of the <code>resources</code> directory is copied directly to the site's output directory during building. The <code>templates</code> directory is where Ark looks for the theme's template files.</p>
-<p>Ark has builtin support for templates written in <a href="http://jinja.pocoo.org">Jinja</a> (using a <code>.jinja</code> extension) and <a href="https://github.com/dmulholland/ibis">Ibis</a> (using a <code>.ibis</code> extension). Support for other template languages can be added via plugins.</p>
-<h2 id="template-files">Template Files</h2>
-<p>When Ark generates a HTML page it searches for the appropriate template file in the following order, where <code>&lt;type&gt;</code> indicates the record type in question, e.g. <code>posts</code>:</p>
-<p><em>Single Record page</em></p>
+<p>
+Ark searches for a named theme first in the site's theme library, then in the global theme library specified by the <code>$ARK_THEMES</code> environment variable. Finally it searches among the default themes bundled with Ark itself.
+</p>
+<h2 id="theme-structure">
+Theme Structure
+</h2>
+<p>
+A theme directory should contain two subdirectories, <code>resources</code> and <code>templates</code>. The content of the <code>resources</code> directory is copied directly to the site's output directory during building. The <code>templates</code> directory is where Ark looks for the theme's template files.
+</p>
+<p>
+Ark has builtin support for templates written in <a href="http://jinja.pocoo.org">Jinja</a> (using a <code>.jinja</code> extension) and <a href="https://github.com/dmulholland/ibis">Ibis</a> (using a <code>.ibis</code> extension). Support for other template languages can be added via plugins.
+</p>
+<h2 id="template-files">
+Template Files
+</h2>
+<p>
+When Ark generates a HTML page it searches for the appropriate template file in the following order, where <code>&lt;type&gt;</code> indicates the record type in question, e.g. <code>posts</code>:
+</p>
+<p>
+<em>Single Record page</em>
+</p>
 <pre>
 1) &lt;type&gt;-single
 2) single
 </pre>
-<p><em>Directory index page</em></p>
+<p>
+<em>Directory index page</em>
+</p>
 <pre>
 1) &lt;type&gt;-dir-index
 2) dir-index
 3) index
 </pre>
-<p><em>Tag index page</em></p>
+<p>
+<em>Tag index page</em>
+</p>
 <pre>
 1) &lt;type&gt;-tag-index
 2) tag-index
 3) index
 </pre>
-<p>A record can specify a custom template file to use in its header:</p>
+<p>
+A record can specify a custom template file to use in its header:
+</p>
 <pre>
 ---
 template: my-custom-template
 ---
 </pre>
-<p>Note that the file extension should be omitted from the template name.</p>
+<p>
+Note that the file extension should be omitted from the template name.
+</p>
 
-		
-	</article>
+    </article>
 
-	<footer id="footer" class="footer meta">
-		<ul>
-<li><a href="index.html">Ark</a></li>
-<li><a href="quickstart.html">Quickstart</a></li>
-<li><a href="guide.html">Guide</a></li>
-<li><a href="themes.html">Themes</a></li>
-<li><a href="plugins.html">Plugins</a></li>
+    <footer id="foot" class="foot">
+        <ul>
+<li>
+<a href="index.html">Ark</a>
+</li>
+<li>
+<a href="quickstart.html">Quickstart</a>
+</li>
+<li>
+<a href="guide.html">Guide</a>
+</li>
+<li>
+<a href="themes.html">Themes</a>
+</li>
+<li>
+<a href="plugins.html">Plugins</a>
+</li>
 </ul>
-	</footer>
+
+    </footer>
 
 </body>
 </html>

@@ -1,59 +1,103 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>Guide</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/theme.css">
-	<link rel="stylesheet" href="css/pygments.css">
-	<!--[if lt IE 9]><script src="js/html5shiv.min.js"></script><![endif]-->
-	<script src="js/jquery-1.11.2.min.js"></script>
-	<script src="js/theme.js"></script>
+    <meta charset="utf-8">
+    <title>
+        Guide
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/pygments.css">
+    <!--[if lt IE 9]>
+        <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+    <script src="js/jquery-1.12.3.min.js"></script>
+    <script src="js/theme.js"></script>
 </head>
 
 <body class="pages single">
 
-	<header id="header" class="header meta">
-		
-			<div class="hamburger unselectable">☰</div>
-			<ul>
-<li><a href="index.html">Ark</a></li>
-<li><a href="quickstart.html">Quickstart</a></li>
-<li><a href="guide.html">Guide</a></li>
-<li><a href="themes.html">Themes</a></li>
-<li><a href="plugins.html">Plugins</a></li>
+    <header id="head" class="head">
+        <input id="togglebox" type="checkbox">
+        <label id="togglelabel" for="togglebox" class="unselectable"></label>
+        <ul>
+<li>
+<a href="index.html">Ark</a>
+</li>
+<li>
+<a href="quickstart.html">Quickstart</a>
+</li>
+<li>
+<a href="guide.html">Guide</a>
+</li>
+<li>
+<a href="themes.html">Themes</a>
+</li>
+<li>
+<a href="plugins.html">Plugins</a>
+</li>
 </ul>
-		
-	</header>
 
-	<article id="content" class="content">
-		
-			<h1>Guide</h1>
-		
+    </header>
 
-		<ul class="stx-toc">
-<li><a href="#command-line-interface">Command Line Interface</a></li>
-<li><a href="#site-structure">Site Structure</a></li>
-<li><a href="#records">Records</a></li>
-<li><a href="#record-attributes">Record Attributes</a></li>
-<li><a href="#tags">Tags</a></li>
-<li><a href="#links">Links</a></li>
-<li><a href="#includes">Includes</a></li>
-<li><a href="#markdown-options">Markdown Options</a></li>
-<li><a href="#jinja-options">Jinja Options</a></li>
-<li><a href="#shortcode-options">Shortcode Options</a></li>
-<li><a href="#dependencies">Dependencies</a></li>
+    <article id="main" class="main">
+        
+            <h1>Guide</h1>
+        
+
+        <ul class="stx-toc">
+<li>
+<a href="#command-line-interface">Command Line Interface</a>
+</li>
+<li>
+<a href="#site-structure">Site Structure</a>
+</li>
+<li>
+<a href="#records">Records</a>
+</li>
+<li>
+<a href="#record-attributes">Record Attributes</a>
+</li>
+<li>
+<a href="#tags">Tags</a>
+</li>
+<li>
+<a href="#links">Links</a>
+</li>
+<li>
+<a href="#includes">Includes</a>
+</li>
+<li>
+<a href="#markdown-options">Markdown Options</a>
+</li>
+<li>
+<a href="#jinja-options">Jinja Options</a>
+</li>
+<li>
+<a href="#shortcode-options">Shortcode Options</a>
+</li>
+<li>
+<a href="#dependencies">Dependencies</a>
+</li>
 </ul>
-<h2 id="command-line-interface">Command Line Interface</h2>
-<p>To initialize a new site, create a site directory, <code>cd</code> into it, and run the <code>init</code> command:</p>
+<h2 id="command-line-interface">
+Command Line Interface
+</h2>
+<p>
+To initialize a new site, create a site directory, <code>cd</code> into it, and run the <code>init</code> command:
+</p>
 <pre>
 $ ark init
 </pre>
-<p>To build an existing site, run the <code>build</code> command from the site directory or any of its subdirectories:</p>
+<p>
+To build an existing site, run the <code>build</code> command from the site directory or any of its subdirectories:
+</p>
 <pre>
 $ ark build
 </pre>
-<p>See the builtin help text for further details of Ark's command line interface:</p>
+<p>
+See the builtin help text for further details of Ark's command line interface:
+</p>
 <pre>
 $ ark --help
 
@@ -76,8 +120,12 @@ Commands:
 Command Help:
   help &lt;command&gt;    Print the specified command's help text and exit.
 </pre>
-<h2 id="site-structure">Site Structure</h2>
-<p>Initializing a new site creates the following directory structure:</p>
+<h2 id="site-structure">
+Site Structure
+</h2>
+<p>
+Initializing a new site creates the following directory structure:
+</p>
 <pre>
 site/
     config.py       # site configuration file
@@ -87,28 +135,35 @@ site/
     out/            # output directory for html files
     src/            # source directory for text files
 </pre>
-<p>Ark also creates an empty <code>.ark</code> file which it uses to identify the site directory. You can safely commit this file to a version control repository.</p>
-<p>In use Ark will generate a <code>.arkcache</code> directory for its own use. You can add this directory to your <code>.gitignore</code> file or equivalent if your site is stored in a version control repository.</p>
-<h2 id="records">Records</h2>
-<p>A record is a text file stored in a site's <code>src</code> directory. Ark searches the <code>src</code> directory for record files and generates a HTML page in the <code>out</code> directory for each one it finds. It can also generate a set of index pages for each directory of records.</p>
-<p>Ark has builtin support for record files written in <a href="http://daringfireball.net/projects/markdown/">Markdown</a> and <a href="https://github.com/dmulholland/syntex">Syntex</a>. Files with a <code>.md</code> extension are rendered as Markdown, files with a <code>.stx</code> extension are rendered as Syntex. Ark can be extended via plugins to support other formats and extensions.</p>
-<p>A record file can begin with a <a href="http://en.wikipedia.org/wiki/YAML">YAML</a> header specifying metadata for the record:</p>
-<pre>
----
-title: My Important Document
-author: John Doe
-date: 2014-07-21
----
-
-Record content begins here.
-</pre>
-<p>By default, a record's url slug is generated from its filename, but you can specify a custom slug in the header:</p>
+<p>
+Ark also creates an empty <code>.ark</code> file which it uses to identify the site directory. You can safely commit this file to a version control repository.
+</p>
+<p>
+In use Ark will generate a <code>.arkcache</code> directory for its own use. You can add this directory to your <code>.gitignore</code> file or equivalent if your site is stored in a version control repository.
+</p>
+<h2 id="records">
+Records
+</h2>
+<p>
+A record is a text file stored in a site's <code>src</code> directory. Ark searches the <code>src</code> directory for record files and generates a HTML page in the <code>out</code> directory for each one it finds. It can also generate a set of index pages for each directory of records.
+</p>
+<p>
+Ark has builtin support for record files written in <a href="http://daringfireball.net/projects/markdown/">Markdown</a> and <a href="https://github.com/dmulholland/syntex">Syntex</a>. Files with a <code>.md</code> extension are rendered as Markdown, files with a <code>.stx</code> extension are rendered as Syntex. Ark can be extended via plugins to support other formats and extensions.
+</p>
+<p>
+A record file can begin with a <a href="http://en.wikipedia.org/wiki/YAML" title="--- title: My Important Document author: John Doe date: 2014-07-21 --- Record content begins here.">YAML</a> header specifying metadata for the record:
+</p>
+<p>
+By default, a record's url slug is generated from its filename, but you can specify a custom slug in the header:
+</p>
 <pre>
 ---
 slug: my-custom-slug
 ---
 </pre>
-<p>Every record has a <em>type</em>, determined by its parent <code>[type]</code> directory in the site's <code>src</code> directory:</p>
+<p>
+Every record has a <em>type</em>, determined by its parent <code>[type]</code> directory in the site's <code>src</code> directory:
+</p>
 <pre>
 src/
     [pages]/
@@ -116,14 +171,20 @@ src/
     [posts]/
         my-post.md     # this record is a post
 </pre>
-<p>Ark has two builtin record types - <em>pages</em> and <em>posts</em> - but you can add as many custom types as you like simply by creating new <code>[type]</code> directories. Every type can have its own individual set of index and tag index pages.</p>
-<p>You can determine the behaviour of your custom types (or alter the behaviour of the builtin types) in your site's <code>config.py</code> file. Assuming we'll be devoting a section of our site to sonnets, we may wish to create a custom type just for them. We can do this by adding a <code>[sonnets]</code> directory to our site's <code>src</code> directory.</p>
+<p>
+Ark has two builtin record types - <em>pages</em> and <em>posts</em> - but you can add as many custom types as you like simply by creating new <code>[type]</code> directories. Every type can have its own individual set of index and tag index pages.
+</p>
+<p>
+You can determine the behaviour of your custom types (or alter the behaviour of the builtin types) in your site's <code>config.py</code> file. Assuming we'll be devoting a section of our site to sonnets, we may wish to create a custom type just for them. We can do this by adding a <code>[sonnets]</code> directory to our site's <code>src</code> directory.
+</p>
 <pre>
 src/
     [sonnets]/
         my-sonnet.md   # this record is a sonnet
 </pre>
-<p>New custom types behave, by default, like the builtin <em>post</em> type, but we can alter this behaviour by adding a dictionary of type settings to our <code>config.py</code> file:</p>
+<p>
+New custom types behave, by default, like the builtin <em>post</em> type, but we can alter this behaviour by adding a dictionary of type settings to our <code>config.py</code> file:
+</p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="n">sonnets</span> <span class="o">=</span> <span class="p">{</span>                <span class="c1"># id corresponding to the [type] directory</span>
     <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Sonnets&quot;</span><span class="p">,</span>     <span class="c1"># defaults to the titlecased id</span>
@@ -137,90 +198,168 @@ src/
     <span class="s2">&quot;homepage&quot;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>     <span class="c1"># use this type&#39;s index as the site homepage?</span>
 <span class="p">}</span>
 </pre>
-<p>All the settings above are in fact defaults, and in practice we would only need to include those we wished to change.</p>
-<p>Within a <code>[type]</code> directory, Ark will preserve any directory structure it finds, so you can use subdirectories to organise your record files by category or date. If the record type is indexed, Ark will generate an individual set of index pages for each subdirectory in the tree.</p>
-<p>Note that you can store other files and directories in your site's <code>src</code> directory and Ark will copy these files untouched to the <code>out</code> directory when it builds your site. Ark only searches <code>[type]</code> directories for record files so you can safely store, for example, a <code>robots.txt</code> file or a directory of images in your <code>src</code> directory.</p>
-<h2 id="record-attributes">Record Attributes</h2>
-<p>A record file's metadata keys are converted to lowercase and spaces are replaced by underscores so the YAML attribute:</p>
+<p>
+All the settings above are in fact defaults, and in practice we would only need to include those we wished to change.
+</p>
+<p>
+Within a <code>[type]</code> directory, Ark will preserve any directory structure it finds, so you can use subdirectories to organise your record files by category or date. If the record type is indexed, Ark will generate an individual set of index pages for each subdirectory in the tree.
+</p>
+<p>
+Note that you can store other files and directories in your site's <code>src</code> directory and Ark will copy these files untouched to the <code>out</code> directory when it builds your site. Ark only searches <code>[type]</code> directories for record files so you can safely store, for example, a <code>robots.txt</code> file or a directory of images in your <code>src</code> directory.
+</p>
+<h2 id="record-attributes">
+Record Attributes
+</h2>
+<p>
+A record file's metadata keys are converted to lowercase and spaces are replaced by underscores so the YAML attribute:
+</p>
 <pre>
 ---
 Date of Birth: 1999-09-09
 ---
 </pre>
-<p>will be accessible in template files as <code>record.date_of_birth</code>.</p>
-<p>All records have the following default attributes:</p>
+<p>
+will be accessible in template files as <code>record.date_of_birth</code>.
+</p>
+<p>
+All records have the following default attributes:
+</p>
 <dl>
-<dt><code>date</code></dt>
+<dt>
+<code>date</code>
+</dt>
 <dd>
-<p>A default datetime stamp. If the record has a <code>date</code> attribute, this will be used. If not, the file creation time will be used if available (OSX, BSD, Windows), or else the time of the file's last metadata change (Linux).</p>
+<p>
+A default datetime stamp. If the record has a <code>date</code> attribute, this will be used. If not, the file creation time will be used if available (OSX, BSD, Windows), or else the time of the file's last metadata change (Linux).
+</p>
 </dd>
-<dt><code>src</code></dt>
+<dt>
+<code>src</code>
+</dt>
 <dd>
-<p>The source filepath.</p>
+<p>
+The source filepath.
+</p>
 </dd>
-<dt><code>ext</code></dt>
+<dt>
+<code>ext</code>
+</dt>
 <dd>
-<p>The record's file extension, e.g. <code>md</code> or <code>stx</code>.</p>
+<p>
+The record's file extension, e.g. <code>md</code> or <code>stx</code>.
+</p>
 </dd>
-<dt><code>html</code></dt>
+<dt>
+<code>html</code>
+</dt>
 <dd>
-<p>The record's content, rendered into HTML.</p>
+<p>
+The record's content, rendered into HTML.
+</p>
 </dd>
-<dt><code>slugs</code></dt>
+<dt>
+<code>slugs</code>
+</dt>
 <dd>
-<p>A list of output-path slugs.</p>
+<p>
+A list of output-path slugs.
+</p>
 </dd>
-<dt><code>slug</code></dt>
+<dt>
+<code>slug</code>
+</dt>
 <dd>
-<p>The record's url slug.</p>
+<p>
+The record's url slug.
+</p>
 </dd>
-<dt><code>text</code></dt>
+<dt>
+<code>text</code>
+</dt>
 <dd>
-<p>The record's text content.</p>
+<p>
+The record's text content.
+</p>
 </dd>
-<dt><code>type</code></dt>
+<dt>
+<code>type</code>
+</dt>
 <dd>
-<p>The record's type, determined by its parent <code>[type]</code> directory.</p>
+<p>
+The record's type, determined by its parent <code>[type]</code> directory.
+</p>
 </dd>
-<dt><code>url</code></dt>
+<dt>
+<code>url</code>
+</dt>
 <dd>
-<p>The record's URL.</p>
+<p>
+The record's URL.
+</p>
 </dd>
 </dl>
-<h2 id="tags">Tags</h2>
-<p>Every record can be tagged and every record type supports its own individual set of tag index pages. To tag a record, simply add a <code>tags</code> attribute to its header followed by a comma-separated list of tags:</p>
+<h2 id="tags">
+Tags
+</h2>
+<p>
+Every record can be tagged and every record type supports its own individual set of tag index pages. To tag a record, simply add a <code>tags</code> attribute to its header followed by a comma-separated list of tags:
+</p>
 <pre>
 ---
 tags: foo, bar, baz
 ---
 </pre>
-<h2 id="links">Links</h2>
-<p>Ark generates page-relative urls and files with a <code>.html</code> extension by default, but you can customize this behaviour to suit your needs.</p>
-<p>First, you can specify a root url in your <code>config.py</code> file. Use an explicit domain, e.g. <code>"http://example.com/"</code>, for absolute urls, or a single forward slash, <code>"/"</code>, for site-relative urls.</p>
+<h2 id="links">
+Links
+</h2>
+<p>
+Ark generates page-relative urls and files with a <code>.html</code> extension by default, but you can customize this behaviour to suit your needs.
+</p>
+<p>
+First, you can specify a root url in your <code>config.py</code> file. Use an explicit domain, e.g. <code>"http://example.com/"</code>, for absolute urls, or a single forward slash, <code>"/"</code>, for site-relative urls.
+</p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="n">root</span> <span class="o">=</span> <span class="s2">&quot;http://example.com/&quot;</span>
 </pre>
-<p>Second, you can specify a file extension in your <code>config.py</code> file. You can choose an arbitrary file extension, e.g. <code>".html"</code>, or pass an empty string, <code>""</code>, to use no file extension at all. If you specify a single forward slash, <code>"/"</code>, Ark will generate directory-style urls ending in a slash.</p>
+<p>
+Second, you can specify a file extension in your <code>config.py</code> file. You can choose an arbitrary file extension, e.g. <code>".html"</code>, or pass an empty string, <code>""</code>, to use no file extension at all. If you specify a single forward slash, <code>"/"</code>, Ark will generate directory-style urls ending in a slash.
+</p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="n">extension</span> <span class="o">=</span> <span class="s2">&quot;.html&quot;</span>
 </pre>
-<p>To link to files within your site from records or templates use site-relative urls prefixed by <code>@root/</code>, e.g.</p>
+<p>
+To link to files within your site from records or templates use site-relative urls prefixed by <code>@root/</code>, e.g.
+</p>
 <pre>
 @root/scripts/jquery.js
 </pre>
-<p>Ark will automatically rewrite these urls in the appropriate format.</p>
-<p>Use two trailing slashes when linking to files generated by Ark itself - this tells Ark to rewrite the ending to suit your extension settings.</p>
+<p>
+Ark will automatically rewrite these urls in the appropriate format.
+</p>
+<p>
+Use two trailing slashes when linking to files generated by Ark itself - this tells Ark to rewrite the ending to suit your extension settings.
+</p>
 <pre>
 @root/posts/my-post//
 </pre>
-<p>Note that you should include the <code>index</code> slug when linking to directory or tag indexes:</p>
+<p>
+Note that you should include the <code>index</code> slug when linking to directory or tag indexes:
+</p>
 <pre>
 @root/posts/index//
 </pre>
-<p>Linking to the homepage is a special case: a simple <code>@root/</code> will always suffice.</p>
-<h2 id="includes">Includes</h2>
-<p>The includes directory, <code>inc</code>, is intended for snippets of HTML that can be reused on multiple pages throughout your site, e.g. menus or footer links. Source files placed in this folder will be parsed as Markdown or Syntex depending on their extension and the resulting HTML made available for inclusion in theme files via the <code>inc.&lt;name&gt;</code> attribute.</p>
-<p>For example, a simple menu can be constructed in either Markdown or Syntex using nested lists:</p>
+<p>
+Linking to the homepage is a special case: a simple <code>@root/</code> will always suffice.
+</p>
+<h2 id="includes">
+Includes
+</h2>
+<p>
+The includes directory, <code>inc</code>, is intended for snippets of HTML that can be reused on multiple pages throughout your site, e.g. menus or footer links. Source files placed in this folder will be parsed as Markdown or Syntex depending on their extension and the resulting HTML made available for inclusion in theme files via the <code>inc.&lt;name&gt;</code> attribute.
+</p>
+<p>
+For example, a simple menu can be constructed in either Markdown or Syntex using nested lists:
+</p>
 <pre>
 * [Home](@root/)
 * [About](@root/about//)
@@ -228,44 +367,94 @@ tags: foo, bar, baz
     * [Cats](@root/posts/cats/index//)
     * [Dogs](@root/posts/dogs/index//)
 </pre>
-<p>If the menu above was contained in a file named <code>menu.md</code> then the rendered HTML would be available to themes via the <code>inc.menu</code> attribute.</p>
-<p>Files with a <code>.html</code>/<code>.js</code>/<code>.css</code>/<code>.txt</code> extension will have their contents preserved as-is.</p>
-<h2 id="markdown-options">Markdown Options</h2>
-<p>Ark uses the <a href="https://pythonhosted.org/Markdown/">Markdown</a> package to render record files with a <code>.md</code> extension. You can add a dictionary of keyword arguments for the renderer to your site configuration file via a <code>markdown</code> attribute.</p>
-<p>For example, to turn on the 'Markdown Extra' extension, add the following snippet to your <code>config.py</code> file:</p>
+<p>
+If the menu above was contained in a file named <code>menu.md</code> then the rendered HTML would be available to themes via the <code>inc.menu</code> attribute.
+</p>
+<p>
+Files with a <code>.html</code>/<code>.js</code>/<code>.css</code>/<code>.txt</code> extension will have their contents preserved as-is.
+</p>
+<h2 id="markdown-options">
+Markdown Options
+</h2>
+<p>
+Ark uses the <a href="https://pythonhosted.org/Markdown/">Markdown</a> package to render record files with a <code>.md</code> extension. You can add a dictionary of keyword arguments for the renderer to your site configuration file via a <code>markdown</code> attribute.
+</p>
+<p>
+For example, to turn on the 'Markdown Extra' extension, add the following snippet to your <code>config.py</code> file:
+</p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="n">markdown</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;extensions&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;markdown.extensions.extra&#39;</span><span class="p">]</span> <span class="p">}</span>
 </pre>
-<p>See the Markdown package's <a href="https://pythonhosted.org/Markdown/">documentation</a> for details of its available options.</p>
-<h2 id="jinja-options">Jinja Options</h2>
-<p>Ark uses the <a href="http://jinja.pocoo.org">Jinja2</a> package to render template files with a <code>.jinja</code> extension. You can add a dictionary of keyword arguments for the Jinja environment to your site configuration file via a <code>jinja</code> attribute.</p>
-<h2 id="shortcode-options">Shortcode Options</h2>
-<p>Ark uses the <a href="https://github.com/dmulholland/shortcodes">Shortcodes</a> package to process shortcodes in record files. You can add a dictionary of keyword arguments for the shortcode parser to your site configuration file via a <code>shortcodes</code> attribute.</p>
-<h2 id="dependencies">Dependencies</h2>
-<p>Installing Ark via <code>pip</code> automatically installs the following libraries:</p>
+<p>
+See the Markdown package's <a href="https://pythonhosted.org/Markdown/">documentation</a> for details of its available options.
+</p>
+<h2 id="jinja-options">
+Jinja Options
+</h2>
+<p>
+Ark uses the <a href="http://jinja.pocoo.org">Jinja2</a> package to render template files with a <code>.jinja</code> extension. You can add a dictionary of keyword arguments for the Jinja environment to your site configuration file via a <code>jinja</code> attribute.
+</p>
+<h2 id="shortcode-options">
+Shortcode Options
+</h2>
+<p>
+Ark uses the <a href="https://github.com/dmulholland/shortcodes">Shortcodes</a> package to process shortcodes in record files. You can add a dictionary of keyword arguments for the shortcode parser to your site configuration file via a <code>shortcodes</code> attribute.
+</p>
+<h2 id="dependencies">
+Dependencies
+</h2>
+<p>
+Installing Ark via <code>pip</code> automatically installs the following libraries:
+</p>
 <ul>
-<li><a href="https://github.com/dmulholland/clio">Clio</a></li>
-<li><a href="https://github.com/dmulholland/ibis">Ibis</a></li>
-<li><a href="http://jinja.pocoo.org">Jinja</a></li>
-<li><a href="https://pythonhosted.org/Markdown/">Markdown</a></li>
-<li><a href="http://pygments.org/">Pygments</a></li>
-<li><a href="http://pyyaml.org/">PyYAML</a></li>
-<li><a href="https://github.com/dmulholland/shortcodes">Shortcodes</a></li>
-<li><a href="https://github.com/dmulholland/syntex">Syntex</a></li>
+<li>
+<a href="https://github.com/dmulholland/clio">Clio</a>
+</li>
+<li>
+<a href="https://github.com/dmulholland/ibis">Ibis</a>
+</li>
+<li>
+<a href="http://jinja.pocoo.org">Jinja</a>
+</li>
+<li>
+<a href="https://pythonhosted.org/Markdown/">Markdown</a>
+</li>
+<li>
+<a href="http://pygments.org/">Pygments</a>
+</li>
+<li>
+<a href="http://pyyaml.org/">PyYAML</a>
+</li>
+<li>
+<a href="https://github.com/dmulholland/shortcodes">Shortcodes</a>
+</li>
+<li>
+<a href="https://github.com/dmulholland/syntex">Syntex</a>
+</li>
 </ul>
 
-		
-	</article>
+    </article>
 
-	<footer id="footer" class="footer meta">
-		<ul>
-<li><a href="index.html">Ark</a></li>
-<li><a href="quickstart.html">Quickstart</a></li>
-<li><a href="guide.html">Guide</a></li>
-<li><a href="themes.html">Themes</a></li>
-<li><a href="plugins.html">Plugins</a></li>
+    <footer id="foot" class="foot">
+        <ul>
+<li>
+<a href="index.html">Ark</a>
+</li>
+<li>
+<a href="quickstart.html">Quickstart</a>
+</li>
+<li>
+<a href="guide.html">Guide</a>
+</li>
+<li>
+<a href="themes.html">Themes</a>
+</li>
+<li>
+<a href="plugins.html">Plugins</a>
+</li>
 </ul>
-	</footer>
+
+    </footer>
 
 </body>
 </html>

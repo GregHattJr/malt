@@ -1,44 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>Plugins</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/theme.css">
-	<link rel="stylesheet" href="css/pygments.css">
-	<!--[if lt IE 9]><script src="js/html5shiv.min.js"></script><![endif]-->
-	<script src="js/jquery-1.11.2.min.js"></script>
-	<script src="js/theme.js"></script>
+    <meta charset="utf-8">
+    <title>
+        Plugins
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/pygments.css">
+    <!--[if lt IE 9]>
+        <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+    <script src="js/jquery-1.12.3.min.js"></script>
+    <script src="js/theme.js"></script>
 </head>
 
 <body class="pages single">
 
-	<header id="header" class="header meta">
-		
-			<div class="hamburger unselectable">☰</div>
-			<ul>
-<li><a href="index.html">Ark</a></li>
-<li><a href="quickstart.html">Quickstart</a></li>
-<li><a href="guide.html">Guide</a></li>
-<li><a href="themes.html">Themes</a></li>
-<li><a href="plugins.html">Plugins</a></li>
+    <header id="head" class="head">
+        <input id="togglebox" type="checkbox">
+        <label id="togglelabel" for="togglebox" class="unselectable"></label>
+        <ul>
+<li>
+<a href="index.html">Ark</a>
+</li>
+<li>
+<a href="quickstart.html">Quickstart</a>
+</li>
+<li>
+<a href="guide.html">Guide</a>
+</li>
+<li>
+<a href="themes.html">Themes</a>
+</li>
+<li>
+<a href="plugins.html">Plugins</a>
+</li>
 </ul>
-		
-	</header>
 
-	<article id="content" class="content">
-		
-			<h1>Plugins</h1>
-		
+    </header>
 
-		<p>The extensions directory, <code>ext</code>, is intended for plugins that extend or enhance Ark's functionality. Python modules or packages placed in this directory will be loaded automatically and can take advantage of Ark's extension hooks to inject their own code into the build process.</p>
-<p>(Ark will also load plugins from a global extensions directory indicated by the <code>$ARK_EXT</code> environment variable if it exists.)</p>
-<p>Ark makes three extension mechanisms available to plugins: i) event and filter <a href="#hooks">hooks</a>, ii) pluggable rendering and parsing <a href="#engines">engines</a>, and iii) WordPress-style <a href="#shortcodes">shortcodes</a>.</p>
-<h2 id="hooks">Hooks</h2>
-<p>Ark exports a flexible framework of event and filter hooks. Plugins can extend Ark by registering callback functions on these hooks.</p>
-<h3 id="events">Events</h3>
-<p><em>Event callbacks</em> accept zero or more arguments depending on the specific hook. They may modify their arguments in place but have no return value.</p>
-<p>Here's a simple event callback that prints a count of the number of pages that have been written to disk:</p>
+    <article id="main" class="main">
+        
+            <h1>Plugins</h1>
+        
+
+        <p>
+The extensions directory, <code>ext</code>, is intended for plugins that extend or enhance Ark's functionality. Python modules or packages placed in this directory will be loaded automatically and can take advantage of Ark's extension hooks to inject their own code into the build process.
+</p>
+<p>
+(Ark will also load plugins from a global extensions directory indicated by the <code>$ARK_EXT</code> environment variable if it exists.)
+</p>
+<p>
+Ark makes three extension mechanisms available to plugins: i) event and filter <a href="#hooks)," title="ii) pluggable rendering and parsing [engines](#engines), and iii) WordPress-style [shortcodes](#shortcodes">hooks</a>.
+</p>
+<h2 id="hooks">
+Hooks
+</h2>
+<p>
+Ark exports a flexible framework of event and filter hooks. Plugins can extend Ark by registering callback functions on these hooks.
+</p>
+<h3 id="events">
+Events
+</h3>
+<p>
+<em>Event callbacks</em> accept zero or more arguments depending on the specific hook. They may modify their arguments in place but have no return value.
+</p>
+<p>
+Here's a simple event callback that prints a count of the number of pages that have been written to disk:
+</p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="kn">import</span> <span class="nn">ark</span>
 
@@ -46,10 +76,18 @@
 <span class="k">def</span> <span class="nf">page_count</span><span class="p">():</span>
     <span class="k">print</span><span class="p">(</span><span class="n">ark</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">written</span><span class="p">())</span>
 </pre>
-<p>This callback is registered on the <code>exit</code> event hook which fires just before the application exits. (The <code>exit</code> hook can be found in the <code>ark/main.py</code> file.)</p>
-<h3 id="filters">Filters</h3>
-<p><em>Filter callbacks</em> accept at least one argument - the value to be filtered. They may accept additional arguments depending on the specific hook. Filter callbacks modify and return the value of their first argument.</p>
-<p>Here's a simple filter callback that changes every instance of the word "foo" in records to "bar":</p>
+<p>
+This callback is registered on the <code>exit</code> event hook which fires just before the application exits. (The <code>exit</code> hook can be found in the <code>ark/main.py</code> file.)
+</p>
+<h3 id="filters">
+Filters
+</h3>
+<p>
+<em>Filter callbacks</em> accept at least one argument - the value to be filtered. They may accept additional arguments depending on the specific hook. Filter callbacks modify and return the value of their first argument.
+</p>
+<p>
+Here's a simple filter callback that changes every instance of the word "foo" in records to "bar":
+</p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="kn">import</span> <span class="nn">ark</span>
 
@@ -57,11 +95,21 @@
 <span class="k">def</span> <span class="nf">foo_to_bar</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
 </pre>
-<p>This callback is registered on the <code>record_text</code> filter hook which fires just before a record's text is rendered into HTML. (The <code>record_text</code> hook can be found in the <code>ark/records.py</code> file).</p>
-<h2 id="engines">Engines</h2>
-<p>Ark relies for most of its functionality on a suite of pluggable rendering and parsing engines, e.g. the <a href="http://jinja.pocoo.org">Jinja</a> template-engine for handling <code>.jinja</code> template files. Plugins can register support for additional rendering and parsing engines using a system of <code>@register</code> decorators.</p>
-<h3 id="templates">Templates</h3>
-<p>Ark has builtin support for <a href="http://jinja.pocoo.org">Jinja</a> and <a href="https://github.com/dmulholland/ibis">Ibis</a> templates. Plugins can register support for additional formats using the <code>@templates.register()</code> decorator. Template-engine callbacks are registered per file-extension, e.g.</p>
+<p>
+This callback is registered on the <code>record_text</code> filter hook which fires just before a record's text is rendered into HTML. (The <code>record_text</code> hook can be found in the <code>ark/records.py</code> file).
+</p>
+<h2 id="engines">
+Engines
+</h2>
+<p>
+Ark relies for most of its functionality on a suite of pluggable rendering and parsing engines, e.g. the <a href="http://jinja.pocoo.org">Jinja</a> template-engine for handling <code>.jinja</code> template files. Plugins can register support for additional rendering and parsing engines using a system of <code>@register</code> decorators.
+</p>
+<h3 id="templates">
+Templates
+</h3>
+<p>
+Ark has builtin support for <a href="http://jinja.pocoo.org">Jinja</a> and <a href="https://github.com/dmulholland/ibis">Ibis</a> templates. Plugins can register support for additional formats using the <code>@templates.register()</code> decorator. Template-engine callbacks are registered per file-extension, e.g.
+</p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="kn">import</span> <span class="nn">ark</span>
 
@@ -70,9 +118,15 @@
     <span class="o">...</span>
     <span class="k">return</span> <span class="n">html</span>
 </pre>
-<p>A template-engine callback should accept a <code>Page</code> object and a template filename and return a string of HTML.</p>
-<h3 id="records">Records</h3>
-<p>Ark has builtin support for records written in <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> and <a href="https://github.com/dmulholland/syntex">Syntex</a>. Plugins can register support for additional formats using the <code>@renderers.register()</code> decorator. Rendering-engine callbacks are registered per file-extension, e.g.</p>
+<p>
+A template-engine callback should accept a <code>Page</code> object and a template filename and return a string of HTML.
+</p>
+<h3 id="records">
+Records
+</h3>
+<p>
+Ark has builtin support for records written in <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> and <a href="https://github.com/dmulholland/syntex">Syntex</a>. Plugins can register support for additional formats using the <code>@renderers.register()</code> decorator. Rendering-engine callbacks are registered per file-extension, e.g.
+</p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="kn">import</span> <span class="nn">ark</span>
 
@@ -81,9 +135,15 @@
     <span class="o">...</span>
     <span class="k">return</span> <span class="n">html</span>
 </pre>
-<p>A rendering-engine callback should accept a single string argument containing plain text and return a string of HTML.</p>
-<h3 id="metadata">Metadata</h3>
-<p>Ark has builtin support for record metadata in <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> format. Plugins can add support for additional formats by using the <code>@loader.register</code> decorator to register custom preprocessor callbacks for source files, e.g.</p>
+<p>
+A rendering-engine callback should accept a single string argument containing plain text and return a string of HTML.
+</p>
+<h3 id="metadata">
+Metadata
+</h3>
+<p>
+Ark has builtin support for record metadata in <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> format. Plugins can add support for additional formats by using the <code>@loader.register</code> decorator to register custom preprocessor callbacks for source files, e.g.
+</p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="kn">import</span> <span class="nn">ark</span>
 
@@ -92,13 +152,21 @@
     <span class="o">...</span>
     <span class="k">return</span> <span class="n">text</span><span class="p">,</span> <span class="n">meta</span>
 </pre>
-<p>A preprocessor callback should accept two arguments: a string containing a source files's content and a dictionary containing metadata for that source file. It should return the processed string and updated dictionary.</p>
-<h2 id="shortcodes">Shortcodes</h2>
-<p>Ark has builtin support for WordPress-style <a href="https://github.com/dmulholland/shortcodes">shortcodes</a> with space-separated positional and keyword arguments:</p>
+<p>
+A preprocessor callback should accept two arguments: a string containing a source files's content and a dictionary containing metadata for that source file. It should return the processed string and updated dictionary.
+</p>
+<h2 id="shortcodes">
+Shortcodes
+</h2>
+<p>
+Ark has builtin support for WordPress-style <a href="https://github.com/dmulholland/shortcodes">shortcodes</a> with space-separated positional and keyword arguments:
+</p>
 <pre>
 [% tag arg1 key=arg2 %]
 </pre>
-<p>Plugins can register shortcode tags using the <code>@shortcodes.register()</code> decorator:</p>
+<p>
+Plugins can register shortcode tags using the <code>@shortcodes.register()</code> decorator:
+</p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="kn">import</span> <span class="nn">shortcodes</span>
 
@@ -107,29 +175,55 @@
     <span class="o">...</span>
     <span class="k">return</span> <span class="n">replacement_text</span>
 </pre>
-<p>Handler functions should accept four arguments:</p>
+<p>
+Handler functions should accept four arguments:
+</p>
 <ol>
-<li>The <code>Record</code> object for the source file containing the shortcode.</li>
-<li>A string containing the shortcode's content, if the shortcode has block scope.</li>
-<li>A list of positional arguments.</li>
-<li>A dictionary of keyword arguments.</li>
+<li>
+The <code>Record</code> object for the source file containing the shortcode.
+</li>
+<li>
+A string containing the shortcode's content, if the shortcode has block scope.
+</li>
+<li>
+A list of positional arguments.
+</li>
+<li>
+A dictionary of keyword arguments.
+</li>
 </ol>
-<p>Positional and keyword arguments are passed as strings. The handler function itself should return a string.</p>
-<p>Note that shortcodes are processed <em>before</em> record text is rendered into HTML.</p>
-<p>Shortcodes are implemented via the <a href="https://github.com/dmulholland/shortcodes">Shortcodes</a> package. See the package documentation for further details.</p>
+<p>
+Positional and keyword arguments are passed as strings. The handler function itself should return a string.
+</p>
+<p>
+Note that shortcodes are processed <em>before</em> record text is rendered into HTML.
+</p>
+<p>
+Shortcodes are implemented via the <a href="https://github.com/dmulholland/shortcodes">Shortcodes</a> package. See the package documentation for further details.
+</p>
 
-		
-	</article>
+    </article>
 
-	<footer id="footer" class="footer meta">
-		<ul>
-<li><a href="index.html">Ark</a></li>
-<li><a href="quickstart.html">Quickstart</a></li>
-<li><a href="guide.html">Guide</a></li>
-<li><a href="themes.html">Themes</a></li>
-<li><a href="plugins.html">Plugins</a></li>
+    <footer id="foot" class="foot">
+        <ul>
+<li>
+<a href="index.html">Ark</a>
+</li>
+<li>
+<a href="quickstart.html">Quickstart</a>
+</li>
+<li>
+<a href="guide.html">Guide</a>
+</li>
+<li>
+<a href="themes.html">Themes</a>
+</li>
+<li>
+<a href="plugins.html">Plugins</a>
+</li>
 </ul>
-	</footer>
+
+    </footer>
 
 </body>
 </html>
