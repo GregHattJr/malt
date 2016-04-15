@@ -36,7 +36,7 @@ def load():
 # Caches page hashes to disk for the next build run.
 @hooks.register('exit')
 def save():
-    if _hashes['new']:
+    if _hashes['new'] and _hashes['new'] != _hashes['old']:
         if not os.path.isdir(site.home('.arkcache')):
             os.makedirs(site.home('.arkcache'))
         with open(site.home('.arkcache', 'hashes.pickle'), 'wb') as file:
