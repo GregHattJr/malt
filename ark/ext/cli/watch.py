@@ -18,9 +18,9 @@ Usage: %s watch [FLAGS] [ARGUMENTS]
   Monitor the site directory and automatically rebuild the site when any file
   changes are detected.
 
-  Arguments passed to this command will be passed along to the 'build'
-  command. You can pass options or flags to the 'build' command by preceding
-  them with '--'.
+  Arguments passed to this command will be passed on to the 'build' command.
+  Note that you can pass options to the 'build' command by preceding them with
+  '--'. (This prevents them being parsed as options for the 'watch' command.)
 
 Flags:
   --help              Print this command's help text and exit.
