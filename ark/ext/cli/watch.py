@@ -15,12 +15,15 @@ import hashlib
 helptext = """
 Usage: %s watch [FLAGS] [ARGUMENTS]
 
-  Monitor the site directory and automatically rebuild the site when any file
-  changes are detected.
+  Monitor the site directory and automatically rebuild when file changes are
+  detected.
 
   Arguments passed to this command will be passed on to the 'build' command.
-  Note that you can pass options to the 'build' command by preceding them with
-  '--'. (This prevents them being parsed as options for the 'watch' command.)
+  Options intended for the 'build' command should be preceded by '--', e.g.
+
+    ark watch -- --theme debug
+
+  This prevents the options being parsed as options for the 'watch' command.
 
 Flags:
   --help              Print this command's help text and exit.
