@@ -25,7 +25,8 @@
 			</header>
 
 			<div class="record-content">
-				{{ record.html }}
+				<p>{{ record.html|firstp }}</p>
+				<p><a href="{{record.url}}">Read More</a></p>
 			</div>
 
 			<footer class="record-footer">
