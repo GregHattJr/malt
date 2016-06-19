@@ -31,8 +31,3 @@ def inc(key=None):
 
     # Otherwise, return the entire dictionary.
     return _includes
-
-
-# Deprecated - will be removed in a future release.
-def includes():
-    return inc()
