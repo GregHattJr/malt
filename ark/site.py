@@ -134,8 +134,7 @@ def theme(*append):
     if '_themepath_' in config:
         return os.path.join(config['_themepath_'], *append)
     else:
-        name = config['theme']
-        path = config.setdefault('_themepath_', find_theme(name))
+        path = config.setdefault('_themepath_', find_theme(config['theme']))
         return os.path.join(path, *append)
 
 
