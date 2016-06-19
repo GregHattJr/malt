@@ -25,7 +25,6 @@ class Page(dict):
     def __init__(self, rectype):
         self['site'] = site.config
         self['type'] = site.types(rectype)
-        self['flags'] = cli.parser.get_args()
         self['inc'] = includes.inc()
         self['slugs'] = []
         self['trail'] = []
