@@ -9,6 +9,8 @@
 # not be found the filter will return the input text with any HTML special
 # characters escaped.
 #
+# This extension is included for use in the bundled 'debug' theme.
+#
 # Author: Darren Mulholland <darren@mulholland.xyz>
 # License: Public Domain
 # --------------------------------------------------------------------------
