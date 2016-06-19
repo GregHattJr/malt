@@ -67,7 +67,7 @@ def find_theme(name):
 
 # Returns a value from the site's configuration dictionary. If no key is
 # specified, returns the entire dictionary. If the key is not found, returns
-# `default`.
+# the specified default value.
 def config(key=None, default=None):
     if key:
         return _config.get(key, default)

@@ -1,8 +1,5 @@
 # --------------------------------------------------------------------------
-# This extension implements a pluggable command line interface for Ark.
-#
-# Author: Darren Mulholland <darren@mulholland.xyz>
-# License: Public Domain
+# Processes the application's command-line arguments.
 # --------------------------------------------------------------------------
 
 import ark
@@ -43,9 +40,8 @@ Command Help:
 """ % os.path.basename(sys.argv[0])
 
 
-# Initialize the command line interface on the 'init' hook.
-@ark.hooks.register('init', -999)
-def cli():
+# Parse the application's command-line arguments.
+def parse():
     parser = clio.ArgParser(helptext, ark.meta.__version__)
 
     cmd_build = parser.add_cmd("build", build.callback, build.helptext)
@@ -67,8 +63,6 @@ def cli():
     parser.add_cmd("clear", clear.callback, clear.helptext)
     parser.add_cmd("edit", edit.callback, edit.helptext)
     parser.add_cmd("watch", watch.callback, watch.helptext)
-
-    ark.hooks.event('init_clio', parser)
 
     parser.parse()
     if not parser.has_cmd():

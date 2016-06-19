@@ -28,7 +28,7 @@ Flags:
 
 # Command callback.
 def callback(parser):
-    arkdir = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+    arkdir = os.path.dirname(os.path.dirname(__file__))
     inidir = os.path.join(arkdir, 'ini')
     dstdir = parser.get_args()[0] if parser.has_args() else '.'
     os.makedirs(dstdir, exist_ok=True)

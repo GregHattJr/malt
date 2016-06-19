@@ -13,7 +13,7 @@ from . import site
 _loaded = {}
 
 
-# Loads any Python modules found in the extensions directories.
+# Load any Python modules found in the extensions directories.
 def load():
 
     # List of directories to search for extensions.
