@@ -50,6 +50,7 @@ def parse():
     cmd_build.add_str_opt("src", None, "s")
     cmd_build.add_str_opt("lib", None, "l")
     cmd_build.add_str_opt("inc", None, "i")
+    cmd_build.add_str_opt("ext", None, "e")
     cmd_build.add_str_opt("theme", None, "t")
 
     cmd_serve = parser.add_cmd("serve", serve.callback, serve.helptext)

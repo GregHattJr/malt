@@ -23,6 +23,7 @@ Usage: %s build [FLAGS] [OPTIONS]
   plugins.
 
 Options:
+  -e, --ext <path>    Override the default 'ext' directory.
   -i, --inc <path>    Override the default 'inc' directory.
   -l, --lib <path>    Override the default 'lib' directory.
   -o, --out <path>    Override the default 'out' directory.
@@ -45,6 +46,7 @@ def callback(parser):
     if parser['src']: ark.site.setconfig('[src]', parser['src'])
     if parser['lib']: ark.site.setconfig('[lib]', parser['lib'])
     if parser['inc']: ark.site.setconfig('[inc]', parser['inc'])
+    if parser['ext']: ark.site.setconfig('[ext]', parser['ext'])
 
     if parser['theme']:
         ark.site.setconfig('[theme]', ark.site.find_theme(parser['theme']))
