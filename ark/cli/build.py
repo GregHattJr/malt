@@ -23,16 +23,16 @@ Usage: %s build [FLAGS] [OPTIONS]
   plugins.
 
 Options:
-  -e, --ext <path>    Override the default 'ext' directory.
-  -i, --inc <path>    Override the default 'inc' directory.
-  -l, --lib <path>    Override the default 'lib' directory.
-  -o, --out <path>    Override the default 'out' directory.
-  -s, --src <path>    Override the default 'src' directory.
-  -t, --theme <name>  Override the theme specififed in the config file.
+  -e, --ext <path>      Override the default 'ext' directory.
+  -i, --inc <path>      Override the default 'inc' directory.
+  -l, --lib <path>      Override the default 'lib' directory.
+  -o, --out <path>      Override the default 'out' directory.
+  -s, --src <path>      Override the default 'src' directory.
+  -t, --theme <name>    Override the theme specififed in the config file.
 
 Flags:
-  -c, --clear         Clear the output directory before building.
-      --help          Print this command's help text and exit.
+  -c, --clear           Clear the output directory before building.
+      --help            Print this command's help text and exit.
 
 """ % os.path.basename(sys.argv[0])
 

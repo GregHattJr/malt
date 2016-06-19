@@ -7,6 +7,7 @@ import sys
 import importlib
 
 from . import site
+from . import cli
 
 
 # Stores a dictionary of loaded extension modules.
@@ -23,13 +24,13 @@ def load():
     extdirs.append(os.path.join(os.path.dirname(__file__), 'ext'))
 
     # Global extensions directory/directories.
-    if os.getenv('ARK_EXT'):
+    if os.getenv('ARK_EXT') and not cli.parser['no-global-ext']:
         for path in os.getenv('ARK_EXT').split(os.pathsep):
             if os.path.isdir(path):
                 extdirs.append(path)
 
     # Site-specific extensions.
-    if os.path.isdir(site.ext()):
+    if os.path.isdir(site.ext()) and not cli.parser['no-site-ext']:
         extdirs.append(site.ext())
 
     # Load extensions.

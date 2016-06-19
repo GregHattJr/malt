@@ -2,7 +2,6 @@
 # Processes the application's command-line arguments.
 # --------------------------------------------------------------------------
 
-import ark
 import os
 import clio
 import sys
@@ -13,6 +12,12 @@ from . import clear
 from . import serve
 from . import edit
 from . import watch
+
+from .. import meta
+
+
+# We want the root ArgParser instance to be globally available.
+parser = None
 
 
 # Application help text.
@@ -42,7 +47,11 @@ Command Help:
 
 # Parse the application's command-line arguments.
 def parse():
-    parser = clio.ArgParser(helptext, ark.meta.__version__)
+    global parser
+
+    parser = clio.ArgParser(helptext, meta.__version__)
+    parser.add_flag("no-global-ext")
+    parser.add_flag("no-site-ext")
 
     cmd_build = parser.add_cmd("build", build.callback, build.helptext)
     cmd_build.add_flag("clear", "c")
