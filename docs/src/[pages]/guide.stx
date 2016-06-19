@@ -104,9 +104,9 @@ New custom types behave, by default, like the builtin *post* type, but we can al
 
 ::: python
 
-    sonnets = {                # id corresponding to the [type] directory
-        "name": "Sonnets",     # defaults to the titlecased id
-        "slug": "sonnets",     # defaults to the slugified id
+    sonnets = {                # type name corresponding to the [type] directory
+        "title": "Sonnets",    # defaults to the titlecased type name
+        "slug": "sonnets",     # defaults to the slugified type name
         "tag_slug": "tags",    # defaults to "tags"
         "indexed": True,       # build directory indexes for this type?
         "order_by": "date",    # order index entries by this attribute
