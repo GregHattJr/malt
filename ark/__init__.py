@@ -88,3 +88,4 @@ from . import extensions
 from . import build
 from . import includes
 from . import loader
+from . import cli
