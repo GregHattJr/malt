@@ -73,8 +73,8 @@ def types(rectype, key=None):
     # Set default values for any missing type data.
     if not rectype in typesdict:
         typesdict[rectype] = {
-            'type': rectype,
-            'name': utils.titlecase(rectype),
+            'name': rectype,
+            'title': utils.titlecase(rectype),
             'slug': '' if rectype == 'pages' else utils.slugify(rectype),
             'tag_slug': 'tags',
             'indexed': False if rectype == 'pages' else True,
@@ -195,7 +195,7 @@ def slugs_from_src(srcdir, *append):
 def trail_from_src(srcdir):
     rectype = type_from_src(srcdir)
     dirnames = os.path.relpath(srcdir, src()).replace('\\', '/').split('/')
-    trail = [types(rectype, 'name')]
+    trail = [types(rectype, 'title')]
     trail.extend(name for name in dirnames if not name.startswith('['))
     return trail
 

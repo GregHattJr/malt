@@ -149,7 +149,7 @@ class Page(dict):
 
     # Generates a list of CSS classes for the page.
     def _get_class_list(self):
-        classes = ['type-%s' % self['type']['type']]
+        classes = ['type-%s' % self['type']['name']]
 
         if self['is_single']:
             classes.append('single')
@@ -167,7 +167,7 @@ class Page(dict):
 
     # Returns a list of possible template names for the current page.
     def _get_template_list(self):
-        templates, rectype = [], self['type']['type']
+        templates, rectype = [], self['type']['name']
 
         # Single record page.
         if self['is_single']:

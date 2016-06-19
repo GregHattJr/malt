@@ -71,7 +71,7 @@ def build_tag_indexes():
 
             index['tag'] = nmap[rectype][slug]
             index['is_tag_index'] = True
-            index['trail'] = [typedata['name'], nmap[rectype][slug]]
+            index['trail'] = [typedata['title'], nmap[rectype][slug]]
 
             index.render()
 
@@ -89,7 +89,7 @@ def add_tag_classes(classes, page):
 @ark.hooks.register('page_templates')
 def add_tag_templates(templates, page):
     if page.get('is_tag_index'):
-        templates = ['%s-tag-index' % page['type']['type'], 'tag-index', 'index']
+        templates = ['%s-tag-index' % page['type']['name'], 'tag-index', 'index']
     return templates
 
 
