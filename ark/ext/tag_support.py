@@ -104,7 +104,7 @@ def url(rectype, tag):
     return ark.site.url(slugs(rectype, tag, 'index'))
 
 
-# Returns the output-slug list for the specified tag.
+# Returns the output-slug list for the specified tag. Appends arguments.
 def slugs(rectype, tag, *append):
     slugs = ark.site.slugs(rectype)
     slugs.append(ark.site.typeconfig(rectype, 'tag_slug'))

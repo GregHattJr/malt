@@ -42,14 +42,14 @@ def callback(parser):
     if not ark.site.home():
         sys.exit("Error: cannot locate the site's home directory.")
 
-    if parser['out']: ark.site.setconfig('[out]', parser['out'])
-    if parser['src']: ark.site.setconfig('[src]', parser['src'])
-    if parser['lib']: ark.site.setconfig('[lib]', parser['lib'])
-    if parser['inc']: ark.site.setconfig('[inc]', parser['inc'])
-    if parser['ext']: ark.site.setconfig('[ext]', parser['ext'])
+    if parser['out']: ark.site.config['_out_'] = parser['out']
+    if parser['src']: ark.site.config['_src_'] = parser['src']
+    if parser['lib']: ark.site.config['_lib_'] = parser['lib']
+    if parser['inc']: ark.site.config['_inc_'] = parser['inc']
+    if parser['ext']: ark.site.config['_ext_'] = parser['ext']
 
     if parser['theme']:
-        ark.site.setconfig('[theme]', ark.site.find_theme(parser['theme']))
+        ark.site.config['_themepath_'] = ark.site.find_theme(parser['theme'])
 
     if parser['clear']:
         ark.utils.cleardir(ark.site.out())

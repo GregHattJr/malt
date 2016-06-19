@@ -23,14 +23,14 @@ class Page(dict):
     re_url = re.compile(r'''(["'|])@root(/.*?)(#.*?)?\1''')
 
     def __init__(self, rectype):
-        self['flags'] = cli.parser.get_args()
-        self['site'] = site.config()
-        self['inc'] = includes.inc()
+        self['site'] = site.config
         self['type'] = site.typeconfig(rectype)
+        self['flags'] = cli.parser.get_args()
+        self['inc'] = includes.inc()
         self['slugs'] = []
+        self['trail'] = []
         self['record'] = None
         self['records'] = []
-        self['trail'] = []
         self['is_single'] = False
         self['is_index'] = False
         self['is_dir_index'] = False
@@ -43,9 +43,6 @@ class Page(dict):
         self['first_url'] = ''
         self['last_url'] = ''
         self['index_url'] = site.index_url(rectype)
-
-        # Deprecated - will be removed in a future release.
-        self['includes'] = includes.inc()
 
     # Renders the page into HTML and prints the output file.
     def render(self):
@@ -82,13 +79,13 @@ class Page(dict):
 
         # Directory-style urls require us to append an extra 'index' element.
         slugs = self['slugs'][:]
-        if site.config('extension') == '/':
+        if site.config['extension'] == '/':
             if slugs[-1] == 'index':
                 slugs[-1] = 'index.html'
             else:
                 slugs.append('index.html')
         else:
-            slugs[-1] = slugs[-1] + site.config('extension')
+            slugs[-1] = slugs[-1] + site.config['extension']
         filepath = site.out(*slugs)
 
         if os.path.isfile(os.path.dirname(filepath)):
@@ -126,11 +123,11 @@ class Page(dict):
             if url == '':
                 url = 'index//'
             fragment = match.group(3) or ''
-            prefix = site.config('root', '') or '../' * (depth - 1)
+            prefix = site.config.get('root') or '../' * (depth - 1)
 
             if url.endswith('//'):
                 url = url.rstrip('/')
-                ext = site.config('extension')
+                ext = site.config['extension']
                 if ext == '/':
                     if url == 'index':
                         if depth == 1:

@@ -21,7 +21,7 @@ def init():
 
     # Check the site's config file for customized settings for the
     # markdown renderer.
-    settings = ark.site.config('markdown', {})
+    settings = ark.site.config.get('markdown', {})
 
     # Initialize a markdown renderer.
     global mdrenderer

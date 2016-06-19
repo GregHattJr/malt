@@ -20,7 +20,7 @@ def init():
 
     # Check the site's config file for customized settings for the
     # shortcode parser.
-    settings = ark.site.config('shortcodes', {})
+    settings = ark.site.config.get('shortcodes', {})
 
     # Initialize a single parser instance.
     global scparser

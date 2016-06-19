@@ -24,7 +24,7 @@ def init():
     }
 
     # Check the site's config file for any custom settings.
-    settings.update(ark.site.config('jinja', {}))
+    settings.update(ark.site.config.get('jinja', {}))
 
     # Initialize an Environment instance.
     global env
