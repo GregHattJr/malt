@@ -65,9 +65,9 @@ def find_theme(name):
     sys.exit("Error: cannot locate the theme directory '%s'." % name)
 
 
-# Returns a value from the site's configuration dictionary.
-# If no key is specified, returns the entire dictionary.
-# If the key is not found, returns `default`.
+# Returns a value from the site's configuration dictionary. If no key is
+# specified, returns the entire dictionary. If the key is not found, returns
+# `default`.
 def config(key=None, default=None):
     if key:
         return _config.get(key, default)
@@ -81,14 +81,14 @@ def setconfig(key, value):
     return value
 
 
-# Returns a value from the site's configuration dictionary.
-# If the key is not found, sets the key to `default` and returns `default`.
+# Returns a value from the site's configuration dictionary. If the key is not
+# found, sets the key to `default` and returns `default`.
 def defconfig(key, default):
     return config(key) or setconfig(key, default)
 
 
-# Provides access to the site's normalized type-configuration data.
-# Returns an entire dictionary of type data if no key is specified.
+# Provides access to the site's normalized type-configuration data. Returns an
+# entire dictionary of type data if no key is specified.
 def typeconfig(id, key=None):
     types = _config.setdefault('[types]', {})
 
