@@ -10,24 +10,24 @@ from . import site
 
 
 # Dictionary of rendered files indexed by file name.
-_includes = None
+_cache = None
 
 
 # Returns a dictionary of rendered files from the `inc` directory.
 def inc(key=None):
 
     # Lazy load the contents of the `inc` directory.
-    global _includes
-    if _includes is None:
-        _includes = {}
+    global _cache
+    if _cache is None:
+        _cache = {}
         if os.path.isdir(site.inc()):
             for finfo in loader.srcfiles(site.inc()):
                 text, _ = loader.load(finfo.path)
-                _includes[finfo.base] = renderers.render(text, finfo.ext)
+                _cache[finfo.base] = renderers.render(text, finfo.ext)
 
     # If a key has been specified, try to return the corresponding string.
     if key is not None:
-        return _includes.get(key, None)
+        return _cache.get(key, None)
 
     # Otherwise, return the entire dictionary.
-    return _includes
+    return _cache

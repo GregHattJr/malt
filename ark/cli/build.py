@@ -49,7 +49,7 @@ def callback(parser):
     if parser['ext']: ark.site.config['_ext_'] = parser['ext']
 
     if parser['theme']:
-        ark.site.config['_themepath_'] = ark.site.find_theme(parser['theme'])
+        ark.site.config['theme'] = parser['theme']
 
     if parser['clear']:
         ark.utils.cleardir(ark.site.out())

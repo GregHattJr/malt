@@ -13,7 +13,7 @@ from . import renderers
 from . import loader
 
 
-# Stores an in-memory cache of record objects.
+# Stores an in-memory cache of Record objects indexed by source filepath.
 _cache = {}
 
 
@@ -29,7 +29,7 @@ class Record(dict):
     """ A record object represents a parsed source file.
 
     Record objects should not be instantiated directly. Instead use the
-    `record()` function to take advantage of caching.
+    `record()` function to take advantage of automatic caching.
 
     """
 
