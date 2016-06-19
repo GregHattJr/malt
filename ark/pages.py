@@ -151,7 +151,7 @@ class Page(dict):
 
     # Generates a list of CSS classes for the page.
     def _get_class_list(self):
-        classes = [self['type']['id']]
+        classes = ['type-%s' % self['type']['id']]
 
         if self['is_single']:
             classes.append('single')
