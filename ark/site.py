@@ -67,29 +67,29 @@ def find_theme(name):
 
 # Provides access to the site's normalized record-type data. Returns the
 # entire dictionary of type data if no key is specified.
-def typeconfig(id, key=None):
-    types = config.setdefault('_types_', {})
+def types(rectype, key=None):
+    typesdict = config.setdefault('_types_', {})
 
     # Set default values for any missing type data.
-    if not id in types:
-        types[id] = {
-            'id': id,
-            'name': utils.titlecase(id),
-            'slug': '' if id == 'pages' else utils.slugify(id),
+    if not rectype in typesdict:
+        typesdict[rectype] = {
+            'type': rectype,
+            'name': utils.titlecase(rectype),
+            'slug': '' if rectype == 'pages' else utils.slugify(rectype),
             'tag_slug': 'tags',
-            'indexed': False if id == 'pages' else True,
+            'indexed': False if rectype == 'pages' else True,
             'order_by': 'date',
             'reverse': True,
             'per_index': 10,
             'per_tag_index': 10,
             'homepage': False,
         }
-        types[id].update(config.get(id, {}))
+        typesdict[rectype].update(config.get(rectype, {}))
 
     if key:
-        return types[id][key]
+        return typesdict[rectype][key]
     else:
-        return types[id]
+        return typesdict[rectype]
 
 
 # Returns the path to the site's home directory or an empty string if the
@@ -141,7 +141,7 @@ def theme(*append):
 
 # Returns the output slug list for the specified record type.
 def slugs(rectype, *append):
-    typeslug = typeconfig(rectype, 'slug')
+    typeslug = types(rectype, 'slug')
     sluglist = [typeslug] if typeslug else []
     sluglist.extend(append)
     return sluglist
@@ -164,8 +164,8 @@ def paged_url(slugs, page_number, total_pages):
 
 # Returns the URL of the index page of the specified record type.
 def index_url(rectype):
-    if typeconfig(rectype, 'indexed'):
-        if typeconfig(rectype, 'homepage'):
+    if types(rectype, 'indexed'):
+        if types(rectype, 'homepage'):
             return url(['index'])
         else:
             return url(slugs(rectype, 'index'))
@@ -195,7 +195,7 @@ def slugs_from_src(srcdir, *append):
 def trail_from_src(srcdir):
     rectype = type_from_src(srcdir)
     dirnames = os.path.relpath(srcdir, src()).replace('\\', '/').split('/')
-    trail = [typeconfig(rectype, 'name')]
+    trail = [types(rectype, 'name')]
     trail.extend(name for name in dirnames if not name.startswith('['))
     return trail
 

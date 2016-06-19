@@ -35,7 +35,7 @@ def build_site():
     for path, name in utils.subdirs(site.src()):
         if name.startswith('['):
             build_record_pages(path)
-            if site.typeconfig(name.strip('[]'), 'indexed'):
+            if site.types(name.strip('[]'), 'indexed'):
                 build_directory_indexes(path)
 
     # Fire the 'exit_build' event.
@@ -61,7 +61,7 @@ def build_directory_indexes(dirpath, recursing=False):
     rectype = site.type_from_src(dirpath)
 
     # Fetch the type's configuration data.
-    typeconfig = site.typeconfig(rectype)
+    typedata = site.types(rectype)
 
     # Assemble a list of records in this directory and any subdirectories.
     reclist = []
@@ -73,17 +73,17 @@ def build_directory_indexes(dirpath, recursing=False):
     # Add any records in this directory to the index.
     for fileinfo in loader.srcfiles(dirpath):
         record = records.record(fileinfo.path)
-        if typeconfig['order_by'] in record:
+        if typedata['order_by'] in record:
             reclist.append(record)
 
     # Are we displaying this index on the homepage?
-    if typeconfig['homepage'] and not recursing:
+    if typedata['homepage'] and not recursing:
         slugs = []
     else:
         slugs = site.slugs_from_src(dirpath)
 
     # Create and render the set of index pages.
-    index = pages.Index(rectype, slugs, reclist, typeconfig['per_index'])
+    index = pages.Index(rectype, slugs, reclist, typedata['per_index'])
     index['is_dir_index'] = True
     index['trail'] = site.trail_from_src(dirpath)
     index.render()

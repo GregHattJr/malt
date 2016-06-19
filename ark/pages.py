@@ -24,7 +24,7 @@ class Page(dict):
 
     def __init__(self, rectype):
         self['site'] = site.config
-        self['type'] = site.typeconfig(rectype)
+        self['type'] = site.types(rectype)
         self['flags'] = cli.parser.get_args()
         self['inc'] = includes.inc()
         self['slugs'] = []
@@ -149,7 +149,7 @@ class Page(dict):
 
     # Generates a list of CSS classes for the page.
     def _get_class_list(self):
-        classes = ['type-%s' % self['type']['id']]
+        classes = ['type-%s' % self['type']['type']]
 
         if self['is_single']:
             classes.append('single')
@@ -167,7 +167,7 @@ class Page(dict):
 
     # Returns a list of possible template names for the current page.
     def _get_template_list(self):
-        templates, rectype = [], self['type']['id']
+        templates, rectype = [], self['type']['type']
 
         # Single record page.
         if self['is_single']:
@@ -207,8 +207,8 @@ class Index:
 
         # Sort the records.
         records.sort(
-            key = lambda rec: rec[site.typeconfig(rectype, 'order_by')],
-            reverse = site.typeconfig(rectype, 'reverse')
+            key = lambda rec: rec[site.types(rectype, 'order_by')],
+            reverse = site.types(rectype, 'reverse')
         )
 
         # How many pages do we need?

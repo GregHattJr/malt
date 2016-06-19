@@ -51,7 +51,7 @@ def build_tag_indexes():
     for rectype, recmap in rmap.items():
 
         # Fetch the type's configuration data.
-        typeconfig = ark.site.typeconfig(rectype)
+        typedata = ark.site.types(rectype)
 
         # Iterate over the registered tags for the type.
         for slug, filelist in recmap.items():
@@ -59,19 +59,19 @@ def build_tag_indexes():
             reclist = []
             for filepath in filelist:
                 record = ark.records.record(filepath)
-                if typeconfig['order_by'] in record:
+                if typedata['order_by'] in record:
                     reclist.append(record)
 
             index = ark.pages.Index(
                 rectype,
                 slugs(rectype, slug),
                 reclist,
-                typeconfig['per_tag_index']
+                typedata['per_tag_index']
             )
 
             index['tag'] = nmap[rectype][slug]
             index['is_tag_index'] = True
-            index['trail'] = [typeconfig['name'], nmap[rectype][slug]]
+            index['trail'] = [typedata['name'], nmap[rectype][slug]]
 
             index.render()
 
@@ -89,7 +89,7 @@ def add_tag_classes(classes, page):
 @ark.hooks.register('page_templates')
 def add_tag_templates(templates, page):
     if page.get('is_tag_index'):
-        templates = ['%s-tag-index' % page['type']['id'], 'tag-index', 'index']
+        templates = ['%s-tag-index' % page['type']['type'], 'tag-index', 'index']
     return templates
 
 
@@ -107,7 +107,7 @@ def url(rectype, tag):
 # Returns the output-slug list for the specified tag. Appends arguments.
 def slugs(rectype, tag, *append):
     slugs = ark.site.slugs(rectype)
-    slugs.append(ark.site.typeconfig(rectype, 'tag_slug'))
+    slugs.append(ark.site.types(rectype, 'tag_slug'))
     slugs.append(slugify(tag))
     slugs.extend(append)
     return slugs
