@@ -54,8 +54,6 @@ def callback(parser):
     if parser['clear']:
         ark.utils.cleardir(ark.site.out())
 
-    ark.site.setconfig('[flags]', parser.get_args())
-
     @ark.hooks.register('main')
     def build_callback():
         if os.path.isdir(ark.site.src()):

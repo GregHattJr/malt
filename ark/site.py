@@ -29,8 +29,8 @@ def init():
     load_site_config()
 
 
-# Attempts to determine the path to the site's home directory.
-# Returns an empty string if the directory cannot be located.
+# Attempts to determine the path to the site's home directory. Returns an empty
+# string if the directory cannot be located.
 def find_home():
     path = os.getcwd()
     while os.path.isdir(path):
@@ -155,11 +155,6 @@ def inc(*append):
 def theme(*append):
     path = config('[theme]') or setconfig('[theme]', find_theme(config('theme')))
     return os.path.join(path, *append)
-
-
-# Returns a list of command-line build-flags.
-def flags():
-    return config('[flags]', [])
 
 
 # Returns the output slug list for the specified record type.

@@ -13,6 +13,7 @@ from . import utils
 from . import templates
 from . import includes
 from . import hashes
+from . import cli
 
 
 # A Page instance represents a single HTML page in the site's output.
@@ -22,7 +23,7 @@ class Page(dict):
     re_url = re.compile(r'''(["'|])@root(/.*?)(#.*?)?\1''')
 
     def __init__(self, rectype):
-        self['flags'] = site.flags()
+        self['flags'] = cli.parser.get_args()
         self['site'] = site.config()
         self['inc'] = includes.inc()
         self['type'] = site.typeconfig(rectype)
