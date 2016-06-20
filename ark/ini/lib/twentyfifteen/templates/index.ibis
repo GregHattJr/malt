@@ -10,7 +10,7 @@
 		<header class="main-header">
 			<h1 class="main-title">Tag: {{ tag }}</h1>
 		</header>
-	{% elif type.id != "posts" or trail|len > 1 %}
+	{% else %}
 		<header class="main-header">
 			<h1 class="main-title">{{ trail|join:" / "|titlecase }}</h1>
 		</header>
