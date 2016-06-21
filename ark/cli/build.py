@@ -14,13 +14,16 @@ Usage: %s build [FLAGS] [OPTIONS]
   Build the current site. This command can be run from the site directory or
   any of its subdirectories.
 
-  The --theme option can be used to override the theme specified in the site's
-  configuration file. Its argument can be:
+  The -t, --theme option can be used to override the theme specified in the
+  site's configuration file. Its argument can be:
 
-  1) A path to a theme directory.
+    1) A path to a theme directory.
 
-  2) The name of a theme directory in the site's theme library or the global
-     theme library specififed by the $ARK_THEMES environment variable.
+    2) The name of a theme directory in the site's theme library or the
+       global theme library specififed by the $ARK_THEMES environment
+       variable.
+
+    3) The name of a theme directory bundled with Ark itself, e.g. 'debug'.
 
 Options:
   -e, --ext <path>      Override the default 'ext' directory.
@@ -28,7 +31,7 @@ Options:
   -l, --lib <path>      Override the default 'lib' directory.
   -o, --out <path>      Override the default 'out' directory.
   -s, --src <path>      Override the default 'src' directory.
-  -t, --theme <name>    Override the theme specififed in the config.py file.
+  -t, --theme <name>    Override the theme specififed in the config file.
 
 Flags:
   -c, --clear           Clear the output directory before building.
