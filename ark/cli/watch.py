@@ -69,19 +69,21 @@ def callback(parser):
 
 
 # Returns a hash digest of the site directory.
-def hashsite(sitedirpath):
+def hashsite(sitepath):
     hash = hashlib.sha256()
 
     def hashdir(dirpath, is_home):
-        for finfo in ark.utils.files(dirpath):
-            mtime = os.path.getmtime(finfo.path)
-            hash.update(str(mtime).encode())
-            hash.update(finfo.name.encode())
-
-        for dinfo in ark.utils.subdirs(dirpath):
-            if is_home and dinfo.name in ('out'):
+        for fileinfo in ark.utils.files(dirpath):
+            if fileinfo.name.endswith('~'):
                 continue
-            hashdir(dinfo.path, False)
+            mtime = os.path.getmtime(fileinfo.path)
+            hash.update(str(mtime).encode())
+            hash.update(fileinfo.name.encode())
 
-    hashdir(sitedirpath, True)
+        for dirinfo in ark.utils.subdirs(dirpath):
+            if is_home and dirinfo.name == 'out':
+                continue
+            hashdir(dirinfo.path, False)
+
+    hashdir(sitepath, True)
     return hash.digest()
