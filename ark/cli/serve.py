@@ -26,8 +26,8 @@ Options:
   -p, --port <int>    Port number. Defaults to 8080.
 
 Flags:
-  -b, --browser       Launch the default web browser to view the site.
       --help          Print this command's help text and exit.
+      --no-browser    Do not launch the default web browser to view the site.
 
 """ % os.path.basename(sys.argv[0])
 
@@ -59,7 +59,7 @@ def callback(parser):
     print("Stop: Ctrl-C")
     print("-" * 80)
 
-    if parser['browser']:
+    if not parser['no-browser']:
         webbrowser.open("http://%s:%s" % (parser['host'], parser['port']))
 
     try:

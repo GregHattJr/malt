@@ -49,10 +49,12 @@ Command Help:
 def parse():
     global parser
 
+    # Root parser.
     parser = clio.ArgParser(helptext, meta.__version__)
     parser.add_flag("no-global-ext")
     parser.add_flag("no-site-ext")
 
+    # Register the 'build' command.
     cmd_build = parser.add_cmd("build", build.callback, build.helptext)
     cmd_build.add_flag("clear", "c")
     cmd_build.add_str_opt("out", None, "o")
@@ -62,18 +64,26 @@ def parse():
     cmd_build.add_str_opt("ext", None, "e")
     cmd_build.add_str_opt("theme", None, "t")
 
+    # Register the 'serve' command.
     cmd_serve = parser.add_cmd("serve", serve.callback, serve.helptext)
-    cmd_serve.add_flag("browser", "b")
+    cmd_serve.add_flag("no-browser")
     cmd_serve.add_str_opt("host", "localhost", "h")
     cmd_serve.add_int_opt("port", 8080, "p")
 
+    # Register the 'init' command.
     cmd_init = parser.add_cmd("init", init.callback, init.helptext)
     cmd_init.add_flag("empty", "e")
 
+    # Register the 'clear' command.
     parser.add_cmd("clear", clear.callback, clear.helptext)
+
+    # Register the 'edit' command.
     parser.add_cmd("edit", edit.callback, edit.helptext)
+
+    # Register the 'watch' command.
     parser.add_cmd("watch", watch.callback, watch.helptext)
 
+    # Parse the application's command line arguments.
     parser.parse()
     if not parser.has_cmd():
       parser.help()
