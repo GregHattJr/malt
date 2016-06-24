@@ -14,6 +14,7 @@ helptext = """
 Usage: %s serve [FLAGS] [OPTIONS]
 
   Serve the site's output directory using Python's builtin web server.
+  Automatically launches the default web browser to view the site.
 
   Host IP defaults to localhost (127.0.0.1). Specify an IP address to serve
   only on that address or '0.0.0.0' to serve on all available IPs.
@@ -27,7 +28,7 @@ Options:
 
 Flags:
       --help          Print this command's help text and exit.
-      --no-browser    Do not launch the default web browser to view the site.
+      --no-browser    Do not launch the default web browser.
 
 """ % os.path.basename(sys.argv[0])
 
