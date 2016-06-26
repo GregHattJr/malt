@@ -49,7 +49,9 @@ def callback(parser):
             http.server.SimpleHTTPRequestHandler
         )
     except PermissionError:
-        sys.exit("Permission error: use 'sudo' to run on a port below 1024.")
+        sys.exit("Error: use 'sudo' to run on a port below 1024.")
+    except OSError:
+        sys.exit("Error: address already in use. Choose a different port.")
 
     address = server.socket.getsockname()
 
