@@ -56,7 +56,7 @@ except ImportError:
 try:
     import clio
 except ImportError:
-    sys.exit(error % ('Clio', 'pyclio'))
+    sys.exit(error % ('Clio', 'libclio'))
 
 
 try:

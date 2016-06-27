@@ -55,33 +55,33 @@ def parse():
     parser.add_flag("no-site-ext")
 
     # Register the 'build' command.
-    cmd_build = parser.add_cmd("build", build.callback, build.helptext)
-    cmd_build.add_flag("clear", "c")
-    cmd_build.add_str_opt("out", None, "o")
-    cmd_build.add_str_opt("src", None, "s")
-    cmd_build.add_str_opt("lib", None, "l")
-    cmd_build.add_str_opt("inc", None, "i")
-    cmd_build.add_str_opt("ext", None, "e")
-    cmd_build.add_str_opt("theme", None, "t")
+    cmd_build = parser.add_cmd("build", build.helptext, build.callback)
+    cmd_build.add_flag("clear c")
+    cmd_build.add_str("out o", None)
+    cmd_build.add_str("src s", None)
+    cmd_build.add_str("lib l", None)
+    cmd_build.add_str("inc i", None)
+    cmd_build.add_str("ext e", None)
+    cmd_build.add_str("theme t", None)
 
     # Register the 'serve' command.
-    cmd_serve = parser.add_cmd("serve", serve.callback, serve.helptext)
+    cmd_serve = parser.add_cmd("serve", serve.helptext, serve.callback)
     cmd_serve.add_flag("no-browser")
-    cmd_serve.add_str_opt("host", "localhost", "h")
-    cmd_serve.add_int_opt("port", 8080, "p")
+    cmd_serve.add_str("host h", "localhost")
+    cmd_serve.add_int("port p", 8080)
 
     # Register the 'init' command.
-    cmd_init = parser.add_cmd("init", init.callback, init.helptext)
-    cmd_init.add_flag("empty", "e")
+    cmd_init = parser.add_cmd("init", init.helptext, init.callback)
+    cmd_init.add_flag("empty e")
 
     # Register the 'clear' command.
-    parser.add_cmd("clear", clear.callback, clear.helptext)
+    parser.add_cmd("clear", clear.helptext, clear.callback)
 
     # Register the 'edit' command.
-    parser.add_cmd("edit", edit.callback, edit.helptext)
+    parser.add_cmd("edit", edit.helptext, edit.callback)
 
     # Register the 'watch' command.
-    parser.add_cmd("watch", watch.callback, watch.helptext)
+    parser.add_cmd("watch", watch.helptext, watch.callback)
 
     # Parse the application's command line arguments.
     parser.parse()
