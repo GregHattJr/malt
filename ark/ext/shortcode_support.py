@@ -11,7 +11,7 @@ import sys
 
 
 # Stores an initialized shortcodes.Parser() instance.
-scparser = None
+parser = None
 
 
 # Initialize our shortcode parser on the 'init' event hook.
@@ -23,8 +23,8 @@ def init():
     settings = ark.site.config.get('shortcodes', {})
 
     # Initialize a single parser instance.
-    global scparser
-    scparser = shortcodes.Parser(**settings)
+    global parser
+    parser = shortcodes.Parser(**settings)
 
 
 # Filter each record's content on the 'record_text' filter hook and render
@@ -32,7 +32,7 @@ def init():
 @ark.hooks.register('record_text')
 def render(text, record):
     try:
-        return scparser.parse(text, record)
+        return parser.parse(text, record)
     except shortcodes.ShortcodeError as e:
         msg =  "-------------------\n"
         msg += "  Shortcode Error  \n"
