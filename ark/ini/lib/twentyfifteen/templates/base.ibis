@@ -23,7 +23,7 @@
 			<{{ is_homepage ?? "h1" :: "h2" }} class="site-title">
 				<a href="@root/">{{ site.title || "Site Title" }}</a>
 			</{{ is_homepage ?? "h1" :: "h2" }}>
-			<p class="site-description">{{ site.description || "Just another Ark site" }}</p>
+			<p class="site-tagline">{{ site.tagline || "Just another Ark site" }}</p>
 			<button class="toggle-button">Menu</button>
 		</div>
 

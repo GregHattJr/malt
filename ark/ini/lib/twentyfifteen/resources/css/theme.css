@@ -298,7 +298,7 @@ a:focus {
     margin: 0;
 }
 
-.site-description {
+..site-tagline {
     display: none;
     font-family: "Noto Sans", sans-serif;
     font-size: 12px;
@@ -733,7 +733,7 @@ a:focus {
 
 @media screen and (min-width: 480px) {
 
-    .site-description {
+    .site-tagline {
         display: block;
     }
 
@@ -811,7 +811,7 @@ a:focus {
         font-size: 29px;
     }
 
-    .site-description {
+    .site-tagline {
         font-size: 14px;
     }
 
@@ -938,7 +938,7 @@ a:focus {
         font-size: 24px;
     }
 
-    .site-description {
+    .site-tagline {
         font-size: 14px;
     }
 
