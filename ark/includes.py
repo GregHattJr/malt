@@ -23,7 +23,8 @@ def inc(key=None):
         if os.path.isdir(site.inc()):
             for finfo in loader.srcfiles(site.inc()):
                 text, _ = loader.load(finfo.path)
-                _cache[finfo.base] = renderers.render(text, finfo.ext)
+                key = finfo.base.lower().replace(' ', '_').replace('-', '_')
+                _cache[key] = renderers.render(text, finfo.ext)
 
     # If a key has been specified, try to return the corresponding string.
     if key is not None:
