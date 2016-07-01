@@ -195,7 +195,7 @@ class RecordPage(Page):
         Page.__init__(self, record['type'])
         self['record'] = record
         self['slugs'] = record['slugs']
-        self['srcdir'] = record['dir']
+        self['srcdir'] = record['srcdir']
         self['is_single'] = True
         self['is_homepage'] = (record['slugs'] == ['index'])
 
