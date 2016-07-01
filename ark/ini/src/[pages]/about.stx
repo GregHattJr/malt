@@ -106,7 +106,7 @@ consequat.
 
 :!! info
 
-    This is an alert box of type: **info**.
+    This is an alert box of type: *info*.
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -115,7 +115,7 @@ consequat.
 
 :!! warning
 
-    This is an alert box of type: **warning**.
+    This is an alert box of type: *warning*.
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -124,7 +124,7 @@ consequat.
 
 :!! error
 
-    This is an alert box of type: **error**.
+    This is an alert box of type: *error*.
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
