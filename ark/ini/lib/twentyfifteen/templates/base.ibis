@@ -17,7 +17,7 @@
 	<script src="@root/js/theme.js"></script>
 </head>
 
-<body class="{{{classes}}}">
+<body class="{{{ classes }}}">
 	<header id="site-header" class="site-header">
 		<div id="masthead" class="masthead">
 			<{{ is_homepage ?? "h1" :: "h2" }} class="site-title">

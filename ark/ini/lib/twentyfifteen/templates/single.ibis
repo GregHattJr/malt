@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <article class="record record-{{record.type}}">
+    <article class="record record-{{ record.type }}">
         <header class="record-header">
             <h1 class="record-title">{{ record.title }}</h1>
         </header>
@@ -15,7 +15,10 @@
         </div>
 
         <footer class="record-footer">
-            <time class="record-date" datetime="{{record.date|dtformat:'%Y-%m-%d'}}">{{ record.date|dtformat:"%B %d, %Y"}}</time>
+            <time class="record-date"
+                datetime="{{record.date|dtformat:'%Y-%m-%d'}}">
+                {{ record.date|dtformat:"%B %d, %Y" }}
+            </time>
             {% if record.tags %}
                 <span class="record-tags">{{ record.tags|join:", " }}</span>
             {% endif %}
