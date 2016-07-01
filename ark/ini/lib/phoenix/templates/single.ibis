@@ -1,0 +1,54 @@
+{% extends "base.ibis" %}
+
+{% block title %}{{ record.meta_title || record.title }}{% endblock %}
+
+{% block banner %}
+	<div id="banner">{{ record.crumbs.names|last|titlecase }}</div>
+{% endblock %}
+
+{% block records %}
+	<article class="record">
+		<header>
+			<h1 class="title">{{ record.title }}</h1>
+
+			<div class="meta upper">
+				<time class="date"
+					datetime="{{ record.date|dtformat:'%Y-%m-%d' }}">
+					<i class="fa fa-clock-o" aria-hidden="true"></i>
+					{{ record.date|dtformat:"%B %d, %Y"}}
+				</time>
+
+				{% if record.author %}
+					<span class="author">
+						<i class="fa fa-user" aria-hidden="true"></i>
+						{{ record.author }}
+					</span>
+				{% endif %}
+
+				<span class="dirlink">
+					<i class="fa fa-archive" aria-hidden="true"></i>
+					{{ record.crumbs.links|last }}
+				</span>
+			</div>
+		</header>
+
+		{{ record.html }}
+
+		<footer>
+			<div class="meta lower">
+				<span class="crumbs">
+					<i class="fa fa-folder-open" aria-hidden="true"></i>
+					{{ record.crumbs.links|join:" | " }}
+				</span>
+
+				{% if record.tags %}
+	                <span class="tags">
+						<i class="fa fa-tags" aria-hidden="true"></i>
+						{{ record.tags|join:" &middot; " }}
+					</span>
+	            {% endif %}
+
+			</div>
+		</footer>
+	</article>
+{% endblock %}

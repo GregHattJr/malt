@@ -1,0 +1,11 @@
+{% extends "base.ibis" %}
+
+{% block banner %}
+	<h1 id="banner">{{ record.title }}</h1>
+{% endblock %}
+
+{% block records %}
+	<article class="record">
+		{{ record.html }}
+	</article>
+{% endblock %}

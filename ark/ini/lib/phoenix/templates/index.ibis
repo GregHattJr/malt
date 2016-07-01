@@ -1,0 +1,77 @@
+{% extends "base.ibis" %}
+
+{% block title %}
+	{% if is_homepage %}
+		{{ site.title }}
+	{% elif is_dir_index %}
+		{{ crumbs.names|last|titlecase }}
+	{% elif is_tag_index %}
+		{{ type.title }}: {{ tag|titlecase }}
+	{% endif %}
+{% endblock %}
+
+{% block banner %}
+	<div id="banner">
+		{% if is_dir_index %}
+			{{ crumbs.names|last|titlecase }}
+		{% elif is_tag_index %}
+			{{ type.title }}: {{ tag|titlecase }}
+		{% endif %}
+	</div>
+{% endblock %}
+
+{% block records %}
+    {% for record in records %}
+    	<article class="record">
+    		<header>
+    			<h2 class="title">
+                    <a href="{{ record.url }}">{{ record.title }}</a>
+                </h2>
+
+				<div class="meta upper">
+					<time class="date"
+						datetime="{{ record.date|dtformat:'%Y-%m-%d' }}">
+						<i class="fa fa-clock-o" aria-hidden="true"></i>
+						{{ record.date|dtformat:"%B %d, %Y"}}
+					</time>
+
+					{% if record.author %}
+						<span class="author">
+							<i class="fa fa-user" aria-hidden="true"></i>
+							{{ record.author }}
+						</span>
+					{% endif %}
+
+					<span class="dirlink">
+						<i class="fa fa-archive" aria-hidden="true"></i>
+						{{ record.crumbs.links|last }}
+					</span>
+				</div>
+    		</header>
+
+            <p>{{ record.html|firstp }}</p>
+            <p><a href="{{ record.url }}">Read More</a></p>
+
+			<footer>
+				<div class="meta lower">
+					<span class="crumbs">
+						<i class="fa fa-folder-open" aria-hidden="true"></i>
+						{{ record.crumbs.links|join:" | " }}
+					</span>
+
+					{% if record.tags %}
+		                <span class="tags">
+							<i class="fa fa-tags" aria-hidden="true"></i>
+							{{ record.tags|join:" &middot; " }}
+						</span>
+		            {% endif %}
+
+				</div>
+			</footer>
+    	</article>
+    {% endfor %}
+
+	{% if is_paged %}
+		<div id="paging">{{ paging }}</div>
+	{% endif %}
+{% endblock %}
