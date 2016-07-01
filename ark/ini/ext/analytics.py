@@ -6,7 +6,7 @@
 # in your site's `inc` directory. The code will be automatically included
 # at the foot of each page.
 #
-# (Note that the snippet should omit any `<script>` tags.)
+# (Note that the snippet should omit `<script>` tags.)
 #
 # Author: Darren Mulholland <darren@mulholland.xyz>
 # License: Public Domain
