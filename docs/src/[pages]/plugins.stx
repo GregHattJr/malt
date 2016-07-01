@@ -144,7 +144,8 @@ Plugins can register shortcode tags using the `@shortcodes.register()` decorator
 Handler functions should accept four arguments:
 
 1. The `Record` object for the source file containing the shortcode.
-2. A string containing the shortcode's content, if the shortcode has block scope.
+2. A string containing the shortcode's content, if the shortcode has block
+   scope.
 3. A list of positional arguments.
 4. A dictionary of keyword arguments.
 
