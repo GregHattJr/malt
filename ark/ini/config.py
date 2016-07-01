@@ -15,7 +15,7 @@
 
 # The name of the active theme directory in your site's 'lib' folder.
 
-theme = "twentyfifteen"
+theme = "phoenix"
 
 # --------------------------------------------------------------------------
 # Root URL
