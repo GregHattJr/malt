@@ -8,14 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="css/pygments.css">
-    <!--[if lt IE 9]>
-        <script src="js/html5shiv.min.js"></script>
-    <![endif]-->
+    <!--[if lt IE 9]><script src="js/html5shiv.js"></script><![endif]-->
     <script src="js/jquery-1.12.3.min.js"></script>
     <script src="js/theme.js"></script>
 </head>
 
-<body class="pages single">
+<body class="type-pages single">
 
     <header id="head" class="head">
         <input id="togglebox" type="checkbox">
@@ -89,7 +87,7 @@ You can run the <code>build</code> command from the site directory itself or fro
 Run the <code>build</code> command and take a look at the output. You can open the HTML files directly in your browser or use Ark's builtin web server to serve the contents of the <code>out</code> directory:
 </p>
 <pre>
-$ ark serve -b
+$ ark serve
 </pre>
 <p>
 This command will start the test server and automatically launch the default web browser to view the site. Use Ctrl-C when you want to shut the server down.

@@ -6,15 +6,16 @@ A theme is a collection of templates, styles, and scripts that together provide 
 
 ::: python
 
-    theme = "twentyfifteen"
+    theme = "phoenix"
 
-Ark ships with two bundled themes: `twentyfifteen`, a responsive, blog-focused theme based on the default WordPress theme of the same name, and `debug`, a diagnostic tool useful when designing themes or debugging sites.
+Ark ships with two bundled themes: `phoenix`, the default theme, and `debug`, a diagnostic tool useful when designing themes or debugging sites.
 
 Note that you can override the currently active theme with the `build` command's `--theme` flag:
 
     $ ark build --theme debug
 
-Ark searches for a named theme first in the site's theme library, then in the global theme library specified by the `$ARK_THEMES` environment variable. Finally it searches among the default themes bundled with Ark itself.
+Ark searches for a named theme first in the site's theme library, then (if it exists) in the global theme library specified by the `$ARK_THEMES` environment variable. Finally it searches among the default themes bundled with Ark itself.
+
 
 
 ## Theme Structure
@@ -25,6 +26,7 @@ Ark has builtin support for templates written in [Jinja][] (using a `.jinja` ext
 
 [Jinja]: http://jinja.pocoo.org
 [Ibis]: https://github.com/dmulholland/ibis
+
 
 
 ## Template Files

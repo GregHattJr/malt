@@ -8,14 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="css/pygments.css">
-    <!--[if lt IE 9]>
-        <script src="js/html5shiv.min.js"></script>
-    <![endif]-->
+    <!--[if lt IE 9]><script src="js/html5shiv.js"></script><![endif]-->
     <script src="js/jquery-1.12.3.min.js"></script>
     <script src="js/theme.js"></script>
 </head>
 
-<body class="pages single">
+<body class="type-pages single">
 
     <header id="head" class="head">
         <input id="togglebox" type="checkbox">
@@ -65,7 +63,7 @@
 <a href="#links">Links</a>
 </li>
 <li>
-<a href="#includes">Includes</a>
+<a href="#include-files">Include Files</a>
 </li>
 <li>
 <a href="#markdown-options">Markdown Options</a>
@@ -75,6 +73,9 @@
 </li>
 <li>
 <a href="#shortcode-options">Shortcode Options</a>
+</li>
+<li>
+<a href="#paging-options">Paging Options</a>
 </li>
 <li>
 <a href="#dependencies">Dependencies</a>
@@ -195,9 +196,9 @@ src/
 New custom types behave, by default, like the builtin <em>post</em> type, but we can alter this behaviour by adding a dictionary of type settings to our <code>config.py</code> file:
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="n">sonnets</span> <span class="o">=</span> <span class="p">{</span>                <span class="c1"># id corresponding to the [type] directory</span>
-    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Sonnets&quot;</span><span class="p">,</span>     <span class="c1"># defaults to the titlecased id</span>
-    <span class="s2">&quot;slug&quot;</span><span class="p">:</span> <span class="s2">&quot;sonnets&quot;</span><span class="p">,</span>     <span class="c1"># defaults to the slugified id</span>
+<span class="n">sonnets</span> <span class="o">=</span> <span class="p">{</span>                <span class="c1"># type name corresponding to the [type] directory</span>
+    <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Sonnets&quot;</span><span class="p">,</span>    <span class="c1"># defaults to the titlecased type name</span>
+    <span class="s2">&quot;slug&quot;</span><span class="p">:</span> <span class="s2">&quot;sonnets&quot;</span><span class="p">,</span>     <span class="c1"># defaults to the slugified type name</span>
     <span class="s2">&quot;tag_slug&quot;</span><span class="p">:</span> <span class="s2">&quot;tags&quot;</span><span class="p">,</span>    <span class="c1"># defaults to &quot;tags&quot;</span>
     <span class="s2">&quot;indexed&quot;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>       <span class="c1"># build directory indexes for this type?</span>
     <span class="s2">&quot;order_by&quot;</span><span class="p">:</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span>    <span class="c1"># order index entries by this attribute</span>
@@ -243,14 +244,6 @@ A default datetime stamp. If the record has a <code>date</code> attribute, this 
 </p>
 </dd>
 <dt>
-<code>src</code>
-</dt>
-<dd>
-<p>
-The source filepath.
-</p>
-</dd>
-<dt>
 <code>ext</code>
 </dt>
 <dd>
@@ -267,6 +260,14 @@ The record's content, rendered into HTML.
 </p>
 </dd>
 <dt>
+<code>slug</code>
+</dt>
+<dd>
+<p>
+The record's url slug.
+</p>
+</dd>
+<dt>
 <code>slugs</code>
 </dt>
 <dd>
@@ -275,11 +276,19 @@ A list of output-path slugs.
 </p>
 </dd>
 <dt>
-<code>slug</code>
+<code>src</code>
 </dt>
 <dd>
 <p>
-The record's url slug.
+The record's source filepath.
+</p>
+</dd>
+<dt>
+<code>srcdir</code>
+</dt>
+<dd>
+<p>
+The record's source directory.
 </p>
 </dd>
 <dt>
@@ -360,14 +369,14 @@ Note that you should include the <code>index</code> slug when linking to directo
 <p>
 Linking to the homepage is a special case: a simple <code>@root/</code> will always suffice.
 </p>
-<h2 id="includes">
-Includes
+<h2 id="include-files">
+Include Files
 </h2>
 <p>
-The includes directory, <code>inc</code>, is intended for snippets of HTML that can be reused on multiple pages throughout your site, e.g. menus or footer links. Source files placed in this folder will be parsed as Markdown or Syntex depending on their extension and the resulting HTML made available for inclusion in theme files via the <code>inc.&lt;name&gt;</code> attribute.
+The includes directory, <code>inc</code>, is intended for snippets of content that can be reused on multiple pages throughout your site, e.g. menus or footer links. Source files placed in this folder will be parsed as Markdown or Syntex depending on their extension and the resulting HTML made available for inclusion in template files via the <code>inc.&lt;name&gt;</code> attribute.
 </p>
 <p>
-For example, a simple menu can be constructed in either Markdown or Syntex using nested lists:
+For example, a menu can be constructed in either Markdown or Syntex using nested lists:
 </p>
 <pre>
 * [Home](@root/)
@@ -377,7 +386,7 @@ For example, a simple menu can be constructed in either Markdown or Syntex using
     * [Dogs](@root/posts/dogs/index//)
 </pre>
 <p>
-If the menu above was contained in a file named <code>menu.md</code> then the rendered HTML would be available to themes via the <code>inc.menu</code> attribute.
+If the menu above was contained in a file named <code>menu.md</code> then the rendered HTML would be available in templates via the <code>inc.menu</code> attribute. (Note that filenames are converted to lower case and spaces and hyphens are converted to underscores.)
 </p>
 <p>
 Files with a <code>.html</code>/<code>.js</code>/<code>.css</code>/<code>.txt</code> extension will have their contents preserved as-is.
@@ -408,6 +417,30 @@ Shortcode Options
 </h2>
 <p>
 Ark uses the <a href="https://github.com/dmulholland/shortcodes">Shortcodes</a> package to process shortcodes in record files. You can add a dictionary of keyword arguments for the shortcode parser to your site configuration file via a <code>shortcodes</code> attribute.
+</p>
+<h2 id="paging-options">
+Paging Options
+</h2>
+<p>
+Ark's bundled paging extension generates a customizable string of page navigation links for index pages. The links can be accessed in templates via the <code>paging</code> attribute.
+</p>
+<p>
+Default settings can be overridden by including a <code>paging</code> dictionary in
+the site's <code>config.py</code> file containing one or more of the following options:
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="n">paging</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;first&#39;</span><span class="p">:</span> <span class="s1">&#39;First&#39;</span><span class="p">,</span>  <span class="c1"># text for link to first page</span>
+    <span class="s1">&#39;last&#39;</span><span class="p">:</span> <span class="s1">&#39;Last&#39;</span><span class="p">,</span>    <span class="c1"># text for link to last page</span>
+    <span class="s1">&#39;prev&#39;</span><span class="p">:</span> <span class="s1">&#39;Prev&#39;</span><span class="p">,</span>    <span class="c1"># text for link to previous page</span>
+    <span class="s1">&#39;next&#39;</span><span class="p">:</span> <span class="s1">&#39;Next&#39;</span><span class="p">,</span>    <span class="c1"># text for link to next page</span>
+    <span class="s1">&#39;delta&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>        <span class="c1"># number of neighbouring pages to include</span>
+    <span class="s1">&#39;multiples&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>    <span class="c1"># number of larger/smaller multiples to include</span>
+    <span class="s1">&#39;multiple&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>    <span class="c1"># multiplication factor</span>
+<span class="p">}</span>
+</pre>
+<p>
+Only the options to be changed need to be specified.
 </p>
 <h2 id="dependencies">
 Dependencies

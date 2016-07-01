@@ -27,7 +27,7 @@ Here's a simple event callback that prints a count of the number of pages that h
     import ark
 
     @ark.hooks.register('exit')
-    def page_count():
+    def print_page_count():
         print(ark.site.written())
 
 This callback is registered on the `exit` event hook which fires just before the application exits. (The `exit` hook can be found in the `ark/main.py` file.)
@@ -49,6 +49,8 @@ Here's a simple filter callback that changes every instance of the word "foo" in
         return text.replace('foo', 'bar')
 
 This callback is registered on the `record_text` filter hook which fires just before a record's text is rendered into HTML. (The `record_text` hook can be found in the `ark/records.py` file).
+
+Note that this hook supplies us with the `Record` instance itself as an additional argument which we here ignore.
 
 
 
@@ -102,7 +104,7 @@ A rendering-engine callback should accept a single string argument containing pl
 
 ### Metadata
 
-Ark has builtin support for record metadata in [YAML][] format. Plugins can add support for additional formats by using the `@loader.register` decorator to register custom preprocessor callbacks for source files, e.g.    
+Ark has builtin support for record metadata in [YAML][] format. Plugins can add support for additional formats by using the `@loader.register` decorator to register custom preprocessor callbacks for source files, e.g.
 
 [yaml]: https://en.wikipedia.org/wiki/YAML
 
@@ -124,7 +126,7 @@ A preprocessor callback should accept two arguments: a string containing a sourc
 
 Ark has builtin support for WordPress-style [shortcodes][] with space-separated positional and keyword arguments:
 
-    \[% tag arg1 key=arg2 %]
+    \[% tag arg1 key=arg2 %] ... \[% endtag %]
 
 Plugins can register shortcode tags using the `@shortcodes.register()` decorator:
 

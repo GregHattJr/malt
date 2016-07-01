@@ -32,7 +32,7 @@ Ark requires Python 3.2 or later.
 
 ## Links
 
-* [Sample Ark Site](http://ark.mulholland.xyz)
+* [Ark Demo Site](http://ark.mulholland.xyz/phoenix/)
 * [Github Homepage](https://github.com/dmulholland/ark)
 * [Python Package Index](https://pypi.python.org/pypi/ark/)
 * [Online Documentation](http://mulholland.xyz/docs/ark/)
@@ -41,9 +41,4 @@ Ark requires Python 3.2 or later.
 
 ## License
 
-Ark is free and open source:
-
-* All of Ark's code and documentation has been placed in the public domain.
-
-* The bundled *Twenty Fifteen* theme is a port of the default WordPress
-  theme of the same name and is released under WordPress's GPL.
+This work has been placed in the public domain.
