@@ -1,14 +1,16 @@
 
 # Debug Theme
 
-A diagnostic tool for developing and debugging Ark sites.
+A diagnostic tool for debugging Ark sites.
 
 
-## Includes
+## Include Files
 
-This theme supports the following include files:
+This theme will display the following include files:
 
 * `menu`
+* `menu-upper`
+* `menu-lower`
 
 
 ## License
