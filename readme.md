@@ -19,7 +19,7 @@ See Ark's [documentation][] or the Ark [demo site][] for further details.
 [Markdown]: http://daringfireball.net/projects/markdown/
 [Syntex]: https://github.com/dmulholland/syntex
 [documentation]: http://mulholland.xyz/docs/ark/
-[demo site]: http://ark.mulholland.xyz
+[demo site]: http://ark.mulholland.xyz/phoenix/
 
 
 

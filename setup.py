@@ -8,7 +8,7 @@ text files into a self-contained website that can be viewed locally or
 served remotely.
 
 * `Documentation <http://mulholland.xyz/docs/ark/>`_
-* `Sample Site <http://ark.mulholland.xyz>`_
+* `Sample Site <http://ark.mulholland.xyz/phoenix/>`_
 * `Github Homepage <https://github.com/dmulholland/ark>`_
 
 """
@@ -56,7 +56,7 @@ setup(
         'markdown >= 2.6.6, < 3.0.0',
         'pygments >= 2.1.3, < 3.0.0',
         'pyyaml >= 3.11, < 4.0',
-        'jinja2 >= 2.8, < 3.0',        
+        'jinja2 >= 2.8, < 3.0',
         'syntex >= 0.13.0, < 0.14.0',
         'ibis >= 1.5.0, < 2.0.0',
         'shortcodes >= 2.1.0, < 3.0.0',
@@ -68,7 +68,6 @@ setup(
     description = 'A static website generator.',
     long_description = __doc__,
     classifiers = [
-        'Development Status :: 5 - Production/Stable',
         'Programming Language :: Python :: 3',
         'Operating System :: OS Independent',
         'License :: Public Domain',
