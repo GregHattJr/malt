@@ -172,12 +172,10 @@ def index_url(rectype):
         return ''
 
 
-# Returns the record type corresponding to a source path.
+# Returns the record type corresponding to a source file or directory path.
 def type_from_src(srcpath):
     slugs = os.path.relpath(srcpath, src()).replace('\\', '/').split('/')
-    for slug in slugs:
-        if slug.startswith('['):
-            return slug.strip('[]')
+    return slugs[0].strip('[]')
 
 
 # Returns the output slug list for the specified source directory.
@@ -185,18 +183,9 @@ def slugs_from_src(srcdir, *append):
     rectype = type_from_src(srcdir)
     dirnames = os.path.relpath(srcdir, src()).replace('\\', '/').split('/')
     sluglist = slugs(rectype)
-    sluglist.extend(utils.slugify(d) for d in dirnames if not d.startswith('['))
+    sluglist.extend(utils.slugify(dirname) for dirname in dirnames[1:])
     sluglist.extend(append)
     return sluglist
-
-
-# Returns the name trail for the specified source directory.
-def trail_from_src(srcdir):
-    rectype = type_from_src(srcdir)
-    dirnames = os.path.relpath(srcdir, src()).replace('\\', '/').split('/')
-    trail = [types(rectype, 'title')]
-    trail.extend(name for name in dirnames if not name.startswith('['))
-    return trail
 
 
 # Returns the application runtime in seconds.

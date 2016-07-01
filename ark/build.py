@@ -85,7 +85,7 @@ def build_directory_indexes(dirpath, recursing=False):
     # Create and render the set of index pages.
     index = pages.Index(rectype, slugs, reclist, typedata['per_index'])
     index['is_dir_index'] = True
-    index['trail'] = site.trail_from_src(dirpath)
+    index['srcdir'] = dirpath
     index.render()
 
     return reclist

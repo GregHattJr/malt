@@ -26,8 +26,8 @@ class Page(dict):
         self['site'] = site.config
         self['type'] = site.types(rectype)
         self['inc'] = includes.inc()
+        self['srcdir'] = None
         self['slugs'] = []
-        self['trail'] = []
         self['record'] = None
         self['records'] = []
         self['is_single'] = False
@@ -195,6 +195,7 @@ class RecordPage(Page):
         Page.__init__(self, record['type'])
         self['record'] = record
         self['slugs'] = record['slugs']
+        self['srcdir'] = record['dir']
         self['is_single'] = True
         self['is_homepage'] = (record['slugs'] == ['index'])
 

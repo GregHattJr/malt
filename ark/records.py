@@ -48,6 +48,7 @@ class Record(dict):
         self['slug']  = meta.get('slug') or utils.slugify(fileinfo.base)
         self['slugs'] = site.slugs_from_src(dirpath, self['slug'])
         self['src']   = filepath
+        self['dir']   = dirpath
         self['ext']   = fileinfo.ext
         self['url']   = site.url(self['slugs'])
 
