@@ -14,7 +14,7 @@ _cache = None
 
 
 # Returns a dictionary of rendered files from the `inc` directory.
-def inc(key=None):
+def inc():
 
     # Lazy load the contents of the `inc` directory.
     global _cache
@@ -26,9 +26,4 @@ def inc(key=None):
                 key = finfo.base.lower().replace(' ', '_').replace('-', '_')
                 _cache[key] = renderers.render(text, finfo.ext)
 
-    # If a key has been specified, try to return the corresponding string.
-    if key is not None:
-        return _cache.get(key, None)
-
-    # Otherwise, return the entire dictionary.
     return _cache
