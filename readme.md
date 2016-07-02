@@ -14,12 +14,12 @@ locally or served remotely.
   distributing project documentation in html format), but it can easily
   produce sites with resource or directory-style urls.
 
-See Ark's [documentation][] or the Ark [demo site][] for further details.
+See Ark's [documentation][docs] or the Ark [demo site][demo] for further details.
 
 [Markdown]: http://daringfireball.net/projects/markdown/
 [Syntex]: https://github.com/dmulholland/syntex
-[documentation]: http://mulholland.xyz/docs/ark/
-[demo site]: http://ark.mulholland.xyz/phoenix/
+[docs]: http://mulholland.xyz/docs/ark/
+[demo]: http://ark.mulholland.xyz/phoenix/
 
 
 
