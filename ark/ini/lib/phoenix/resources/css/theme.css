@@ -360,6 +360,7 @@ body {
     font-weight: normal;
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.25);
     text-align: left;
+    overflow: hidden;
 }
 
 /**
@@ -736,6 +737,16 @@ body {
 
 @media screen and (max-width: 630px) {
 
+    #masthead h1, #masthead h2 {
+        font-size: 30px;
+    }
+
+    #banner {
+        height: 66px;
+        line-height: 66px;
+        font-size: 32px;
+    }
+
     #header nav.upper,
     #header nav.lower {
         text-align: center;
@@ -784,7 +795,7 @@ body {
         margin: 39px 30px 0;
         width: auto;
         background: url(../images/shaded-50.png) repeat;
-
+        padding: 30px;
     }
 
     #header nav.lower li {
@@ -794,8 +805,8 @@ body {
         max-width: 300px;
     }
 
-    #header nav.lower li:last-child {
-        border-bottom: none;
+    #header nav.lower li:first-child {
+        border-top: 1px dotted;
     }
 
     #header nav.lower a {
@@ -806,6 +817,14 @@ body {
     .record .meta time {
         display: block;
         margin: 10px 10px 10px 0;
+    }
+
+    .record .title, h1 {
+        font-size: 22px;
+    }
+
+    h2 {
+        font-size: 20px;
     }
 
     #footbar {
