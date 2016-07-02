@@ -17,6 +17,7 @@ _templates = None
 
 
 def register(ext):
+    
     """ Decorator function for registering template-engine callbacks.
 
     A template-engine callback should accept a page object and a template

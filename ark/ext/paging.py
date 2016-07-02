@@ -26,10 +26,6 @@
 from ark import hooks, site
 
 
-# Plugin version number.
-__version__ = "1.0.0"
-
-
 # We register a callback on the 'render_page' event hook to generate our
 # string of page navigation links and add it to the page object.
 @hooks.register('render_page')

@@ -16,7 +16,7 @@ from . import hashes
 from . import cli
 
 
-# A Page instance represents a single HTML page in the site's output.
+# A Page object represents a single HTML page in the site's output.
 class Page(dict):
 
     # Regex for locating @root/ urls enclosed in quotes or pipes.

@@ -16,7 +16,7 @@ _cache = None
 # Returns a dictionary of rendered files from the `inc` directory.
 def inc():
 
-    # Lazy load the contents of the `inc` directory.
+    # Lazily load the contents of the `inc` directory.
     global _cache
     if _cache is None:
         _cache = {}

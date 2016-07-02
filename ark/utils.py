@@ -42,9 +42,9 @@ def fileinfo(path):
     return FileInfo(path, name, base, ext.strip('.'))
 
 
-# Returns the creation time of the specified file.
-# This function works on OSX, BSD, and Windows. On Linux it returns the
-# time of the file's last metadata change.
+# Returns the creation time of the specified file. This function works on OSX,
+# BSD, and Windows. On Linux it returns the time of the file's last metadata
+# change.
 def get_creation_time(path):
     stat = os.stat(path)
     if hasattr(stat, 'st_birthtime') and stat.st_birthtime:

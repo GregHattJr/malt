@@ -10,16 +10,14 @@ import ark
 import os
 
 
-# Register a callback on the 'init_record' hook to assemble a record's
-# breadcrumb trail.
+# Register a callback on the 'init_record' hook to assemble a record's trail.
 @ark.hooks.register('init_record')
 def assemble_record_trail(record):
     typedata = ark.site.types(record['type'])
     record['crumbs'] = breadcrumb_trail(record['srcdir'], typedata)
 
 
-# Register a callback on the 'render_page' event hook to assemble a page's
-# breadcrumb trail.
+# Register a callback on the 'render_page' hook to assemble a page's trail.
 @ark.hooks.register('render_page')
 def assemble_page_trail(page):
     if page['record']:
