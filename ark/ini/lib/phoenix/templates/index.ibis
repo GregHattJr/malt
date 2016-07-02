@@ -72,6 +72,20 @@
     {% endfor %}
 
 	{% if is_paged %}
-		<div id="paging">{{ paging }}</div>
+		<nav id="paging">{{ paging }}</nav>
+
+		<nav id="simplepaging">
+			{% if page > 1 %}
+				<a class="prev" href="{{ prev_url }}">
+					Previous Page
+				</a>
+			{% endif %}
+			<span class="current">Page {{ page }} of {{ total }}</span>
+			{% if page < total %}
+				<a class="next" href="{{next_url}}">
+					Next Page
+				</a>
+			{% endif %}
+		</nav>
 	{% endif %}
 {% endblock %}

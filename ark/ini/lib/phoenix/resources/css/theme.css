@@ -581,6 +581,10 @@ body {
     background: #373737;
 }
 
+#simplepaging {
+    display: none;
+}
+
 /**
  * -------------------------------------------------------------------------
  *  Footer
@@ -842,5 +846,71 @@ body {
         display: block;
         float: none;
         text-align: center;
+    }
+
+    #paging {
+        display: none;
+    }
+
+    #simplepaging {
+        display: block;
+        margin: 0 30px 30px;
+        background: url(../images/shaded-50.png) repeat;
+        line-height: 50px;
+        text-align: center;
+        text-transform: uppercase;
+        position: relative;
+    }
+
+    #simplepaging .current {
+        display: inline-block;
+    }
+
+    #simplepaging .prev,
+    #simplepaging .next {
+        background: url(../images/shaded-50.png) repeat;
+        color: #bbb;
+        display: inline-block;
+        height: 50px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 50px;
+    }
+
+    #simplepaging .prev:before,
+    #simplepaging .next:before {
+        font-size: 32px;
+        height: 50px;
+        line-height: 50px;
+        position: relative;
+        width: 50px;
+    }
+
+    #simplepaging .prev:hover,
+    #simplepaging .prev:focus,
+    #simplepaging .next:hover,
+    #simplepaging .next:focus {
+        background: url(../images/background-dark-grey.png) repeat;
+        border: none;
+        color: white;
+    }
+
+    #simplepaging .prev {
+        left: 0;
+    }
+
+    #simplepaging .prev:before {
+        content: "←";
+        left: -1px;
+    }
+
+    #simplepaging .next {
+        right: 0;
+    }
+
+    #simplepaging .next:before {
+        content: "→";
+        right: -1px;
     }
 }
