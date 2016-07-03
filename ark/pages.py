@@ -19,8 +19,9 @@ from . import cli
 # A Page object represents a single HTML page in the site's output.
 class Page(dict):
 
-    # Regex for locating @root/ urls enclosed in quotes or pipes.
-    re_url = re.compile(r'''(["'|])@root(/.*?)(#.*?)?\1''')
+    # Regex for locating @root/ urls for rewriting. Note that we only rewrite
+    # urls encosed in quotes or angle brackets.
+    re_url = re.compile(r'''(["'<])@root(/.*?)(#.*?)?(\1|>)''')
 
     def __init__(self, rectype):
         self['site'] = site.config
@@ -102,9 +103,9 @@ class Page(dict):
         return filepath, len(slugs)
 
     def _rewrite_urls(self, html, depth):
-        """ Rewrites all @root/ urls to their final form.
+        """ Rewrite @root/ urls to their final form.
 
-        We rewrite all @root/ urls to page-relative form by appending an
+        We rewrite @root/ urls to page-relative form by appending an
         appropriate number of '../' elements.
 
         Only urls ending in '//' have their endings rewritten to match
