@@ -827,6 +827,10 @@ body {
         font-size: 22px;
     }
 
+    .record img {
+        padding: 10px;
+    }
+
     h2 {
         font-size: 20px;
     }
