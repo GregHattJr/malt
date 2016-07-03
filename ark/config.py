@@ -6,6 +6,7 @@
 # in this file will be overridden by settings in a site's custom
 # config.py file.
 
+
 # --------------------------------------------------------------------------
 # Theme Directory
 # --------------------------------------------------------------------------
@@ -13,6 +14,7 @@
 # Name of the default theme directory.
 
 theme = "phoenix"
+
 
 # --------------------------------------------------------------------------
 # Root URL
@@ -23,6 +25,7 @@ theme = "phoenix"
 # empty string for page-relative urls.
 
 root = ""
+
 
 # --------------------------------------------------------------------------
 # File Extension
