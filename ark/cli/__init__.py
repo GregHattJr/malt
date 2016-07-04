@@ -68,7 +68,7 @@ def parse():
     cmd_serve = parser.add_cmd("serve", serve.helptext, serve.callback)
     cmd_serve.add_flag("no-browser")
     cmd_serve.add_str("host h", "localhost")
-    cmd_serve.add_int("port p", 8080)
+    cmd_serve.add_int("port p", 0)
 
     # Register the 'init' command.
     cmd_init = parser.add_cmd("init", init.helptext, init.callback)

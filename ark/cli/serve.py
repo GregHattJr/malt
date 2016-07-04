@@ -19,12 +19,12 @@ Usage: %s serve [FLAGS] [OPTIONS]
   Host IP defaults to localhost (127.0.0.1). Specify an IP address to serve
   only on that address or '0.0.0.0' to serve on all available IPs.
 
-  Port number defaults to 8080 as ports below 1024 require sudo. Set to 0 to
-  randomly select an available port.
+  Port number defaults to 0 which randomly selects an available port. Note
+  that port numbers below 1024 require sudo.
 
 Options:
   -h, --host <str>    Host IP address. Defaults to localhost.
-  -p, --port <int>    Port number. Defaults to 8080.
+  -p, --port <int>    Port number. Defaults to randomly-selected.
 
 Flags:
       --help          Print this command's help text and exit.
@@ -63,7 +63,7 @@ def callback(parser):
     print("-" * 80)
 
     if not parser['no-browser']:
-        webbrowser.open("http://%s:%s" % (parser['host'], parser['port']))
+        webbrowser.open("http://%s:%s" % (parser['host'], address[1]))
 
     try:
         server.serve_forever()
