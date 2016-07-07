@@ -85,5 +85,3 @@ def parse():
 
     # Parse the application's command line arguments.
     parser.parse()
-    if not parser.has_cmd():
-      parser.help()
