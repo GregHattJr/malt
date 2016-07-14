@@ -13,17 +13,17 @@ import ibis
 
 
 @ibis.filters.register('dedup')
-def dedup_dict(indict):
-    outdict = {}
-    for k in sorted(indict):
-        v = indict[k]
+def dedup_dict(inputdict):
+    outputdict = {}
+    for k in sorted(inputdict):
+        v = inputdict[k]
         if v is '' or v is None or isinstance(v, int) or isinstance(v, bool):
-            outdict[k] = v
+            outputdict[k] = v
             continue
-        for outk, outv in outdict.items():
+        for outk, outv in outputdict.items():
             if v is outv:
-                outdict[k] = "<alias of [%s]>" % outk
+                outputdict[k] = "<alias of [%s]>" % outk
                 break
-        if not k in outdict:
-            outdict[k] = v
-    return outdict
+        if not k in outputdict:
+            outputdict[k] = v
+    return outputdict
