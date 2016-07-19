@@ -13,35 +13,40 @@ import webbrowser
 helptext = """
 Usage: %s serve [FLAGS] [OPTIONS]
 
-  Serve the site's output directory using Python's builtin web server.
-  Automatically launches the default web browser to view the site.
+  Serve the site's output directory using Python's builtin web server. The
+  default web browser is automatically launched to view the site.
 
   Host IP defaults to localhost (127.0.0.1). Specify an IP address to serve
   only on that address or '0.0.0.0' to serve on all available IPs.
 
   Port number defaults to 0 which randomly selects an available port. Note
-  that port numbers below 1024 require sudo.
+  that port numbers below 1024 require root authorization.
 
 Options:
-  -h, --host <str>    Host IP address. Defaults to localhost.
-  -p, --port <int>    Port number. Defaults to randomly-selected.
+  -d, --directory <path>    Specify a custom directory to serve.
+  -h, --host <str>          Host IP address. Defaults to localhost.
+  -p, --port <int>          Port number. Defaults to 0, i.e. random.
 
 Flags:
-      --help          Print this command's help text and exit.
-      --no-browser    Do not launch the default web browser.
+      --help                Print this command's help text and exit.
+      --no-browser          Do not launch the default web browser.
 
 """ % os.path.basename(sys.argv[0])
 
 
 # Command callback.
 def callback(parser):
-    if not ark.site.home():
-        sys.exit("Error: cannot locate the site's home directory.")
 
-    if not os.path.exists(ark.site.out()):
-        sys.exit("Error: cannot locate the site's output directory.")
-
-    os.chdir(ark.site.out())
+    if parser['directory']:
+        if not os.path.exists(parser['directory']):
+            sys.exit("Error: '%s' does not exist." % parser['directory'])
+        os.chdir(parser['directory'])
+    else:
+        if not ark.site.home():
+            sys.exit("Error: cannot locate the site's home directory.")
+        if not os.path.exists(ark.site.out()):
+            sys.exit("Error: cannot locate the site's output directory.")
+        os.chdir(ark.site.out())
 
     try:
         server = http.server.HTTPServer(

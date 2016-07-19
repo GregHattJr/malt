@@ -67,6 +67,7 @@ def parse():
     # Register the 'serve' command.
     cmd_serve = parser.add_cmd("serve", serve.helptext, serve.callback)
     cmd_serve.add_flag("no-browser")
+    cmd_serve.add_str("directory d", None)
     cmd_serve.add_str("host h", "localhost")
     cmd_serve.add_int("port p", 0)
 
