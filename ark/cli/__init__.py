@@ -53,6 +53,7 @@ def parse():
     parser = clio.ArgParser(helptext, meta.__version__)
     parser.add_flag("no-global-ext")
     parser.add_flag("no-site-ext")
+    parser.add_flag("no-theme-ext")
 
     # Register the 'build' command.
     cmd_build = parser.add_cmd("build", build.helptext, build.callback)

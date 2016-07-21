@@ -29,9 +29,13 @@ def load():
             if os.path.isdir(path):
                 extdirs.append(path)
 
-    # Site-specific extensions.
+    # Site extensions.
     if os.path.isdir(site.ext()) and not cli.parser['no-site-ext']:
         extdirs.append(site.ext())
+
+    # Theme extensions.
+    if os.path.isdir(site.theme('code')) and not cli.parser['no-theme-ext']:
+        extdirs.append(site.theme('code'))
 
     # Load extensions.
     for extdir in extdirs:
