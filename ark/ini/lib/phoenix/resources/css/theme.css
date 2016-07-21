@@ -555,6 +555,22 @@ body {
 }
 
 /**
+ * Dropcaps
+ */
+
+.dropcap {
+	display: block;
+	float: left;
+    font-family: 'Palatino Linotype', Palatino, Georgia, serif;
+    margin-right: 10px;
+	font-size: 45px;
+	line-height: 45px;
+	color: #ddd;
+    position: relative;
+    top: 3px;
+}
+
+/**
  * Index Paging
  */
 
