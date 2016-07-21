@@ -37,10 +37,14 @@ def load():
     if os.path.isdir(site.theme('code')) and not cli.parser['no-theme-ext']:
         extdirs.append(site.theme('code'))
 
-    # Load extensions.
+    # Load extensions. This gets a little messy because we're allowing for
+    # 'dev-friendly' plugin loading. An item in an extension directory can
+    # be a python module or package *or* a directory containing a module or
+    # package along with its readme, license file, etc.
     for extdir in extdirs:
         for item in os.listdir(extdir):
             itembase = os.path.splitext(item)[0]
+            itemslug = itembase.replace('-', '_')
             itempath = os.path.join(extdir, item)
 
             # Skip garbage.
@@ -50,15 +54,15 @@ def load():
             # Is the item a directory?
             if os.path.isdir(itempath):
 
-                # Is the item a directory containing an extension directory?
-                if os.path.isdir(os.path.join(itempath, item)):
-                    _load(itempath, item)
+                # Does the item directory contain an extension package?
+                if os.path.isdir(os.path.join(itempath, itemslug)):
+                    _load(itempath, itemslug)
 
-                # Is the item a directory containing an extension file?
-                elif os.path.isfile(os.path.join(itempath, item + '.py')):
-                    _load(itempath, item)
+                # Does the item directory contain an extension module?
+                elif os.path.isfile(os.path.join(itempath, itemslug + '.py')):
+                    _load(itempath, itemslug)
 
-                # Else, assume the item directory *is* the extension.
+                # The item directory itself must be the extension package.
                 else:
                     _load(extdir, item)
 
