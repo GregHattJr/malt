@@ -47,8 +47,8 @@ def load():
             itemslug = itembase.replace('-', '_')
             itempath = os.path.join(extdir, item)
 
-            # Skip garbage.
-            if item[0] in '_.':
+            # Skip hidden/packaging files.
+            if item[0] in '_.' or itembase == 'readme':
                 continue
 
             # Is the item a directory?
