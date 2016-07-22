@@ -32,10 +32,12 @@ Ark requires Python 3.2 or later.
 
 ## Links
 
-* [Ark Demo Site](http://ark.mulholland.xyz/phoenix/)
-* [Github Homepage](https://github.com/dmulholland/ark)
-* [Python Package Index](https://pypi.python.org/pypi/ark/)
-* [Online Documentation](http://mulholland.xyz/docs/ark/)
+* [Demo Site](http://ark.mulholland.xyz/phoenix/)
+* [Github](https://github.com/dmulholland/ark)
+* [Package Index](https://pypi.python.org/pypi/ark/)
+* [Documentation](http://mulholland.xyz/docs/ark/)
+* [Themes](https://github.com/dmulholland/ark-themes)
+* [Plugins](https://github.com/dmulholland/ark-plugins)
 
 
 

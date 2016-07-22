@@ -20,7 +20,14 @@ Ark searches for a named theme first in the site's theme library, then (if it ex
 
 ## Theme Structure
 
-A theme directory should contain two subdirectories, `resources` and `templates`. The content of the `resources` directory is copied directly to the site's output directory during building. The `templates` directory is where Ark looks for the theme's template files.
+Ark looks for three subdirectories within the theme directory: `assets`, `code`, and `templates`.
+
+* The content of the `assets` directory is copied to the output directory during building.
+
+* Themes can bundle extensions for Ark by placing Python modules or packages in
+  the `code` directory.
+
+* The `templates` directory is where Ark looks for the theme's template files.
 
 Ark has builtin support for templates written in [Jinja][] (using a `.jinja` extension) and [Ibis][] (using a `.ibis` extension). Support for other template languages can be added via plugins.
 
