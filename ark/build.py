@@ -28,8 +28,9 @@ def build_site():
     utils.copydir(site.src(), site.out(), skiptypes=True)
 
     # Copy the theme's resource files to the output directory.
-    if os.path.exists(site.theme('resources')):
-        utils.copydir(site.theme('resources'), site.out())
+    for name in ('assets', 'resources'):
+        if os.path.exists(site.theme(name)):
+            utils.copydir(site.theme(name), site.out())
 
     # Build the individual record pages and directory indexes.
     for path, name in utils.subdirs(site.src()):
