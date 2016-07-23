@@ -135,52 +135,52 @@ will be accessible in template files as `record.date_of_birth`.
 All records have the following default attributes:
 
 
-~   `date`
+||  `date`  ||
 
     A default datetime stamp. If the record has a `date` attribute, this will be used. If not, the file creation time will be used if available (OSX, BSD, Windows), or else the time of the file's last metadata change (Linux).
 
 
-~   `ext`
+||  `ext`  ||
 
     The record's file extension, e.g. `md` or `stx`.
 
 
-~   `html`
+||  `html`  ||
 
     The record's content, rendered into HTML.
 
 
-~   `slug`
+||  `slug`  ||
 
     The record's url slug.
 
 
-~   `slugs`
+||  `slugs`  ||
 
     A list of output-path slugs.
 
 
-~   `src`
+||  `src`  ||
 
     The record's source filepath.
 
 
-~   `srcdir`
+||  `srcdir`  ||
 
     The record's source directory.
 
 
-~   `text`
+||  `text`  ||
 
     The record's text content.
 
 
-~   `type`
+||  `type`  ||
 
     The record's type, determined by its parent `[type]` directory.
 
 
-~   `url`
+||  `url`  ||
 
     The record's URL.
 
