@@ -10,21 +10,12 @@ import shortcodes
 import sys
 
 
-# Stores an initialized shortcodes.Parser() instance.
-parser = None
+# Check the site's config file for customized settings for the shortcode parser.
+settings = ark.site.config.get('shortcodes', {})
 
 
-# Initialize our shortcode parser on the 'init' event hook.
-@ark.hooks.register('init')
-def init():
-
-    # Check the site's config file for customized settings for the
-    # shortcode parser.
-    settings = ark.site.config.get('shortcodes', {})
-
-    # Initialize a single parser instance.
-    global parser
-    parser = shortcodes.Parser(**settings)
+# Initialize a single parser instance.
+parser = shortcodes.Parser(**settings)
 
 
 # Filter each record's content on the 'record_text' filter hook and render
