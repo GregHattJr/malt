@@ -11,21 +11,12 @@ import ark
 import markdown
 
 
-# Stores an initialized markdown renderer.
-mdrenderer = None
+# Check the config file for customized settings for the markdown renderer.
+settings = ark.site.config.get('markdown', {})
 
 
-# Initialize our markdown renderer on the 'init' event hook.
-@ark.hooks.register('init')
-def init():
-
-    # Check the site's config file for customized settings for the
-    # markdown renderer.
-    settings = ark.site.config.get('markdown', {})
-
-    # Initialize a markdown renderer.
-    global mdrenderer
-    mdrenderer = markdown.Markdown(**settings)
+# Initialize a markdown renderer.
+mdrenderer = markdown.Markdown(**settings)
 
 
 # Register our callback to render files with a .md extension.
