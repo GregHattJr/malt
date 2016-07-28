@@ -1,7 +1,13 @@
 
-# Phoenix Theme
+# Phoenix
 
-A flexible and responsive Ark theme.
+A flexible, mobile-friendly theme for [Ark][].
+
+* [Theme Demo][demo]
+
+[ark]: http://mulholland.xyz/docs/ark/
+[demo]: http://ark.mulholland.xyz/phoenix/
+
 
 
 ## Configuration
@@ -19,6 +25,7 @@ This theme will use the following string attributes from the site's `config.py` 
 * `copyright`
 
   Copyright notice or similar displayed in the footer.
+
 
 
 ## Include Files
@@ -41,6 +48,7 @@ This theme supports the following include files:
 
   Suport for three divs containing headings followed by paragraphs or lists
   of links. Each div will be styled as a separate column of footer content.
+
 
 
 # License
