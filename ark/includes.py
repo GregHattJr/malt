@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------
-# Loads and processes files from the site's `inc` directory.
+# Loads and processes files from the site's 'includes' directory.
 # --------------------------------------------------------------------------
 
 import os
@@ -13,7 +13,7 @@ from . import site
 _cache = None
 
 
-# Returns a dictionary of rendered files from the `inc` directory.
+# Returns a dictionary of rendered files from the 'includes' directory.
 def inc():
 
     # Lazily load the contents of the `inc` directory.

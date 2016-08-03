@@ -62,7 +62,7 @@ def find_theme(name):
     if os.path.isdir(bundled):
         return bundled
 
-    sys.exit("Error: cannot locate the theme directory '%s'." % name)
+    sys.exit("Error: cannot locate theme directory '%s'." % name)
 
 
 # Provides access to the site's normalized record-type data. Returns the
