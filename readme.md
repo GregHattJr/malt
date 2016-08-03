@@ -29,7 +29,7 @@ Install directly from the Python Package Index using `pip`:
 
     $ pip install ark
 
-Ark requires Python 3.2 or later.
+Ark requires Python 3.4 or later.
 
 
 
