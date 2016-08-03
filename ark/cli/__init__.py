@@ -65,6 +65,16 @@ def parse():
     cmd_build.add_str("ext e", None)
     cmd_build.add_str("theme t", None)
 
+    # Register the 'watch' command.
+    cmd_watch = parser.add_cmd("watch", watch.helptext, watch.callback)
+    cmd_watch.add_flag("clear c")
+    cmd_watch.add_str("out o", None)
+    cmd_watch.add_str("src s", None)
+    cmd_watch.add_str("lib l", None)
+    cmd_watch.add_str("inc i", None)
+    cmd_watch.add_str("ext e", None)
+    cmd_watch.add_str("theme t", None)
+
     # Register the 'serve' command.
     cmd_serve = parser.add_cmd("serve", serve.helptext, serve.callback)
     cmd_serve.add_flag("no-browser")
@@ -81,9 +91,6 @@ def parse():
 
     # Register the 'edit' command.
     parser.add_cmd("edit", edit.helptext, edit.callback)
-
-    # Register the 'watch' command.
-    parser.add_cmd("watch", watch.helptext, watch.callback)
 
     # Parse the application's command line arguments.
     parser.parse()

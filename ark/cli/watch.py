@@ -18,15 +18,17 @@ Usage: %s watch [FLAGS] [ARGUMENTS]
   Monitor the site directory and automatically rebuild when file changes are
   detected.
 
-  Arguments passed to this command will be passed on to the 'build' command.
-  Options intended for the 'build' command should be preceded by '--', e.g.
-
-    ark watch -- --theme debug
-
-  This prevents the options being parsed as options for the 'watch' command.
+Options:
+  -e, --ext <path>      Override the default 'ext' directory.
+  -i, --inc <path>      Override the default 'inc' directory.
+  -l, --lib <path>      Override the default 'lib' directory.
+  -o, --out <path>      Override the default 'out' directory.
+  -s, --src <path>      Override the default 'src' directory.
+  -t, --theme <name>    Override the theme specififed in the config file.
 
 Flags:
-  --help              Print this command's help text and exit.
+  -c, --clear           Clear the output directory before each build.
+      --help            Print this command's help text and exit.
 
 """ % os.path.basename(sys.argv[0])
 
@@ -36,6 +38,15 @@ Flags:
 def callback(parser):
     home = ark.site.home()
     args = [sys.argv[0], 'build', 'watching'] + parser.get_args()
+
+    if parser['out']: args += ['--out', parser['out']]
+    if parser['src']: args += ['--src', parser['src']]
+    if parser['lib']: args += ['--lib', parser['lib']]
+    if parser['inc']: args += ['--inc', parser['inc']]
+    if parser['ext']: args += ['--ext', parser['ext']]
+
+    if parser['theme']: args += ['--theme', parser['theme']]
+    if parser['clear']: args += ['--clear']
 
     print("-" * 80)
     print("Site: %s" % home)
