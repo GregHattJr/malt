@@ -37,17 +37,26 @@ Flags:
 # watcher so we hack together one of our own.
 def callback(parser):
     home = ark.site.home()
-    args = [sys.argv[0], 'build', 'watching'] + parser.get_args()
+    args = [sys.argv[0]]
 
+    # Add support for Ark's --no-ext flags.
+    if parser.get_parent()['no-global-ext']: args.append('--no-global-ext')
+    if parser.get_parent()['no-site-ext']: args.append('--no-site-ext')
+    if parser.get_parent()['no-theme-ext']: args.append('--no-theme-ext')
+
+    # Append the 'build' command, a 'watching' flag, and any user arguments.
+    args += ['build', 'watching'] + parser.get_args()
+
+    # Add direct support for the 'build' command's options and flags.
     if parser['out']: args += ['--out', parser['out']]
     if parser['src']: args += ['--src', parser['src']]
     if parser['lib']: args += ['--lib', parser['lib']]
     if parser['inc']: args += ['--inc', parser['inc']]
     if parser['ext']: args += ['--ext', parser['ext']]
-
     if parser['theme']: args += ['--theme', parser['theme']]
     if parser['clear']: args += ['--clear']
 
+    # Print a header showing the site location.
     print("-" * 80)
     print("Site: %s" % home)
     print("Stop: Ctrl-C")
