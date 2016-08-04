@@ -1,15 +1,16 @@
 # --------------------------------------------------------------------------
-# This extension adds a syntax-highlighting filter to Ibis templates.
+# This extension registers a syntax-highlighting filter for Ibis templates.
 #
 # The filter accepts an input string and an optional language name:
 #
-#     {{ string|pygmentize:lang }}
+#     {{ string|dbpygmentize:'lang' }}
+#
+# Syntax highlighting is applied using the Pygments package. If no language
+# is specified, Pygments will attempt to guess the correct lexer to use.
 #
 # If the Pygments package is not available or if an appropriate lexer can
 # not be found the filter will return the input text with any HTML special
 # characters escaped.
-#
-# This extension is included for use in the bundled 'debug' theme.
 #
 # Author: Darren Mulholland <darren@mulholland.xyz>
 # License: Public Domain
@@ -27,7 +28,7 @@ except ImportError:
     pygments = None
 
 
-@ibis.filters.register('pygmentize')
+@ibis.filters.register('dbpygmentize')
 def pygmentize(text, lang=None):
     if pygments:
         if lang:

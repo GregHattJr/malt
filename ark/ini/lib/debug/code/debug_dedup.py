@@ -2,8 +2,7 @@
 # This extension adds a dictionary deduplication filter to Ibis templates.
 #
 # The filter accepts an input dictionary and returns a copy with duplicate
-# values marked as aliases. This filter is intended for internal use in the
-# bundled debug theme.
+# values marked as aliases.
 #
 # Author: Darren Mulholland <darren@mulholland.xyz>
 # License: Public Domain
@@ -12,7 +11,7 @@
 import ibis
 
 
-@ibis.filters.register('dedup')
+@ibis.filters.register('dbdedup')
 def dedup_dict(inputdict):
     outputdict = {}
     for k in sorted(inputdict):
