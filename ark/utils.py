@@ -53,7 +53,11 @@ def get_creation_time(path):
         return datetime.datetime.fromtimestamp(stat.st_ctime)
 
 
-# Slug preparation function. Used to sanitize url components, etc.
+# Default slug-preparation function; returns a slugified version of the
+# specified string. This function is used to sanitize url components, etc.
+# Plugins can implement custom slugification via simple patching, i.e. by
+# setting ark.utils.slugify to an arbitrary function with a compatible
+# interface.
 def slugify(s):
     s = unicodedata.normalize('NFKD', s)
     s = s.encode('ascii', 'ignore').decode('ascii')
