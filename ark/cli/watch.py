@@ -62,7 +62,7 @@ def callback(parser):
     print("Stop: Ctrl-C")
     print("-" * 80)
 
-    # Build the site at least once with the 'watching' flag.
+    # Build the site with the 'firstwatch' flag.
     subprocess.call(args + ['firstwatch'])
     print("-" * 80)
 
@@ -81,9 +81,8 @@ def callback(parser):
     except KeyboardInterrupt:
         pass
 
-    # Build the site one last time without the 'watching' flag.
+    # Build the site with the 'lastwatch' flag.
     print("\n" + "-" * 80)
-    args.remove('watching')
     subprocess.call(args + ['lastwatch'])
     print("-" * 80)
 
