@@ -11,9 +11,9 @@
 import sys
 
 
-# Ark requires at least Python 3.2.
-if sys.version_info < (3, 2):
-    sys.exit('Error: Ark requires Python >= 3.2.')
+# Ark requires at least Python 3.4.
+if sys.version_info < (3, 4):
+    sys.exit('Error: Ark requires Python >= 3.4.')
 
 
 # Template for error messages informing the user of any missing libraries.
