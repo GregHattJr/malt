@@ -56,7 +56,7 @@
 				<div class="meta lower">
 					<span class="crumbs">
 						<i class="fa fa-folder-open" aria-hidden="true"></i>
-						{{ record.crumbs.links|join:" / " }}
+						{{ record.crumbs.links|join:" &rarr; " }}
 					</span>
 
 					{% if record.tags %}
