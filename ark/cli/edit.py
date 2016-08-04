@@ -17,16 +17,17 @@ Usage: %s edit [FLAGS] ARGUMENTS
   Edit a record file or files. This command will create new records if the
   named files do not exist.
 
-  Ark will launch the editor specified by i) the $ARK_EDITOR environment
-  variable, or ii) the $EDITOR environment variable. If neither variable
-  exists it will attempt to use vim.
+  Ark will launch the editor specified by the $EDITOR environment variable
+  if it exists, otherwise it will attempt to use vim.
 
 Arguments:
-  <type>              Record type, e.g. 'posts'.
-  <file...>           Record filename(s).
+  <file>...           Record filename(s).
+
+Options:
+  -t, --type <str>    Record type. Defaults to 'posts'.
 
 Flags:
-  --help              Print this command's help text and exit.
+      --help          Print this command's help text and exit.
 
 """ % os.path.basename(sys.argv[0])
 
@@ -36,11 +37,11 @@ def callback(parser):
     if not ark.site.home():
         sys.exit("Error: cannot locate the site's home directory.")
 
-    args = parser.get_args()
-    if len(args) < 2:
-        sys.exit("Error: the 'edit' command requires at least 2 arguments.")
+    if not parser.has_args():
+        sys.exit("Error: missing argument.")
 
-    paths = [ark.site.src('[%s]' % args[0], path) for path in args[1:]]
+    root = '[%s]' % parser['type']
+    paths = [ark.site.src(root, path) for path in parser.get_args()]
 
     for path in paths:
         if not os.path.exists(path):
@@ -50,7 +51,7 @@ def callback(parser):
 
     editor = os.getenv('ARK_EDITOR') or os.getenv('EDITOR') or 'vim'
     if not shutil.which(editor):
-        sys.exit("Error: cannot locate the editor '%s'." % editor)
+        sys.exit("Error: cannot locate editor '%s'." % editor)
 
     paths.insert(0, editor)
     subprocess.call(paths)
