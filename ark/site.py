@@ -65,14 +65,14 @@ def find_theme(name):
     sys.exit("Error: cannot locate theme directory '%s'." % name)
 
 
-# Provides access to the site's normalized record-type data. Returns the
-# entire dictionary of type data if no key is specified.
-def types(rectype, key=None):
-    typesdict = config.setdefault('_types_', {})
+# Returns the type-data dictionary for the specified record type. If a key is
+# specified, the corresponding value is returned.
+def typedata(rectype, key=None):
+    types = config.setdefault('_types_', {})
 
     # Set default values for any missing type data.
-    if not rectype in typesdict:
-        typesdict[rectype] = {
+    if not rectype in types:
+        types[rectype] = {
             'name': rectype,
             'title': utils.titlecase(rectype),
             'slug': '' if rectype == 'pages' else utils.slugify(rectype),
@@ -84,12 +84,21 @@ def types(rectype, key=None):
             'per_tag_index': 10,
             'homepage': False,
         }
-        typesdict[rectype].update(config.get(rectype, {}))
+        types[rectype].update(config.get(rectype, {}))
 
     if key:
-        return typesdict[rectype][key]
+        return types[rectype][key]
     else:
-        return typesdict[rectype]
+        return types[rectype]
+
+
+# Returns a list of all record types in the site's source directory.
+def typelist():
+    types = []
+    for _, name in utils.subdirs(src()):
+        if name.startswith('['):
+            types.append(name.strip('[]'))
+    return types
 
 
 # Returns the path to the site's home directory or an empty string if the
@@ -140,7 +149,7 @@ def theme(*append):
 
 # Returns the output slug list for the specified record type.
 def slugs(rectype, *append):
-    typeslug = types(rectype, 'slug')
+    typeslug = typedata(rectype, 'slug')
     sluglist = [typeslug] if typeslug else []
     sluglist.extend(append)
     return sluglist
@@ -163,8 +172,8 @@ def paged_url(slugs, page_number, total_pages):
 
 # Returns the URL of the index page of the specified record type.
 def index_url(rectype):
-    if types(rectype, 'indexed'):
-        if types(rectype, 'homepage'):
+    if typedata(rectype, 'indexed'):
+        if typedata(rectype, 'homepage'):
             return url(['index'])
         else:
             return url(slugs(rectype, 'index'))

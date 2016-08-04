@@ -13,7 +13,7 @@ import os
 # Register a callback on the 'init_record' hook to assemble a record's trail.
 @ark.hooks.register('init_record')
 def assemble_record_trail(record):
-    typedata = ark.site.types(record['type'])
+    typedata = ark.site.typedata(record['type'])
     record['crumbs'] = breadcrumb_trail(record['srcdir'], typedata)
 
 

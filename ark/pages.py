@@ -25,7 +25,7 @@ class Page(dict):
 
     def __init__(self, rectype):
         self['site'] = site.config
-        self['type'] = site.types(rectype)
+        self['type'] = site.typedata(rectype)
         self['inc'] = includes.inc()
         self['srcdir'] = None
         self['slugs'] = []
@@ -208,8 +208,8 @@ class Index:
 
         # Sort the records.
         records.sort(
-            key = lambda rec: rec[site.types(rectype, 'order_by')],
-            reverse = site.types(rectype, 'reverse')
+            key = lambda rec: rec[site.typedata(rectype, 'order_by')],
+            reverse = site.typedata(rectype, 'reverse')
         )
 
         # How many pages do we need?

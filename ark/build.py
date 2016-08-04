@@ -36,7 +36,7 @@ def build_site():
     for path, name in utils.subdirs(site.src()):
         if name.startswith('['):
             build_record_pages(path)
-            if site.types(name.strip('[]'), 'indexed'):
+            if site.typedata(name.strip('[]'), 'indexed'):
                 build_directory_indexes(path)
 
     # Fire the 'exit_build' event.
@@ -62,7 +62,7 @@ def build_directory_indexes(dirpath, recursing=False):
     rectype = site.type_from_src(dirpath)
 
     # Fetch the type's configuration data.
-    typedata = site.types(rectype)
+    typedata = site.typedata(rectype)
 
     # Assemble a list of records in this directory and any subdirectories.
     reclist = []

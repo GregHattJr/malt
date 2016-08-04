@@ -51,7 +51,7 @@ def build_tag_indexes():
     for rectype, recmap in rmap.items():
 
         # Fetch the type's configuration data.
-        typedata = ark.site.types(rectype)
+        typedata = ark.site.typedata(rectype)
 
         # Iterate over the registered tags for the type.
         for slug, filelist in recmap.items():
@@ -107,7 +107,7 @@ def url(rectype, tag):
 # Returns the output-slug list for the specified tag. Appends arguments.
 def slugs(rectype, tag, *append):
     slugs = ark.site.slugs(rectype)
-    slugs.append(ark.site.types(rectype, 'tag_slug'))
+    slugs.append(ark.site.typedata(rectype, 'tag_slug'))
     slugs.append(slugify(tag))
     slugs.extend(append)
     return slugs
