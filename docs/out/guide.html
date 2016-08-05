@@ -127,16 +127,13 @@ Initializing a new site creates the following directory structure:
 </p>
 <pre>
 site/
-    config.py       # site configuration file
-    ext/            # extensions directory for plugins
-    inc/            # includes directory for menus, etc.
-    lib/            # library directory for themes
-    out/            # output directory for html files
-    src/            # source directory for text files
+    ark.py       # site configuration file
+    ext/         # extensions directory for plugins
+    inc/         # includes directory for menus, etc.
+    lib/         # library directory for themes
+    out/         # output directory for html files
+    src/         # source directory for text files
 </pre>
-<p>
-Ark also creates an empty <code>.ark</code> file which it uses to identify the site directory. You can safely commit this file to a version control repository.
-</p>
 <p>
 In use Ark will generate a <code>.arkcache</code> directory for its own use. You can add this directory to your <code>.gitignore</code> file or equivalent if your site is stored in a version control repository.
 </p>
@@ -183,7 +180,7 @@ src/
 Ark has two builtin record types - <em>pages</em> and <em>posts</em> - but you can add as many custom types as you like simply by creating new <code>[type]</code> directories. Every type can have its own individual set of index and tag index pages.
 </p>
 <p>
-You can determine the behaviour of your custom types (or alter the behaviour of the builtin types) in your site's <code>config.py</code> file. Assuming we'll be devoting a section of our site to sonnets, we may wish to create a custom type just for them. We can do this by adding a <code>[sonnets]</code> directory to our site's <code>src</code> directory.
+You can determine the behaviour of your custom types (or alter the behaviour of the builtin types) in your site's <code>ark.py</code> file. Assuming we'll be devoting a section of our site to sonnets, we may wish to create a custom type just for them. We can do this by adding a <code>[sonnets]</code> directory to our site's <code>src</code> directory.
 </p>
 <pre>
 src/
@@ -191,7 +188,7 @@ src/
         my-sonnet.md   # this record is a sonnet
 </pre>
 <p>
-New custom types behave, by default, like the builtin <em>post</em> type, but we can alter this behaviour by adding a dictionary of type settings to our <code>config.py</code> file:
+New custom types behave, by default, like the builtin <em>post</em> type, but we can alter this behaviour by adding a dictionary of type settings to our <code>ark.py</code> file:
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="n">sonnets</span> <span class="o">=</span> <span class="p">{</span>                <span class="c1"># type name corresponding to the [type] directory</span>
@@ -219,7 +216,10 @@ Note that you can store other files and directories in your site's <code>src</co
 Record Attributes
 </h2>
 <p>
-A record file's metadata keys are converted to lowercase and spaces are replaced by underscores so the YAML attribute:
+Ark has builtin support for record metadata in <a href="http://en.wikipedia.org/wiki/YAML">YAML</a> format; support for additional formats can be added via plugins.
+</p>
+<p>
+Note that a record file's metadata keys are converted to lowercase and spaces are replaced by underscores so the YAML attribute:
 </p>
 <pre>
 ---
@@ -332,13 +332,13 @@ Links
 Ark generates page-relative urls and files with a <code>.html</code> extension by default, but you can customize this behaviour to suit your needs.
 </p>
 <p>
-First, you can specify a root url in your <code>config.py</code> file. Use an explicit domain, e.g. <code>"http://example.com/"</code>, for absolute urls, or a single forward slash, <code>"/"</code>, for site-relative urls.
+First, you can specify a root url in your site configuration file. Use an explicit domain, e.g. <code>"http://example.com/"</code>, for absolute urls, or a single forward slash, <code>"/"</code>, for site-relative urls.
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="n">root</span> <span class="o">=</span> <span class="s2">&quot;http://example.com/&quot;</span>
 </pre>
 <p>
-Second, you can specify a file extension in your <code>config.py</code> file. You can choose an arbitrary file extension, e.g. <code>".html"</code>, or pass an empty string, <code>""</code>, to use no file extension at all. If you specify a single forward slash, <code>"/"</code>, Ark will generate directory-style urls ending in a slash.
+Second, you can specify a file extension in your site configuration file. You can choose an arbitrary file extension, e.g. <code>".html"</code>, or pass an empty string, <code>""</code>, to use no file extension at all. If you specify a single forward slash, <code>"/"</code>, Ark will generate directory-style urls ending in a slash.
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="n">extension</span> <span class="o">=</span> <span class="s2">&quot;.html&quot;</span>
@@ -396,7 +396,7 @@ Markdown Options
 Ark uses the <a href="https://pythonhosted.org/Markdown/">Markdown</a> package to render record files with a <code>.md</code> extension. You can add a dictionary of keyword arguments for the renderer to your site configuration file via a <code>markdown</code> attribute.
 </p>
 <p>
-For example, to turn on the 'Markdown Extra' extension, add the following snippet to your <code>config.py</code> file:
+For example, to turn on the 'Markdown Extra' extension, add the following snippet to your <code>ark.py</code> file:
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="n">markdown</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;extensions&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;markdown.extensions.extra&#39;</span><span class="p">]</span> <span class="p">}</span>
@@ -424,7 +424,7 @@ Ark's bundled paging extension generates a customizable string of page navigatio
 </p>
 <p>
 Default settings can be overridden by including a <code>paging</code> dictionary in
-the site's <code>config.py</code> file containing one or more of the following options:
+the site's configuration file containing one or more of the following options:
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="n">paging</span> <span class="o">=</span> <span class="p">{</span>

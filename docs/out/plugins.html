@@ -139,23 +139,6 @@ Ark has builtin support for records written in <a href="https://en.wikipedia.org
 <p>
 A rendering-engine callback should accept a single string argument containing plain text and return a string of HTML.
 </p>
-<h3 id="metadata">
-Metadata
-</h3>
-<p>
-Ark has builtin support for record metadata in <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> format. Plugins can add support for additional formats by using the <code>@loader.register</code> decorator to register custom preprocessor callbacks for source files, e.g.
-</p>
-<pre class="lang-python pygments" data-lang="python">
-<span class="kn">import</span> <span class="nn">ark</span>
-
-<span class="nd">@ark.loader.register</span>
-<span class="k">def</span> <span class="nf">yaml_callback</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">meta</span><span class="p">):</span>
-    <span class="o">...</span>
-    <span class="k">return</span> <span class="n">text</span><span class="p">,</span> <span class="n">meta</span>
-</pre>
-<p>
-A preprocessor callback should accept two arguments: a string containing a source files's content and a dictionary containing metadata for that source file. It should return the processed string and updated dictionary.
-</p>
 <h2 id="shortcodes">
 Shortcodes
 </h2>

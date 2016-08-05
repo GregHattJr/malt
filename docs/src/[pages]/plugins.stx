@@ -102,26 +102,6 @@ A rendering-engine callback should accept a single string argument containing pl
 
 
 
-### Metadata
-
-Ark has builtin support for record metadata in [YAML][] format. Plugins can add support for additional formats by using the `@loader.register` decorator to register custom preprocessor callbacks for source files, e.g.
-
-[yaml]: https://en.wikipedia.org/wiki/YAML
-
-
-::: python
-
-    import ark
-
-    @ark.loader.register
-    def yaml_callback(text, meta):
-        ...
-        return text, meta
-
-A preprocessor callback should accept two arguments: a string containing a source files's content and a dictionary containing metadata for that source file. It should return the processed string and updated dictionary.
-
-
-
 ## Shortcodes
 
 Ark has builtin support for WordPress-style [shortcodes][] with space-separated positional and keyword arguments:

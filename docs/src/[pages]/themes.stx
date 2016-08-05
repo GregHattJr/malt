@@ -2,7 +2,7 @@
 title: Themes
 ---
 
-A theme is a collection of templates, styles, and scripts that together provide the look and feel for a site. Themes should be placed in the site's `lib` folder, and the name of the active theme directory specified in the `config.py` file.
+A theme is a collection of templates, styles, and scripts that together provide the look and feel for a site. Themes should be placed in the site's `lib` folder, and the name of the active theme directory specified in the site's `ark.py` file.
 
 ::: python
 

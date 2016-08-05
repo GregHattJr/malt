@@ -43,14 +43,12 @@ Use the `ark --help` flag to view the full command-line help text:
 Initializing a new site creates the following directory structure:
 
     site/
-        config.py       # site configuration file
-        ext/            # extensions directory for plugins
-        inc/            # includes directory for menus, etc.
-        lib/            # library directory for themes
-        out/            # output directory for html files
-        src/            # source directory for text files
-
-Ark also creates an empty `.ark` file which it uses to identify the site directory. You can safely commit this file to a version control repository.
+        ark.py       # site configuration file
+        ext/         # extensions directory for plugins
+        inc/         # includes directory for menus, etc.
+        lib/         # library directory for themes
+        out/         # output directory for html files
+        src/         # source directory for text files
 
 In use Ark will generate a `.arkcache` directory for its own use. You can add this directory to your `.gitignore` file or equivalent if your site is stored in a version control repository.
 
@@ -92,13 +90,13 @@ Every record has a *type*, determined by its parent `[type]` directory in the si
 
 Ark has two builtin record types - *pages* and *posts* - but you can add as many custom types as you like simply by creating new `[type]` directories. Every type can have its own individual set of index and tag index pages.
 
-You can determine the behaviour of your custom types (or alter the behaviour of the builtin types) in your site's `config.py` file. Assuming we'll be devoting a section of our site to sonnets, we may wish to create a custom type just for them. We can do this by adding a `[sonnets]` directory to our site's `src` directory.
+You can determine the behaviour of your custom types (or alter the behaviour of the builtin types) in your site's `ark.py` file. Assuming we'll be devoting a section of our site to sonnets, we may wish to create a custom type just for them. We can do this by adding a `[sonnets]` directory to our site's `src` directory.
 
     src/
         [sonnets]/
             my-sonnet.md   # this record is a sonnet
 
-New custom types behave, by default, like the builtin *post* type, but we can alter this behaviour by adding a dictionary of type settings to our `config.py` file:
+New custom types behave, by default, like the builtin *post* type, but we can alter this behaviour by adding a dictionary of type settings to our `ark.py` file:
 
 ::: python
 
@@ -124,7 +122,9 @@ Note that you can store other files and directories in your site's `src` directo
 
 ## Record Attributes
 
-A record file's metadata keys are converted to lowercase and spaces are replaced by underscores so the YAML attribute:
+Ark has builtin support for record metadata in [YAML][] format; support for additional formats can be added via plugins.
+
+Note that a record file's metadata keys are converted to lowercase and spaces are replaced by underscores so the YAML attribute:
 
     ---
     Date of Birth: 1999-09-09
@@ -200,13 +200,13 @@ Every record can be tagged and every record type supports its own individual set
 
 Ark generates page-relative urls and files with a `.html` extension by default, but you can customize this behaviour to suit your needs.
 
-First, you can specify a root url in your `config.py` file. Use an explicit domain, e.g. `"http://example.com/"`, for absolute urls, or a single forward slash, `"/"`, for site-relative urls.
+First, you can specify a root url in your site configuration file. Use an explicit domain, e.g. `"http://example.com/"`, for absolute urls, or a single forward slash, `"/"`, for site-relative urls.
 
 ::: python
 
     root = "http://example.com/"
 
-Second, you can specify a file extension in your `config.py` file. You can choose an arbitrary file extension, e.g. `".html"`, or pass an empty string, `""`, to use no file extension at all. If you specify a single forward slash, `"/"`, Ark will generate directory-style urls ending in a slash.
+Second, you can specify a file extension in your site configuration file. You can choose an arbitrary file extension, e.g. `".html"`, or pass an empty string, `""`, to use no file extension at all. If you specify a single forward slash, `"/"`, Ark will generate directory-style urls ending in a slash.
 
 ::: python
 
@@ -252,7 +252,7 @@ Files with a `.html`/`.js`/`.css`/`.txt` extension will have their contents pres
 
 Ark uses the [Markdown][mddocs] package to render record files with a `.md` extension. You can add a dictionary of keyword arguments for the renderer to your site configuration file via a `markdown` attribute.
 
-For example, to turn on the 'Markdown Extra' extension, add the following snippet to your `config.py` file:
+For example, to turn on the 'Markdown Extra' extension, add the following snippet to your `ark.py` file:
 
 ::: python
 
@@ -285,7 +285,7 @@ Ark uses the [Shortcodes][shortcodes] package to process shortcodes in record fi
 Ark's bundled paging extension generates a customizable string of page navigation links for index pages. The links can be accessed in templates via the `paging` attribute.
 
 Default settings can be overridden by including a `paging` dictionary in
-the site's `config.py` file containing one or more of the following options:
+the site's configuration file containing one or more of the following options:
 
 ::: python
 
