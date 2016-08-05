@@ -36,7 +36,12 @@ Flags:
 # Callback for the watch command. Python doesn't have a builtin file system
 # watcher so we hack together one of our own.
 def callback(parser):
+    
     home = ark.site.home()
+    if not home:
+        sys.exit("Error: cannot locate the site's home directory.")
+
+    # Assemble a list of arguments for the subprocess call.
     args = [sys.argv[0]]
 
     # Add support for Ark's --no-ext flags.
