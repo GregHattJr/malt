@@ -7,7 +7,8 @@
 #     {{ paging }}
 #
 # Default settings can be overridden by including a 'paging' dictionary in
-# the site's config.py file containing one or more of the following options:
+# the site's configuration file containing one or more of the following
+# options:
 #
 #     paging = {
 #         'first': 'First',  # text for link to first page

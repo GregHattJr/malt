@@ -12,7 +12,7 @@ A flexible, mobile-friendly theme for [Ark][].
 
 ## Configuration
 
-This theme will use the following string attributes from the site's `config.py` file:
+This theme will use the following string attributes from the site's configuration file:
 
 * `title`
 
