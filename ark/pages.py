@@ -207,10 +207,9 @@ class Index:
     def __init__(self, rectype, slugs, records, recs_per_page):
 
         # Sort the records.
-        records.sort(
-            key = lambda rec: rec[site.typedata(rectype, 'order_by')],
-            reverse = site.typedata(rectype, 'reverse')
-        )
+        orderkey = site.typedata(rectype, 'order_by')
+        revorder = site.typedata(rectype, 'reverse')
+        records.sort(key=lambda rec: rec[orderkey], reverse=revorder)
 
         # How many pages do we need?
         recs_per_page = recs_per_page or len(records) or 1
@@ -244,10 +243,14 @@ class Index:
 
             self.pages.append(page)
 
+    # Note that setting a property on an Index using dictionary syntax (i.e.
+    # setting index['foo'] = bar) in fact sets that property on each of the
+    # index's individual pages.
     def __setitem__(self, key, value):
         for page in self.pages:
             page[key] = value
 
+    # Render each page in the index into HTML and write it to disk.
     def render(self):
         for page in self.pages:
             page.render()
