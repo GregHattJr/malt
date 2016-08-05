@@ -6,15 +6,14 @@
 # --------------------------------------------------------------------------
 
 import ark
-from ark.utils import slugify
 
 
-# Maps tag-slugs to lists of record-filepaths indexed by type.
-rmap = {}
+# This dictionary maps tag-slugs to lists of record filepaths indexed by type.
+tags = {}
 
 
-# Maps tag-slugs to tag-names indexed by type.
-nmap = {}
+# This dictionary maps tag-slugs to tag-names indexed by type.
+names = {}
 
 
 # A Tag instance pairs a tag-name with its corresponding tag-index url.
@@ -35,10 +34,10 @@ class Tag:
 # the record's tags.
 @ark.hooks.register('init_record')
 def register_tags(record):
-    tags, record['tags'] = record.get('tags', ''), []
-    for tag in (t.strip() for t in tags.split(',')):
+    tagstr, record['tags'] = record.get('tags', ''), []
+    for tag in (t.strip() for t in tagstr.split(',')):
         if tag:
-            register(record['type'], tag, record['src'])
+            register_tag(record['type'], tag, record['src'])
             record['tags'].append(Tag(tag, url(record['type'], tag)))
 
 
@@ -48,7 +47,7 @@ def register_tags(record):
 def build_tag_indexes():
 
     # Iterate over the site's record types.
-    for rectype, recmap in rmap.items():
+    for rectype, recmap in tags.items():
 
         # Fetch the type's configuration data.
         typedata = ark.site.typedata(rectype)
@@ -69,7 +68,7 @@ def build_tag_indexes():
                 typedata['per_tag_index']
             )
 
-            index['tag'] = nmap[rectype][slug]
+            index['tag'] = names[rectype][slug]
             index['is_tag_index'] = True
 
             index.render()
@@ -80,7 +79,7 @@ def build_tag_indexes():
 def add_tag_classes(classes, page):
     if page.get('is_tag_index'):
         classes.append('tag-index')
-        classes.append('tag-index-%s' % slugify(page['tag']))
+        classes.append('tag-index-%s' % ark.utils.slugify(page['tag']))
     return classes
 
 
@@ -97,9 +96,10 @@ def add_tag_templates(templates, page):
 
 
 # Register a new tag mapping.
-def register(rectype, tag, filepath):
-    rmap.setdefault(rectype, {}).setdefault(slugify(tag), []).append(filepath)
-    nmap.setdefault(rectype, {}).setdefault(slugify(tag), tag)
+def register_tag(rectype, tag, filepath):
+    slug = ark.utils.slugify(tag)
+    tags.setdefault(rectype, {}).setdefault(slug, []).append(filepath)
+    names.setdefault(rectype, {}).setdefault(slug, tag)
 
 
 # Returns the tag-index url for the specified tag.
@@ -111,6 +111,6 @@ def url(rectype, tag):
 def slugs(rectype, tag, *append):
     slugs = ark.site.slugs(rectype)
     slugs.append(ark.site.typedata(rectype, 'tag_slug'))
-    slugs.append(slugify(tag))
+    slugs.append(ark.utils.slugify(tag))
     slugs.extend(append)
     return slugs
