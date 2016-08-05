@@ -26,7 +26,7 @@ class Page(dict):
     def __init__(self, rectype):
         self['site'] = site.config
         self['type'] = site.typedata(rectype)
-        self['inc'] = includes.inc()
+        self['inc'] = includes.load()
         self['srcdir'] = None
         self['slugs'] = []
         self['record'] = None

@@ -9,21 +9,21 @@ from . import renderers
 from . import site
 
 
-# Dictionary of rendered files indexed by normalized filename.
-_cache = None
+# Dictionary of rendered files indexed by (normalized) filename.
+cache = None
 
 
-# Returns a dictionary of rendered files from the 'includes' directory.
-def inc():
+# Return a dictionary of rendered files from the 'includes' directory.
+def load():
 
-    # Lazily load the contents of the `inc` directory.
-    global _cache
-    if _cache is None:
-        _cache = {}
+    # Load and cache the directory's contents.
+    global cache
+    if cache is None:
+        cache = {}
         if os.path.isdir(site.inc()):
             for finfo in loader.srcfiles(site.inc()):
                 text, _ = loader.load(finfo.path)
                 key = finfo.base.lower().replace(' ', '_').replace('-', '_')
-                _cache[key] = renderers.render(text, finfo.ext)
+                cache[key] = renderers.render(text, finfo.ext)
 
-    return _cache
+    return cache
