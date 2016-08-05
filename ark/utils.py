@@ -15,7 +15,7 @@ DirInfo = collections.namedtuple('DirInfo', 'path, name')
 FileInfo = collections.namedtuple('FileInfo', 'path, name, base, ext')
 
 
-# Returns a list of subdirectories of the specified directory.
+# Return a list of subdirectories of the specified directory.
 def subdirs(directory):
     directories = []
     for name in os.listdir(directory):
@@ -25,7 +25,7 @@ def subdirs(directory):
     return directories
 
 
-# Returns a list of files in the specified directory.
+# Return a list of files in the specified directory.
 def files(directory):
     files = []
     for name in os.listdir(directory):
@@ -35,14 +35,14 @@ def files(directory):
     return files
 
 
-# Returns a FileInfo instance for the specified filepath.
+# Return a FileInfo instance for the specified filepath.
 def fileinfo(path):
     name = os.path.basename(path)
     base, ext = os.path.splitext(name)
     return FileInfo(path, name, base, ext.strip('.'))
 
 
-# Returns the creation time of the specified file. This function works on OSX,
+# Return the creation time of the specified file. This function works on OSX,
 # BSD, and Windows. On Linux it returns the time of the file's last metadata
 # change.
 def get_creation_time(path):
@@ -68,7 +68,7 @@ def slugify(s):
     return s.strip('-')
 
 
-# Returns a titlecased version of the supplied string.
+# Return a titlecased version of the supplied string.
 def titlecase(s):
     return re.sub(
         r"[A-Za-z]+('[A-Za-z]+)?",
@@ -77,7 +77,7 @@ def titlecase(s):
     )
 
 
-# Copies the contents of 'srcdir' to 'dstdir'.
+# Copy the contents of 'srcdir' to 'dstdir'.
 #
 #   * Creates the destination directory if necessary.
 #   * If skiptypes is true, will skip [type] directories.
@@ -108,7 +108,7 @@ def copydir(srcdir, dstdir, skiptypes=False, noclobber=False):
             copydir(src, dst, skiptypes, noclobber)
 
 
-# Copies the file 'src' as 'dst'.
+# Copy the file 'src' as 'dst'.
 #
 # If 'noclobber' is true, this function will not overwrite an existing 'dst'.
 #
@@ -127,7 +127,7 @@ def copyfile(src, dst, noclobber=False):
     shutil.copy2(src, dst)
 
 
-# Clears the contents of a directory.
+# Clear the contents of a directory.
 def cleardir(dirpath):
     if os.path.isdir(dirpath):
         for name in os.listdir(dirpath):
@@ -138,7 +138,7 @@ def cleardir(dirpath):
                 shutil.rmtree(path)
 
 
-# Writes a string to a file. Creates parent directories if required.
+# Write a string to a file. Creates parent directories if required.
 def writefile(path, content):
     path = os.path.abspath(path)
 
@@ -149,7 +149,7 @@ def writefile(path, content):
         file.write(content)
 
 
-# Creates a redirect page at the specified filepath.
+# Create a redirect page at the specified filepath.
 def make_redirect(filepath, url):
     html = """\
 <!DOCTYPE html>
