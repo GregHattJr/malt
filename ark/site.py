@@ -9,7 +9,7 @@ import sys
 from . import utils
 
 
-# Stores the site's configuration data.
+# This dictionary stores the site's configuration data.
 config = {}
 
 
@@ -29,7 +29,7 @@ def init():
     load_site_config()
 
 
-# Attempts to determine the path to the site's home directory. Returns an empty
+# Attempt to determine the path to the site's home directory. Return an empty
 # string if the directory cannot be located.
 def find_home():
     path = os.getcwd()
@@ -40,8 +40,8 @@ def find_home():
     return ''
 
 
-# Attempts to determine the path to the theme directory corresponding to
-# the specified theme name. Exits with an error message on failure.
+# Attempt to determine the path to the theme directory corresponding to
+# the specified theme name. Exit with an error message on failure.
 def find_theme(name):
 
     # A directory in the site's theme library?
@@ -65,7 +65,7 @@ def find_theme(name):
     sys.exit("Error: cannot locate theme directory '%s'." % name)
 
 
-# Returns the type-data dictionary for the specified record type. If a key is
+# Return the type-data dictionary for the specified record type. If a key is
 # specified, the corresponding value is returned.
 def typedata(rectype, key=None):
     types = config.setdefault('_types_', {})
@@ -92,7 +92,7 @@ def typedata(rectype, key=None):
         return types[rectype]
 
 
-# Returns a list of all record types in the site's source directory.
+# Return a list of all record types in the site's source directory.
 def typelist():
     types = []
     for _, name in utils.subdirs(src()):
@@ -101,44 +101,44 @@ def typelist():
     return types
 
 
-# Returns the path to the site's home directory or an empty string if the
-# home directory cannot be located. Appends arguments.
+# Return the path to the site's home directory or an empty string if the
+# home directory cannot be located. Append arguments.
 def home(*append):
     path = config.get('_home_') or config.setdefault('_home_', find_home())
     return os.path.join(path, *append)
 
 
-# Returns the path to the source directory. Appends arguments.
+# Return the path to the source directory. Append arguments.
 def src(*append):
     path = config.get('_src_') or config.setdefault('_src_', home('src'))
     return os.path.join(path, *append)
 
 
-# Returns the path to the output directory. Appends arguments.
+# Return the path to the output directory. Append arguments.
 def out(*append):
     path = config.get('_out_') or config.setdefault('_out_', home('out'))
     return os.path.join(path, *append)
 
 
-# Returns the path to the theme-library directory. Appends arguments.
+# Return the path to the theme-library directory. Append arguments.
 def lib(*append):
     path = config.get('_lib_') or config.setdefault('_lib_', home('lib'))
     return os.path.join(path, *append)
 
 
-# Returns the path to the extensions directory. Appends arguments.
+# Return the path to the extensions directory. Append arguments.
 def ext(*append):
     path = config.get('_ext_') or config.setdefault('_ext_', home('ext'))
     return os.path.join(path, *append)
 
 
-# Returns the path to the includes directory. Appends arguments.
+# Return the path to the includes directory. Append arguments.
 def inc(*append):
     path = config.get('_inc_') or config.setdefault('_inc_', home('inc'))
     return os.path.join(path, *append)
 
 
-# Returns the path to the theme directory. Appends arguments.
+# Return the path to the theme directory. Append arguments.
 def theme(*append):
     if '_themepath_' in config:
         return os.path.join(config['_themepath_'], *append)
@@ -147,7 +147,7 @@ def theme(*append):
         return os.path.join(path, *append)
 
 
-# Returns the output slug list for the specified record type.
+# Return the output slug list for the specified record type. Append arguments.
 def slugs(rectype, *append):
     typeslug = typedata(rectype, 'slug')
     sluglist = [typeslug] if typeslug else []
@@ -155,12 +155,12 @@ def slugs(rectype, *append):
     return sluglist
 
 
-# Returns the URL corresponding to the specified slug list.
+# Return the URL corresponding to the specified slug list.
 def url(slugs):
     return '@root/' + '/'.join(slugs) + '//'
 
 
-# Returns the paged URL corresponding to the specified slug list.
+# Return the paged URL corresponding to the specified slug list.
 def paged_url(slugs, page_number, total_pages):
     if page_number == 1:
         return url(slugs + ['index'])
@@ -170,7 +170,7 @@ def paged_url(slugs, page_number, total_pages):
         return ''
 
 
-# Returns the URL of the index page of the specified record type.
+# Return the URL of the index page of the specified record type.
 def index_url(rectype):
     if typedata(rectype, 'indexed'):
         if typedata(rectype, 'homepage'):
@@ -181,13 +181,13 @@ def index_url(rectype):
         return ''
 
 
-# Returns the record type corresponding to a source file or directory path.
+# Return the record type corresponding to a source file or directory path.
 def type_from_src(srcpath):
     slugs = os.path.relpath(srcpath, src()).replace('\\', '/').split('/')
     return slugs[0].strip('[]')
 
 
-# Returns the output slug list for the specified source directory.
+# Return the output slug list for the specified source directory.
 def slugs_from_src(srcdir, *append):
     rectype = type_from_src(srcdir)
     dirnames = os.path.relpath(srcdir, src()).replace('\\', '/').split('/')
@@ -197,24 +197,24 @@ def slugs_from_src(srcdir, *append):
     return sluglist
 
 
-# Returns the application runtime in seconds.
+# Return the application runtime in seconds.
 def runtime():
     return time.time() - config['_start_']
 
 
-# Increments the count of pages rendered by n and returns the new value.
+# Increment the count of pages rendered by n and return the new value.
 def rendered(n=0):
     config['_rendered_'] += n
     return config['_rendered_']
 
 
-# Increments the count of pages written by n and returns the new value.
+# Increment the count of pages written by n and return the new value.
 def written(n=0):
     config['_written_'] += n
     return config['_written_']
 
 
-# Loads and normalizes the site's configuration data.
+# Load and normalize the site's configuration data.
 def load_site_config():
 
     # Load the default site configuration file.

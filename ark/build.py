@@ -12,11 +12,11 @@ from . import hooks
 from . import loader
 
 
-# Builds the site.
+# Build the site.
 #
-#   1. Copies the site and theme resource files to the output directory.
-#   2. Builds the individual record pages.
-#   3. Builds the directory index pages.
+#   1. Copy the site and theme resource files to the output directory.
+#   2. Build the individual record pages.
+#   3. Build the directory index pages.
 #
 def build_site():
 
@@ -43,7 +43,7 @@ def build_site():
     hooks.event('exit_build')
 
 
-# Creates a HTML page for each record file in the source directory.
+# Create a HTML page for each record file in the source directory.
 def build_record_pages(dirpath):
 
     for fileinfo in loader.srcfiles(dirpath):
@@ -55,7 +55,7 @@ def build_record_pages(dirpath):
         build_record_pages(dirinfo.path)
 
 
-# Creates a paged index for each directory of records.
+# Create a paged index for each directory of records.
 def build_directory_indexes(dirpath, recursing=False):
 
     # Determine the record type from the directory path.

@@ -2,7 +2,8 @@
 # Event and filter hooks.
 # --------------------------------------------------------------------------
 
-# Maps hook names to lists of callback functions indexed by order.
+# This dictionary maps hook names to lists of callback functions indexed by
+# order.
 _handlers = {}
 
 

@@ -10,7 +10,7 @@ from . import site
 from . import cli
 
 
-# Stores a dictionary of loaded extension modules.
+# Dictionary of loaded extension modules indexed by name.
 _loaded = {}
 
 
@@ -78,6 +78,6 @@ def _load(directory, module):
     sys.path.pop(0)
 
 
-# Returns the dictionary of loaded extension modules.
+# Return the dictionary of loaded extension modules.
 def loaded():
     return _loaded

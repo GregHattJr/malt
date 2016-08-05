@@ -6,7 +6,7 @@ from . import renderers
 from . import utils
 
 
-# Stores a list of registered preprocessor callbacks.
+# This dictionary stores a list of registered preprocessor callbacks.
 _preprocessors = []
 
 
