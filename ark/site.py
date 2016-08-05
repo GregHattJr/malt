@@ -9,24 +9,49 @@ import sys
 from . import utils
 
 
-# This dictionary stores the site's configuration data.
+# Storage for the site's configuration data.
 config = {}
+
+
+# Storage for temporary data generated during the build process.
+cache = {}
 
 
 # Initialize the site model.
 def init():
 
     # Record the start time.
-    config['_start_'] = time.time()
+    cache['start'] = time.time()
 
     # Initialize a count of the number of pages rendered.
-    config['_rendered_'] = 0
+    cache['rendered'] = 0
 
     # Initialize a count of the number of pages written to disk.
-    config['_written_'] = 0
+    cache['written'] = 0
 
     # Load the site's configuration file.
     load_site_config()
+
+
+# Load and normalize the site's configuration data.
+def load_site_config():
+
+    # Load the default site configuration file.
+    path = os.path.join(os.path.dirname(__file__), 'config.py')
+    with open(path, encoding='utf-8') as file:
+        exec(file.read(), config)
+
+    # Load the custom site configuration file.
+    if home() and os.path.isfile(home('config.py')):
+        with open(home('config.py'), encoding='utf-8') as file:
+            exec(file.read(), config)
+
+    # Delete the __builtins__ attribute as it pollutes variable dumps.
+    del config['__builtins__']
+
+    # If 'root' isn't an empty string, make sure it ends in a slash.
+    if config['root'] and not config['root'].endswith('/'):
+        config['root'] += '/'
 
 
 # Attempt to determine the path to the site's home directory. Return an empty
@@ -68,7 +93,7 @@ def find_theme(name):
 # Return the type-data dictionary for the specified record type. If a key is
 # specified, the corresponding value is returned.
 def typedata(rectype, key=None):
-    types = config.setdefault('_types_', {})
+    types = cache.setdefault('types', {})
 
     # Set default values for any missing type data.
     if not rectype in types:
@@ -104,46 +129,46 @@ def typelist():
 # Return the path to the site's home directory or an empty string if the
 # home directory cannot be located. Append arguments.
 def home(*append):
-    path = config.get('_home_') or config.setdefault('_home_', find_home())
+    path = cache.get('home') or cache.setdefault('home', find_home())
     return os.path.join(path, *append)
 
 
 # Return the path to the source directory. Append arguments.
 def src(*append):
-    path = config.get('_src_') or config.setdefault('_src_', home('src'))
+    path = cache.get('src') or cache.setdefault('src', home('src'))
     return os.path.join(path, *append)
 
 
 # Return the path to the output directory. Append arguments.
 def out(*append):
-    path = config.get('_out_') or config.setdefault('_out_', home('out'))
+    path = cache.get('out') or cache.setdefault('out', home('out'))
     return os.path.join(path, *append)
 
 
 # Return the path to the theme-library directory. Append arguments.
 def lib(*append):
-    path = config.get('_lib_') or config.setdefault('_lib_', home('lib'))
+    path = cache.get('lib') or cache.setdefault('lib', home('lib'))
     return os.path.join(path, *append)
 
 
 # Return the path to the extensions directory. Append arguments.
 def ext(*append):
-    path = config.get('_ext_') or config.setdefault('_ext_', home('ext'))
+    path = cache.get('ext') or cache.setdefault('ext', home('ext'))
     return os.path.join(path, *append)
 
 
 # Return the path to the includes directory. Append arguments.
 def inc(*append):
-    path = config.get('_inc_') or config.setdefault('_inc_', home('inc'))
+    path = cache.get('inc') or cache.setdefault('inc', home('inc'))
     return os.path.join(path, *append)
 
 
 # Return the path to the theme directory. Append arguments.
 def theme(*append):
-    if '_themepath_' in config:
-        return os.path.join(config['_themepath_'], *append)
+    if 'themepath' in cache:
+        return os.path.join(cache['themepath'], *append)
     else:
-        path = config.setdefault('_themepath_', find_theme(config['theme']))
+        path = cache.setdefault('themepath', find_theme(config['theme']))
         return os.path.join(path, *append)
 
 
@@ -199,37 +224,16 @@ def slugs_from_src(srcdir, *append):
 
 # Return the application runtime in seconds.
 def runtime():
-    return time.time() - config['_start_']
+    return time.time() - cache['start']
 
 
 # Increment the count of pages rendered by n and return the new value.
 def rendered(n=0):
-    config['_rendered_'] += n
-    return config['_rendered_']
+    cache['rendered'] += n
+    return cache['rendered']
 
 
 # Increment the count of pages written by n and return the new value.
 def written(n=0):
-    config['_written_'] += n
-    return config['_written_']
-
-
-# Load and normalize the site's configuration data.
-def load_site_config():
-
-    # Load the default site configuration file.
-    path = os.path.join(os.path.dirname(__file__), 'config.py')
-    with open(path, encoding='utf-8') as file:
-        exec(file.read(), config)
-
-    # Load the custom site configuration file.
-    if home() and os.path.isfile(home('config.py')):
-        with open(home('config.py'), encoding='utf-8') as file:
-            exec(file.read(), config)
-
-    # Delete the __builtins__ attribute as it pollutes variable dumps.
-    del config['__builtins__']
-
-    # If 'root' isn't an empty string, make sure it ends in a slash.
-    if config['root'] and not config['root'].endswith('/'):
-        config['root'] += '/'
+    cache['written'] += n
+    return cache['written']
