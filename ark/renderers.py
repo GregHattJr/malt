@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------
-# Handles text-to-html rendering-engine callbacks.
+# This module handles text-to-html rendering-engine callbacks.
 # --------------------------------------------------------------------------
 
 import sys
