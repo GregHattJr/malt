@@ -6,8 +6,8 @@ from . import renderers
 from . import utils
 
 
-# This dictionary stores a list of registered preprocessor callbacks.
-_preprocessors = []
+# Registered preprocessor callbacks.
+preprocessors = []
 
 
 def register(callback):
@@ -20,7 +20,7 @@ def register(callback):
 
     """
 
-    _preprocessors.append(callback)
+    preprocessors.append(callback)
     return callback
 
 
@@ -37,7 +37,7 @@ def load(filepath):
     with open(filepath, encoding='utf-8') as file:
         text, meta = file.read(), {}
 
-    for callback in _preprocessors:
+    for callback in preprocessors:
         text, meta = callback(text, meta)
 
     return text, normalize(meta)

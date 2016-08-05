@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------
-# Handles the site building process.
+# This module handles the main site-building process.
 # --------------------------------------------------------------------------
 
 import os

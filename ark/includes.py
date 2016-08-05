@@ -9,7 +9,7 @@ from . import renderers
 from . import site
 
 
-# Dictionary of rendered files indexed by file name.
+# Dictionary of rendered files indexed by normalized filename.
 _cache = None
 
 

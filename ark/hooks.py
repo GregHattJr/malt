@@ -2,9 +2,8 @@
 # Event and filter hooks.
 # --------------------------------------------------------------------------
 
-# This dictionary maps hook names to lists of callback functions indexed by
-# order.
-_handlers = {}
+# Maps hook names to lists of callback functions indexed by order.
+callbacks = {}
 
 
 def register(hook, order=0):
@@ -24,23 +23,23 @@ def register(hook, order=0):
 
     """
 
-    def register_handler(func):
-        _handlers.setdefault(hook, {}).setdefault(order, []).append(func)
+    def register_callback(func):
+        callbacks.setdefault(hook, {}).setdefault(order, []).append(func)
         return func
 
-    return register_handler
+    return register_callback
 
 
 # Fires an event hook.
 def event(hook, *args):
-    for order in sorted(_handlers.get(hook, {})):
-        for func in _handlers[hook][order]:
+    for order in sorted(callbacks.get(hook, {})):
+        for func in callbacks[hook][order]:
             func(*args)
 
 
 # Fires a filter hook.
 def filter(hook, value, *args):
-    for order in sorted(_handlers.get(hook, {})):
-        for func in _handlers[hook][order]:
+    for order in sorted(callbacks.get(hook, {})):
+        for func in callbacks[hook][order]:
             value = func(value, *args)
     return value
