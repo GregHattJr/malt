@@ -11,7 +11,7 @@ import ark
 import syntex
 
 
-# Register our callback to render files with a .stx extension.
+# Register a callback to render files with a .stx extension.
 @ark.renderers.register('stx')
 def render(text):
     return syntex.render(text, pygmentize=True)

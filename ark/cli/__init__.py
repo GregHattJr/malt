@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------
-# Processes the application's command-line arguments.
+# This package processes the application's command-line arguments.
 # --------------------------------------------------------------------------
 
 import os
@@ -16,7 +16,7 @@ from . import watch
 from .. import meta
 
 
-# We want the root ArgParser instance to be globally available.
+# We want the root ArgParser instance to be available to extensions.
 parser = None
 
 

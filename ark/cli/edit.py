@@ -18,7 +18,7 @@ Usage: %s edit [FLAGS] ARGUMENTS
   named files do not exist.
 
   Ark will launch the editor specified by the $EDITOR environment variable
-  if it exists, otherwise it will attempt to use vim.
+  if it exists, otherwise it will attempt to use Vim.
 
 Arguments:
   <file>...           Record filename(s).

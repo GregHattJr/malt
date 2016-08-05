@@ -19,7 +19,7 @@ settings = ark.site.config.get('markdown', {})
 mdrenderer = markdown.Markdown(**settings)
 
 
-# Register our callback to render files with a .md extension.
+# Register a callback to render files with a .md extension.
 @ark.renderers.register('md')
 def render(text):
     return mdrenderer.reset().convert(text)
