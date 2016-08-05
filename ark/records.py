@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------
-# Handles the creation and caching of Record objects.
+# This module handles the creation and caching of Record objects.
 # --------------------------------------------------------------------------
 
 import os
@@ -13,25 +13,21 @@ from . import renderers
 from . import loader
 
 
-# Stores an in-memory cache of Record objects indexed by source filepath.
-_cache = {}
+# An in-memory cache of Record objects indexed by source filepath.
+cache = {}
 
 
-# Returns the Record object corresponding to the specified source file.
+# Return the Record object corresponding to the specified source file.
 def record(filepath):
-    if not filepath in _cache:
-        _cache[filepath] = Record(filepath)
-    return _cache[filepath]
+    if not filepath in cache:
+        cache[filepath] = Record(filepath)
+    return cache[filepath]
 
 
+# A Record instance represents a parsed source file. Record objects should
+# not be instantiated directly; instead use the `record()` function to take
+# advantage of automatic caching.
 class Record(dict):
-
-    """ A record object represents a parsed source file.
-
-    Record objects should not be instantiated directly. Instead use the
-    `record()` function to take advantage of automatic caching.
-
-    """
 
     def __init__(self, filepath):
 

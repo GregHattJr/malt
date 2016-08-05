@@ -5,10 +5,10 @@
 import sys
 
 
-# This dictionary maps file extensions to registered rendering engine
+# This dictionary maps file extensions to registered rendering-engine
 # callbacks. We include a default set of null renderers for various common
 # file extensions. These can be overridden by plugins if desired.
-_renderers = {
+callbacks = {
     'css': lambda s: s,
     'html': lambda s: s,
     'js': lambda s: s,
@@ -33,7 +33,7 @@ def register(ext):
     """
 
     def register_callback(callback):
-        _renderers[ext] = callback
+        callbacks[ext] = callback
         return callback
 
     return register_callback
@@ -41,12 +41,12 @@ def register(ext):
 
 # Return a list of file extensions with registered renderers.
 def extensions():
-    return list(_renderers.keys())
+    return list(callbacks.keys())
 
 
 # Render a string and return the result.
 def render(text, ext):
-    if ext in _renderers:
-        return _renderers[ext](text)
+    if ext in callbacks:
+        return callbacks[ext](text)
     else:
-        sys.exit("Error: no registered renderer for the '.%s' extension." % ext)
+        sys.exit("Error: no registered renderer for '.%s'." % ext)

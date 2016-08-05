@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------
-# Handles the creation and rendering of Page objects.
+# This module handles the creation and rendering of Page objects.
 # --------------------------------------------------------------------------
 
 import os
@@ -16,7 +16,7 @@ from . import hashes
 from . import cli
 
 
-# A Page object represents a single HTML page in the site's output.
+# A Page object represents a single html page in the site's output.
 class Page(dict):
 
     # Regex for locating @root/ urls for rewriting. Note that we only rewrite
@@ -44,7 +44,7 @@ class Page(dict):
         self['last_url'] = ''
         self['index_url'] = site.index_url(rectype)
 
-    # Renders the page into HTML and prints the output file.
+    # Render the page into html and write it to disk.
     def render(self):
 
         # Fire the 'render_page' event.
@@ -66,7 +66,7 @@ class Page(dict):
         # Filter the page's html before writing it to disk.
         html = hooks.filter('page_html', html, self)
 
-        # Rewrite all '@root/' urls into their final form.
+        # Rewrite all '@root/' urls.
         html = self._rewrite_urls(html, depth)
 
         # Write the page to disk. Avoid overwriting identical existing files.
@@ -74,7 +74,7 @@ class Page(dict):
             utils.writefile(self['path'], html)
             site.written(1)
 
-    # Determines the output filepath for the page.
+    # Determine the output filepath for the page.
     def _get_output_filepath(self):
 
         # Directory-style urls require us to append an extra 'index' element.
@@ -103,7 +103,7 @@ class Page(dict):
         return filepath, len(slugs)
 
     def _rewrite_urls(self, html, depth):
-        """ Rewrite @root/ urls to their final form.
+        """ Rewrite all @root/ urls to their final form.
 
         We rewrite @root/ urls to page-relative form by appending an
         appropriate number of '../' elements.
@@ -147,7 +147,7 @@ class Page(dict):
 
         return self.re_url.sub(rewrite_callback, html)
 
-    # Generates a list of CSS classes for the page.
+    # Generate a list of CSS classes for the page.
     def _get_class_list(self):
         classes = ['type-%s' % self['type']['name']]
 
@@ -165,7 +165,7 @@ class Page(dict):
 
         return hooks.filter('page_classes', classes, self)
 
-    # Returns a list of possible template names for the current page.
+    # Assemble a list of possible template names for the current page.
     def _get_template_list(self):
         templates, rectype = [], self['type']['name']
 
@@ -243,14 +243,14 @@ class Index:
 
             self.pages.append(page)
 
-    # Note that setting a property on an Index using dictionary syntax (i.e.
+    # Note that setting a property on an index using dictionary syntax (i.e.
     # setting index['foo'] = bar) in fact sets that property on each of the
     # index's individual pages.
     def __setitem__(self, key, value):
         for page in self.pages:
             page[key] = value
 
-    # Render each page in the index into HTML and write it to disk.
+    # Render each page in the index into html and write it to disk.
     def render(self):
         for page in self.pages:
             page.render()

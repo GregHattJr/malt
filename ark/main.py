@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------
-# Application entry point.
+# This module provides the application's entry point.
 # --------------------------------------------------------------------------
 
 from . import site
