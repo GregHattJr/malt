@@ -2,7 +2,7 @@
 title: Second Sample Post
 author: John Doe
 date: 2015-01-02
-tags: foo, bar, baz
+tags: bar, baz, bam
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
