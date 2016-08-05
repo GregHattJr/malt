@@ -31,7 +31,7 @@ Options:
   -l, --lib <path>      Override the default 'lib' directory.
   -o, --out <path>      Override the default 'out' directory.
   -s, --src <path>      Override the default 'src' directory.
-  -t, --theme <name>    Override the theme specififed in the config file.
+  -t, --theme <name>    Override the default theme.
 
 Flags:
   -c, --clear           Clear the output directory before building.

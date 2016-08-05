@@ -36,32 +36,37 @@ def init():
 # Load and normalize the site's configuration data.
 def load_site_config():
 
-    # Load the default site configuration file.
-    path = os.path.join(os.path.dirname(__file__), 'config.py')
-    with open(path, encoding='utf-8') as file:
-        exec(file.read(), config)
+    # Default settings.
+    config['root'] = ''
+    config['theme'] = 'phoenix'
+    config['extension'] = '.html'
 
-    # Load the custom site configuration file.
-    if home() and os.path.isfile(home('config.py')):
-        with open(home('config.py'), encoding='utf-8') as file:
+    # Load the site configuration file.
+    if home() and os.path.isfile(home('ark.py')):
+        with open(home('ark.py'), encoding='utf-8') as file:
             exec(file.read(), config)
 
     # Delete the __builtins__ attribute as it pollutes variable dumps.
-    del config['__builtins__']
+    if '__builtins__' in config:
+        del config['__builtins__']
 
     # If 'root' isn't an empty string, make sure it ends in a slash.
     if config['root'] and not config['root'].endswith('/'):
         config['root'] += '/'
 
 
-# Attempt to determine the path to the site's home directory. Return an empty
-# string if the directory cannot be located.
+# Attempt to determine the path to the site's home directory. We check for
+# the presence of either an 'ark.py' file or both 'src' and 'out' directories.
+# We return an empty string if the home directory cannot be located.
 def find_home():
+    join, isdir, isfile = os.path.join, os.path.isdir, os.path.isfile
     path = os.getcwd()
-    while os.path.isdir(path):
-        if os.path.isfile(os.path.join(path, '.ark')):
+    while isdir(path):
+        if isfile(join(path, 'ark.py')):
             return os.path.abspath(path)
-        path = os.path.join(path, '..')
+        elif isdir(join(path, 'src')) and isdir(join(path, 'out')):
+            return os.path.abspath(path)
+        path = join(path, '..')
     return ''
 
 

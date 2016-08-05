@@ -40,13 +40,13 @@ class Record(dict):
         self.update(meta)
 
         # Add the default set of record attributes.
-        self['type']   = site.type_from_src(dirpath)
-        self['slug']   = meta.get('slug') or utils.slugify(fileinfo.base)
-        self['slugs']  = site.slugs_from_src(dirpath, self['slug'])
-        self['src']    = filepath
+        self['type'] = site.type_from_src(dirpath)
+        self['slug'] = meta.get('slug') or utils.slugify(fileinfo.base)
+        self['slugs'] = site.slugs_from_src(dirpath, self['slug'])
+        self['src'] = filepath
         self['srcdir'] = dirpath
-        self['ext']    = fileinfo.ext
-        self['url']    = site.url(self['slugs'])
+        self['ext'] = fileinfo.ext
+        self['url'] = site.url(self['slugs'])
 
         # Add a default datetime stamp. We use the 'date' attribute if it's
         # present, otherwise we use the file creation time (OSX, BSD, Windows)

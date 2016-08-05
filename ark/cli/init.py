@@ -36,13 +36,12 @@ def callback(parser):
 
     for name in ('ext', 'inc', 'lib', 'out', 'src'):
         os.makedirs(name, exist_ok=True)
-    ark.utils.writefile('.ark', '')
 
     if parser['empty']:
         return
 
-    if not os.path.exists('config.py'):
-        shutil.copy2(os.path.join(inidir, 'config.py'), 'config.py')
+    if not os.path.exists('ark.py'):
+        shutil.copy2(os.path.join(inidir, 'ark.py'), 'ark.py')
 
     for name in ('ext', 'inc', 'src'):
         ark.utils.copydir(os.path.join(inidir, name), name, noclobber=True)

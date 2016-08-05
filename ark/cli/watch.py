@@ -24,7 +24,7 @@ Options:
   -l, --lib <path>      Override the default 'lib' directory.
   -o, --out <path>      Override the default 'out' directory.
   -s, --src <path>      Override the default 'src' directory.
-  -t, --theme <name>    Override the theme specififed in the config file.
+  -t, --theme <name>    Override the default theme.
 
 Flags:
   -c, --clear           Clear the output directory before each build.
@@ -36,7 +36,7 @@ Flags:
 # Callback for the watch command. Python doesn't have a builtin file system
 # watcher so we hack together one of our own.
 def callback(parser):
-    
+
     home = ark.site.home()
     if not home:
         sys.exit("Error: cannot locate the site's home directory.")

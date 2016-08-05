@@ -6,14 +6,17 @@
 # customise how Ark builds your site. Variables you set here are also
 # available to themes and plugins.
 
+# --------------------------------------------------------------------------
+# Theme
+# --------------------------------------------------------------------------
+
+# Choose the theme to use when building your site. This attribute should
+# specify the name of a theme directory in your site's 'lib' folder.
+theme = "phoenix"
 
 # --------------------------------------------------------------------------
 # Theme Settings
 # --------------------------------------------------------------------------
-
-# The theme to use when building the site. This attribute should specify
-# the name of a theme directory in the site's 'lib' folder.
-theme = "phoenix"
 
 # The default theme displays the 'title' string as the site's title.
 title = "Site Title"
@@ -24,7 +27,6 @@ tagline = "Just another Ark site"
 # The default theme displays the 'copyright' string in the site's footer.
 copyright = "Copyright &copy; 2016 Foobar Industries"
 
-
 # --------------------------------------------------------------------------
 # Root URL
 # --------------------------------------------------------------------------
@@ -33,7 +35,6 @@ copyright = "Copyright &copy; 2016 Foobar Industries"
 # absolute urls, a single forward slash ("/") for site-relative urls, or an
 # empty string (the default) for page-relative urls.
 root = ""
-
 
 # --------------------------------------------------------------------------
 # File Extension
