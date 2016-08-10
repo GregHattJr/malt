@@ -310,7 +310,7 @@ Installing Ark via `pip` automatically installs the following libraries:
 * [Clio](https://github.com/dmulholland/clio)
 * [Ibis](https://github.com/dmulholland/ibis)
 * [Jinja](http://jinja.pocoo.org)
-* [Markdown](https://pythonhosted.org/Markdown/)
+* [Markdown](https://pypi.python.org/pypi/Markdown)
 * [Pygments](http://pygments.org/)
 * [PyYAML](http://pyyaml.org/)
 * [Shortcodes](https://github.com/dmulholland/shortcodes)
