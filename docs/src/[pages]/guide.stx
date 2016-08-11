@@ -307,11 +307,11 @@ Only the options to be changed need to be specified.
 
 Installing Ark via `pip` automatically installs the following libraries:
 
-* [Clio](https://github.com/dmulholland/clio)
-* [Ibis](https://github.com/dmulholland/ibis)
-* [Jinja](http://jinja.pocoo.org)
+* [Clio](https://pypi.python.org/pypi/libclio)
+* [Ibis](https://pypi.python.org/pypi/ibis)
+* [Jinja](https://pypi.python.org/pypi/Jinja2)
 * [Markdown](https://pypi.python.org/pypi/Markdown)
-* [Pygments](http://pygments.org/)
-* [PyYAML](http://pyyaml.org/)
-* [Shortcodes](https://github.com/dmulholland/shortcodes)
-* [Syntex](https://github.com/dmulholland/syntex)
+* [Pygments](https://pypi.python.org/pypi/Pygments)
+* [PyYAML](https://pypi.python.org/pypi/PyYAML)
+* [Shortcodes](https://pypi.python.org/pypi/shortcodes)
+* [Syntex](https://pypi.python.org/pypi/syntex)
