@@ -110,7 +110,6 @@ Ark has builtin support for WordPress-style [shortcodes][] with space-separated 
 
 Plugins can register shortcode tags using the `@shortcodes.register()` decorator:
 
-
 ::: python
 
     import shortcodes
@@ -119,7 +118,6 @@ Plugins can register shortcode tags using the `@shortcodes.register()` decorator
     def handler(record, content, pargs, kwargs):
         ...
         return replacement_text
-
 
 Handler functions should accept four arguments:
 
