@@ -16,21 +16,18 @@ callbacks = {}
 cache = None
 
 
+# Decorator function for registering template-engine callbacks. A template-
+# engine callback should accept a page object and a template filename and
+# return a string of html.
+#
+# Callbacks are registered per file extension, e.g.
+#
+#   @ark.templates.register('ibis')
+#   def callback(page, filename):
+#       ...
+#       return html
+#
 def register(ext):
-
-    """ Decorator function for registering template-engine callbacks.
-
-    A template-engine callback should accept a page object and a template
-    filename and return a string of html.
-
-    Callbacks are registered per file extension, e.g.
-
-    @ark.templates.register('ibis')
-    def callback(page, filename):
-        ...
-        return html
-
-    """
 
     def register_callback(callback):
         callbacks[ext] = callback

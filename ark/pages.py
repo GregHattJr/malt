@@ -102,20 +102,19 @@ class Page(dict):
 
         return filepath, len(slugs)
 
+    # Rewrite @root/ urls to their final form. Note that we only rewrite urls
+    # encosed in quotes or angle brackets.
+    #
+    # We rewrite @root/ urls to page-relative form by appending an appropriate
+    # number of '../' elements.
+    #
+    # Only urls ending in '//' have their endings rewritten to match the site's
+    # 'extension' setting.
+    #
+    # Note that the native format for links to the homepage is '@root/index//',
+    # but for convenience we treat the strings '@root/' and '@root//' in an
+    # identical manner.
     def _rewrite_urls(self, html, depth):
-        """ Rewrite all @root/ urls to their final form.
-
-        We rewrite @root/ urls to page-relative form by appending an
-        appropriate number of '../' elements.
-
-        Only urls ending in '//' have their endings rewritten to match
-        the site's 'extension' configuration setting.
-
-        Note that the native format for links to the homepage is
-        '@root/index//', but for convenience we treat the strings '@root/'
-        and '@root//' in an identical manner.
-
-        """
 
         def rewrite_callback(match):
             quote = match.group(1) if match.group(1) in ('"', "'") else ''
