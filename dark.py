@@ -16,6 +16,4 @@
 # --------------------------------------------------------------------------
 
 import ark
-
-# The main module contains the application's entry point.
-ark.main.main()
+ark.main()
