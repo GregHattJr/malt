@@ -42,7 +42,18 @@ def callback(parser):
         sys.exit("Error: cannot locate the site's home directory.")
 
     # Assemble a list of arguments for the subprocess call.
-    args = [sys.argv[0]]
+    args = []
+
+    # We need to check if the `ark` package has been executed:
+    # 1. Directly, as `python3 /path/to/ark/package`.
+    # 2. As an installed package on the import path, `python3 -m ark`.
+    # 3. Via an entry script, `ark`.
+    if os.path.isdir(sys.argv[0]):
+        args += ['python3', sys.argv[0]]
+    elif os.path.isfile(sys.argv[0]) and sys.argv[0].endswith('__main__.py'):
+        args += ['python3', sys.argv[0]]
+    elif os.path.isfile(sys.argv[0]):
+        args.append(sys.argv[0])
 
     # Add support for Ark's --no-ext flags.
     if parser.get_parent()['no-global-ext']: args.append('--no-global-ext')
