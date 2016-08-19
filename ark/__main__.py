@@ -1,15 +1,11 @@
 # --------------------------------------------------------------------------
 # This module makes the `ark` package directly executable.
 #
-# If Ark has been installed using pip (i.e. if an `ark` package can be found
-# in one of the standard import locations), then the following command will
-# run this script in the installed `ark` package:
+# To run an `ark` package located on Python's import search path:
 #
 #   $ python -m ark
 #
-# Alternatively, an arbitrary, non-installed `ark` package can be run by
-# omitting the -m flag and specifying the full path to the package
-# directory:
+# To run an arbitrary `ark` package:
 #
 #   $ python /path/to/ark/package
 #
