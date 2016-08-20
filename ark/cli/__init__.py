@@ -10,7 +10,6 @@ from . import build
 from . import init
 from . import clear
 from . import serve
-from . import edit
 from . import watch
 
 from .. import meta
@@ -34,7 +33,6 @@ Flags:
 Commands:
   build               Build the site.
   clear               Clear the output directory.
-  edit                Edit an existing record or create a new record file.
   init                Initialize a new site directory.
   serve               Run a web server on the site's output directory.
   watch               Monitor the site directory and rebuild on changes.
@@ -67,10 +65,6 @@ def parse():
 
     # Register the 'clear' command.
     parser.add_cmd("clear", clear.helptext, clear.callback)
-
-    # Register the 'edit' command.
-    cmd_edit = parser.add_cmd("edit", edit.helptext, edit.callback)
-    cmd_edit.add_str("type t", "posts")
 
     # Register the 'init' command.
     cmd_init = parser.add_cmd("init", init.helptext, init.callback)
