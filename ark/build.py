@@ -23,8 +23,12 @@ def build_site():
     # Fire the 'init_build' event.
     hooks.event('init_build')
 
-    # Copy the site's resource files to the output directory, i.e. any files
-    # in the site's src directory not inside a [type] directory.
+    # Copy the site's resource files to the output directory.
+    if os.path.exists(site.res()):
+        utils.copydir(site.src(), site.out())
+
+    # Deprecated: copy resource files from the source directory to the output
+    # directory. This will be removed in the next major release.
     utils.copydir(site.src(), site.out(), skiptypes=True)
 
     # Copy the theme's resource files to the output directory.

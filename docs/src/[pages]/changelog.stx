@@ -12,6 +12,8 @@ Ark adheres to [semantic versioning][semver].
 
 * Add support for record classes.
 
+* Add support for a site resources directory `res`.
+
 
 
 ## 2.2.0

@@ -168,6 +168,12 @@ def inc(*append):
     return os.path.join(path, *append)
 
 
+# Return the path to the resources directory. Append arguments.
+def res(*append):
+    path = cache.get('res') or cache.setdefault('res', home('res'))
+    return os.path.join(path, *append)
+
+
 # Return the path to the theme directory. Append arguments.
 def theme(*append):
     if 'themepath' in cache:
