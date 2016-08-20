@@ -18,6 +18,8 @@ Ark adheres to [semantic versioning][semver].
 
 * Remove the `edit` command.
 
+* Remove the `--empty` flag from the `init` command.
+
 
 
 ## 2.2.0

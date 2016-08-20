@@ -13,15 +13,14 @@ helptext = """
 Usage: %s init [FLAGS] [ARGUMENTS]
 
   Initialize a new site directory. If a directory path is specified, that
-  directory will be created and used. Otherwise, the current directory will be
-  used. Existing files will not be overwritten.
+  directory will be created and initialized. Otherwise, the current directory
+  will be initialized. Existing files will not be overwritten.
 
 Arguments:
   [directory]         Directory name. Defaults to the current directory.
 
 Flags:
-  -e, --empty         Do not create a skeleton site.
-      --help          Print this command's help text and exit.
+  --help              Print this command's help text and exit.
 
 """ % os.path.basename(sys.argv[0])
 
@@ -36,9 +35,6 @@ def callback(parser):
 
     for name in ('ext', 'inc', 'lib', 'out', 'src'):
         os.makedirs(name, exist_ok=True)
-
-    if parser['empty']:
-        return
 
     if not os.path.exists('ark.py'):
         shutil.copy2(os.path.join(inidir, 'ark.py'), 'ark.py')

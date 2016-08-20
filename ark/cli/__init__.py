@@ -68,7 +68,6 @@ def parse():
 
     # Register the 'init' command.
     cmd_init = parser.add_cmd("init", init.helptext, init.callback)
-    cmd_init.add_flag("empty e")
 
     # Register the 'serve' command.
     cmd_serve = parser.add_cmd("serve", serve.helptext, serve.callback)
