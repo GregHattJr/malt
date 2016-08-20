@@ -64,7 +64,7 @@
 <a href="#record-attributes">Record Attributes</a>
 </li>
 <li>
-<a href="#tags">Tags</a>
+<a href="#tags-amp-classes">Tags &amp; Classes</a>
 </li>
 <li>
 <a href="#links">Links</a>
@@ -321,8 +321,8 @@ The record's URL.
 </p>
 </dd>
 </dl>
-<h2 id="tags">
-Tags
+<h2 id="tags-amp-classes">
+Tags &amp; Classes
 </h2>
 <p>
 Every record can be tagged and every record type supports its own individual set of tag index pages. To tag a record, simply add a <code>tags</code> attribute to its header followed by a comma-separated list of tags:
@@ -332,6 +332,17 @@ Every record can be tagged and every record type supports its own individual set
 tags: foo, bar, baz
 ---
 </pre>
+<p>
+Records also support an optional <code>classes</code> attribute for styling:
+</p>
+<pre>
+---
+classes: foo, bar, baz
+---
+</pre>
+<p>
+Specified classes are added to the record page's <code>&lt;body&gt;</code> element.
+</p>
 <h2 id="links">
 Links
 </h2>

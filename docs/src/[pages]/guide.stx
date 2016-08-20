@@ -186,13 +186,21 @@ All records have the following default attributes:
 
 
 
-## Tags
+## Tags & Classes
 
 Every record can be tagged and every record type supports its own individual set of tag index pages. To tag a record, simply add a `tags` attribute to its header followed by a comma-separated list of tags:
 
     ---
     tags: foo, bar, baz
     ---
+
+Records also support an optional `classes` attribute for styling:
+
+    ---
+    classes: foo, bar, baz
+    ---
+
+Specified classes are added to the record page's `<body>` element.
 
 
 

@@ -8,6 +8,12 @@ Ark adheres to [semantic versioning][semver].
 
 
 
+## Unreleased
+
+* Add support for record classes.
+
+
+
 ## 2.2.0
 
 * The `ark` package is now directly executable. An installed `ark` package can be run as:

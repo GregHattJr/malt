@@ -10,7 +10,7 @@ import ark
 import markdown
 
 
-# Check the config file for customized settings for the markdown renderer.
+# Check the config file for custom settings for the markdown renderer.
 settings = ark.site.config.get('markdown', {})
 
 
