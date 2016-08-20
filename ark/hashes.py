@@ -25,21 +25,30 @@ from . import hooks
 _hashes = { 'old': {}, 'new': {} }
 
 
-# Loads cached page hashes from the last build run.
+# Returns the name of the cachefile for the curent site.
+def cachefile():
+    if not 'cachefile' in _hashes:
+        name = hashlib.sha1(site.home().encode()).hexdigest() + '.pickle'
+        user = os.path.expanduser('~')
+        _hashes['cachefile'] = os.path.join(user, '.cache', 'ark', name)
+    return _hashes['cachefile']
+
+
+# Load cached page hashes from the last build run.
 @hooks.register('init')
 def load():
-    if os.path.isfile(site.home('.arkcache', 'hashes.pickle')):
-        with open(site.home('.arkcache', 'hashes.pickle'), 'rb') as file:
+    if os.path.isfile(cachefile()):
+        with open(cachefile(), 'rb') as file:
             _hashes['old'] = pickle.load(file)
 
 
-# Caches page hashes to disk for the next build run.
+# Cache page hashes to disk for the next build run.
 @hooks.register('exit')
 def save():
     if _hashes['new'] and _hashes['new'] != _hashes['old']:
-        if not os.path.isdir(site.home('.arkcache')):
-            os.makedirs(site.home('.arkcache'))
-        with open(site.home('.arkcache', 'hashes.pickle'), 'wb') as file:
+        if not os.path.isdir(os.path.dirname(cachefile())):
+            os.makedirs(os.path.dirname(cachefile()))
+        with open(cachefile(), 'wb') as file:
             pickle.dump(_hashes['new'], file)
 
 
