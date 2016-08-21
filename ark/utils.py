@@ -80,10 +80,9 @@ def titlecase(s):
 # Copy the contents of 'srcdir' to 'dstdir'.
 #
 #   * Creates the destination directory if necessary.
-#   * If skiptypes is true, will skip [type] directories.
 #   * If noclobber is true, will avoid overwriting existing files.
 #
-def copydir(srcdir, dstdir, skiptypes=False, noclobber=False):
+def copydir(srcdir, dstdir, noclobber=False):
 
     if not os.path.exists(srcdir):
         return
@@ -95,22 +94,17 @@ def copydir(srcdir, dstdir, skiptypes=False, noclobber=False):
         src = os.path.join(srcdir, name)
         dst = os.path.join(dstdir, name)
 
-        if skiptypes and name.startswith('[') and name.endswith(']'):
-            continue
-
         if name in ('__pycache__', '.DS_Store'):
             continue
 
         if os.path.isfile(src):
             copyfile(src, dst, noclobber)
-
         elif os.path.isdir(src):
-            copydir(src, dst, skiptypes, noclobber)
+            copydir(src, dst, noclobber)
 
 
-# Copy the file 'src' as 'dst'.
-#
-# If 'noclobber' is true, this function will not overwrite an existing 'dst'.
+# Copy the file 'src' as 'dst'. If 'noclobber' is true, this function will not
+# overwrite an existing 'dst'.
 #
 # This function attempts to avoid unnecessarily overwriting existing files with
 # identical copies. If 'dst' exists and has the same size and mtime as 'src',

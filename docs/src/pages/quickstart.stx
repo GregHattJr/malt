@@ -23,6 +23,7 @@ Ark will create the following directory structure for your site:
         inc/         # includes directory for menus, etc.
         lib/         # library directory for themes
         out/         # output directory for html files
+        res/         # resources directory for static assets
         src/         # source directory for text files
 
 Ark initializes your `src` directory with a simple skeleton site which you can build immediately using the `build` command:

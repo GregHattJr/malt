@@ -6,22 +6,19 @@
 callbacks = {}
 
 
+# Decorator function for registering event and filter callbacks.
+#
+# Event callbacks accept zero or more arguments depending on the specific hook.
+# They may modify their arguments in place but have no return value.
+#
+# Filter callbacks accept at least one argument - the value to be filtered.
+# They may accept additional arguments depending on the specific hook. Filter
+# callbacks modify and return the value of their first argument.
+#
+# The @register decorator accepts an optional order parameter with a default
+# value of 0. Callbacks with lower order fire before callbacks with
+# higher order.
 def register(hook, order=0):
-
-    """ Decorator function for registering event and filter callbacks.
-
-    Event callbacks accept zero or more arguments depending on the specific
-    hook. They may modify their arguments in place but have no return value.
-
-    Filter callbacks accept at least one argument - the value to be filtered.
-    They may accept additional arguments depending on the specific hook.
-    Filter callbacks modify and return the value of their first argument.
-
-    The @register decorator accepts an optional order parameter with a default
-    value of 0. Callbacks with lower order fire before callbacks with
-    higher order.
-
-    """
 
     def register_callback(func):
         callbacks.setdefault(hook, {}).setdefault(order, []).append(func)

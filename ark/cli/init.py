@@ -33,7 +33,7 @@ def callback(parser):
     os.makedirs(dstdir, exist_ok=True)
     os.chdir(dstdir)
 
-    for name in ('ext', 'inc', 'lib', 'out', 'src'):
+    for name in ('ext', 'inc', 'lib', 'out', 'res', 'src'):
         os.makedirs(name, exist_ok=True)
 
     if not os.path.exists('ark.py'):

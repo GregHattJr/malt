@@ -8,6 +8,14 @@ Ark adheres to [semantic versioning][semver].
 
 
 
+## Unreleased
+
+* This release obsoletes the bracketed naming convention for `[type]` directories in `src`. The `src` directory should now contain *only* unbracketed type directories, e.g. `pages`, `posts`.
+
+* Static resource files should be placed in the site's `res` directory. Resource files will no longer be loaded from `src`.
+
+
+
 ## 2.3.0
 
 * Add support for record classes.

@@ -122,15 +122,6 @@ def typedata(rectype, key=None):
         return types[rectype]
 
 
-# Return a list of all record types in the site's source directory.
-def typelist():
-    types = []
-    for _, name in utils.subdirs(src()):
-        if name.startswith('['):
-            types.append(name.strip('[]'))
-    return types
-
-
 # Return the path to the site's home directory or an empty string if the
 # home directory cannot be located. Append arguments.
 def home(*append):
@@ -220,7 +211,7 @@ def index_url(rectype):
 # Return the record type corresponding to a source file or directory path.
 def type_from_src(srcpath):
     slugs = os.path.relpath(srcpath, src()).replace('\\', '/').split('/')
-    return slugs[0].strip('[]')
+    return slugs[0]
 
 
 # Return the output slug list for the specified source directory.

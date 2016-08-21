@@ -141,10 +141,14 @@ site/
     inc/         # includes directory for menus, etc.
     lib/         # library directory for themes
     out/         # output directory for html files
+    res/         # resources directory for static assets
     src/         # source directory for text files
 </pre>
 <p>
-Ark uses the presence of an <code>ark.py</code> file <em>or</em> both <code>src</code> and <code>out</code> directories to identify a site directory.
+Ark uses the presence of an <code>ark.py</code> file or both <code>src</code> and <code>out</code> directories to identify a site's home directory.
+</p>
+<p>
+Static assets such as image files should be placed in the site's resources directory, <code>res</code>. The content of this directory is copied to the output directory when the site is built.
 </p>
 <h2 id="records">
 Records
@@ -176,31 +180,31 @@ slug: my-custom-slug
 ---
 </pre>
 <p>
-Every record has a <em>type</em>, determined by its root <code>[type]</code> directory in the site's <code>src</code> directory:
+Every record has a <em>type</em>, determined by its root <code>type</code> directory in the site's <code>src</code> directory:
 </p>
 <pre>
 src/
-    [pages]/
+    pages/
         my-page.md     # this record is a page
-    [posts]/
+    posts/
         my-post.md     # this record is a post
 </pre>
 <p>
-Ark has two builtin record types - <em>pages</em> and <em>posts</em> - but you can add as many custom types as you like simply by creating new <code>[type]</code> directories. Every type can have its own individual set of index and tag index pages.
+Ark has two builtin record types - <em>pages</em> and <em>posts</em> - but you can add as many custom types as you like simply by creating new <code>type</code> directories. Every type can have its own individual set of index and tag index pages.
 </p>
 <p>
-You can determine the behaviour of your custom types (or alter the behaviour of the builtin types) in your site's <code>ark.py</code> file. Assuming we'll be devoting a section of our site to sonnets, we may wish to create a custom type just for them. We can do this by adding a <code>[sonnets]</code> directory to our site's <code>src</code> directory.
+You can determine the behaviour of your custom types (or alter the behaviour of the builtin types) in your site's <code>ark.py</code> file. Assuming we'll be devoting a section of our site to sonnets, we may wish to create a custom type just for them. We can do this by adding a <code>sonnets</code> directory to our site's <code>src</code> directory.
 </p>
 <pre>
 src/
-    [sonnets]/
+    sonnets/
         my-sonnet.md   # this record is a sonnet
 </pre>
 <p>
 New custom types behave, by default, like the builtin <em>post</em> type, but we can alter this behaviour by adding a dictionary of type settings to our <code>ark.py</code> file:
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="n">sonnets</span> <span class="o">=</span> <span class="p">{</span>                <span class="c1"># type name corresponding to the [type] directory</span>
+<span class="n">sonnets</span> <span class="o">=</span> <span class="p">{</span>                <span class="c1"># type name corresponding to the type directory</span>
     <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Sonnets&quot;</span><span class="p">,</span>    <span class="c1"># defaults to the titlecased type name</span>
     <span class="s2">&quot;slug&quot;</span><span class="p">:</span> <span class="s2">&quot;sonnets&quot;</span><span class="p">,</span>     <span class="c1"># defaults to the slugified type name</span>
     <span class="s2">&quot;tag_slug&quot;</span><span class="p">:</span> <span class="s2">&quot;tags&quot;</span><span class="p">,</span>    <span class="c1"># defaults to &quot;tags&quot;</span>
@@ -216,10 +220,7 @@ New custom types behave, by default, like the builtin <em>post</em> type, but we
 All the settings above are in fact defaults, and in practice we would only need to include those we wished to change.
 </p>
 <p>
-Within a <code>[type]</code> directory, Ark will preserve any directory structure it finds, so you can use subdirectories to organise your record files by category or date. If the record type is indexed, Ark will generate an individual set of index pages for each subdirectory in the tree.
-</p>
-<p>
-Note that you can store other files and directories in your site's <code>src</code> directory and Ark will copy these files untouched to the <code>out</code> directory when it builds your site. Ark only searches <code>[type]</code> directories for record files so you can safely store, for example, a <code>robots.txt</code> file or a directory of images in your <code>src</code> directory.
+Within a <code>type</code> directory, Ark will preserve any directory structure it finds, so you can use subdirectories to organise your record files by category or date. If the record type is indexed, Ark will generate an individual set of index pages for each subdirectory in the tree.
 </p>
 <h2 id="record-attributes">
 Record Attributes
@@ -311,7 +312,7 @@ The record's text content.
 </dt>
 <dd>
 <p>
-The record's type, determined by its parent <code>[type]</code> directory.
+The record's type, determined by its parent <code>type</code> directory.
 </p>
 </dd>
 <dt>

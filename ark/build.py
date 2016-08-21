@@ -27,10 +27,6 @@ def build_site():
     if os.path.exists(site.res()):
         utils.copydir(site.res(), site.out())
 
-    # Deprecated: copy resource files from the source directory to the output
-    # directory. This will be removed in the next major release.
-    utils.copydir(site.src(), site.out(), skiptypes=True)
-
     # Copy the theme's resource files to the output directory.
     for name in ('assets', 'resources'):
         if os.path.exists(site.theme(name)):
@@ -38,10 +34,9 @@ def build_site():
 
     # Build the individual record pages and directory indexes.
     for path, name in utils.subdirs(site.src()):
-        if name.startswith('['):
-            build_record_pages(path)
-            if site.typedata(name.strip('[]'), 'indexed'):
-                build_directory_indexes(path)
+        build_record_pages(path)
+        if site.typedata(name, 'indexed'):
+            build_directory_indexes(path)
 
     # Fire the 'exit_build' event.
     hooks.event('exit_build')

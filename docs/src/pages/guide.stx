@@ -49,9 +49,12 @@ Initializing a new site creates the following directory structure:
         inc/         # includes directory for menus, etc.
         lib/         # library directory for themes
         out/         # output directory for html files
+        res/         # resources directory for static assets
         src/         # source directory for text files
 
-Ark uses the presence of an `ark.py` file *or* both `src` and `out` directories to identify a site directory.
+Ark uses the presence of an `ark.py` file or both `src` and `out` directories to identify a site's home directory.
+
+Static assets such as image files should be placed in the site's resources directory, `res`. The content of this directory is copied to the output directory when the site is built.
 
 
 
@@ -81,27 +84,27 @@ By default, a record's url slug is generated from its filename, but you can spec
     slug: my-custom-slug
     ---
 
-Every record has a *type*, determined by its root `[type]` directory in the site's `src` directory:
+Every record has a *type*, determined by its root `type` directory in the site's `src` directory:
 
     src/
-        [pages]/
+        pages/
             my-page.md     # this record is a page
-        [posts]/
+        posts/
             my-post.md     # this record is a post
 
-Ark has two builtin record types - *pages* and *posts* - but you can add as many custom types as you like simply by creating new `[type]` directories. Every type can have its own individual set of index and tag index pages.
+Ark has two builtin record types - *pages* and *posts* - but you can add as many custom types as you like simply by creating new `type` directories. Every type can have its own individual set of index and tag index pages.
 
-You can determine the behaviour of your custom types (or alter the behaviour of the builtin types) in your site's `ark.py` file. Assuming we'll be devoting a section of our site to sonnets, we may wish to create a custom type just for them. We can do this by adding a `[sonnets]` directory to our site's `src` directory.
+You can determine the behaviour of your custom types (or alter the behaviour of the builtin types) in your site's `ark.py` file. Assuming we'll be devoting a section of our site to sonnets, we may wish to create a custom type just for them. We can do this by adding a `sonnets` directory to our site's `src` directory.
 
     src/
-        [sonnets]/
+        sonnets/
             my-sonnet.md   # this record is a sonnet
 
 New custom types behave, by default, like the builtin *post* type, but we can alter this behaviour by adding a dictionary of type settings to our `ark.py` file:
 
 ::: python
 
-    sonnets = {                # type name corresponding to the [type] directory
+    sonnets = {                # type name corresponding to the type directory
         "title": "Sonnets",    # defaults to the titlecased type name
         "slug": "sonnets",     # defaults to the slugified type name
         "tag_slug": "tags",    # defaults to "tags"
@@ -115,9 +118,7 @@ New custom types behave, by default, like the builtin *post* type, but we can al
 
 All the settings above are in fact defaults, and in practice we would only need to include those we wished to change.
 
-Within a `[type]` directory, Ark will preserve any directory structure it finds, so you can use subdirectories to organise your record files by category or date. If the record type is indexed, Ark will generate an individual set of index pages for each subdirectory in the tree.
-
-Note that you can store other files and directories in your site's `src` directory and Ark will copy these files untouched to the `out` directory when it builds your site. Ark only searches `[type]` directories for record files so you can safely store, for example, a `robots.txt` file or a directory of images in your `src` directory.
+Within a `type` directory, Ark will preserve any directory structure it finds, so you can use subdirectories to organise your record files by category or date. If the record type is indexed, Ark will generate an individual set of index pages for each subdirectory in the tree.
 
 
 
@@ -178,7 +179,7 @@ All records have the following default attributes:
 
 ||  `type`  ||
 
-    The record's type, determined by its parent `[type]` directory.
+    The record's type, determined by its parent `type` directory.
 
 
 ||  `url`  ||
