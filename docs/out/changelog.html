@@ -51,7 +51,7 @@
         
 
         <p>
-Ark adheres to <a href="http://semver.org">semantic versioning</a>.
+Ark adheres to <a href="http://semver.org">semantic versioning</a> for changes which affect its theme or plugin API.
 </p>
 <h2 id="unreleased">
 Unreleased
@@ -64,7 +64,17 @@ This release obsoletes the bracketed naming convention for <code>[type]</code> d
 </li>
 <li>
 <p>
-Static resource files should be placed in the site's <code>res</code> directory. Resource files will no longer be loaded from <code>src</code>.
+Static resource files should be placed in the site's resources directory, <code>res</code>. Resource files are no longer loaded from <code>src</code>.
+</p>
+</li>
+<li>
+<p>
+Extension loading has been refactored to enable plugins to add their own custom commands and options to the application's command-line interface.
+</p>
+</li>
+<li>
+<p>
+Support for a global extensions directory has been removed and replaced with support for pip-installed extensions.
 </p>
 </li>
 </ul>
@@ -79,7 +89,7 @@ Add support for record classes.
 </li>
 <li>
 <p>
-Add support for a site resources directory <code>res</code>.
+Add support for a site resources directory, <code>res</code>.
 </p>
 </li>
 <li>
@@ -163,7 +173,7 @@ The site configuration file has been renamed from <code>config.py</code> to <cod
 </li>
 <li>
 <p>
-Ark no longer requires an empty <code>.ark</code> sentinel file to locate the home directory. Instead it will use the presence of <em>either</em> an <code>ark.py</code> file <em>or</em> both <code>src</code> and <code>out</code> directories.
+Ark no longer requires an empty <code>.ark</code> sentinel file to locate the home directory. Instead it will use the presence of either an <code>ark.py</code> file or both <code>src</code> and <code>out</code> directories.
 </p>
 </li>
 <li>

@@ -4,8 +4,6 @@ title: Plugins
 
 The extensions directory, `ext`, is intended for plugins that extend or enhance Ark's functionality. Python modules or packages placed in this directory will be loaded automatically and can take advantage of Ark's extension hooks to inject their own code into the build process.
 
-(Ark will also load plugins from a global extensions directory indicated by the `$ARK_EXT` environment variable if it exists.)
-
 Ark makes three extension mechanisms available to plugins: i) event and filter [hooks](#hooks), ii) pluggable rendering and parsing [engines](#engines), and iii) WordPress-style [shortcodes](#shortcodes).
 
 

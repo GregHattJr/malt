@@ -19,10 +19,10 @@ Usage: %s watch [FLAGS] [ARGUMENTS]
   detected.
 
 Options:
-  -e, --ext <path>      Override the default 'ext' directory.
   -i, --inc <path>      Override the default 'inc' directory.
   -l, --lib <path>      Override the default 'lib' directory.
   -o, --out <path>      Override the default 'out' directory.
+  -r, --res <path>      Override the default 'res' directory.
   -s, --src <path>      Override the default 'src' directory.
   -t, --theme <name>    Override the default theme.
 
@@ -55,11 +55,6 @@ def callback(parser):
     elif os.path.isfile(sys.argv[0]):
         args.append(sys.argv[0])
 
-    # Add support for Ark's --no-ext flags.
-    if parser.get_parent()['no-global-ext']: args.append('--no-global-ext')
-    if parser.get_parent()['no-site-ext']: args.append('--no-site-ext')
-    if parser.get_parent()['no-theme-ext']: args.append('--no-theme-ext')
-
     # Append the 'build' command, a 'watching' flag, and any user arguments.
     args += ['build', 'watching'] + parser.get_args()
 
@@ -68,7 +63,7 @@ def callback(parser):
     if parser['src']: args += ['--src', parser['src']]
     if parser['lib']: args += ['--lib', parser['lib']]
     if parser['inc']: args += ['--inc', parser['inc']]
-    if parser['ext']: args += ['--ext', parser['ext']]
+    if parser['res']: args += ['--res', parser['res']]
     if parser['theme']: args += ['--theme', parser['theme']]
     if parser['clear']: args += ['--clear']
 

@@ -57,7 +57,7 @@ def load_site_config():
 
 # Attempt to determine the path to the site's home directory. We check for
 # the presence of either an 'ark.py' file or both 'src' and 'out' directories.
-# We return an empty string if the home directory cannot be located.
+# Returns an empty string if the home directory cannot be located.
 def find_home():
     join, isdir, isfile = os.path.join, os.path.isdir, os.path.isfile
     path = os.getcwd()
@@ -71,7 +71,8 @@ def find_home():
 
 
 # Attempt to determine the path to the theme directory corresponding to
-# the specified theme name. Exit with an error message on failure.
+# the specified theme name. Returns an empty string if the theme directory
+# cannot be located.
 def find_theme(name):
 
     # A directory in the site's theme library?
@@ -92,7 +93,7 @@ def find_theme(name):
     if os.path.isdir(bundled):
         return bundled
 
-    sys.exit("Error: cannot locate theme directory '%s'." % name)
+    return ''
 
 
 # Return the type-data dictionary for the specified record type. If a key is
@@ -167,11 +168,9 @@ def res(*append):
 
 # Return the path to the theme directory. Append arguments.
 def theme(*append):
-    if 'themepath' in cache:
-        return os.path.join(cache['themepath'], *append)
-    else:
-        path = cache.setdefault('themepath', find_theme(config['theme']))
-        return os.path.join(path, *append)
+    if 'themepath' not in cache:
+        cache['themepath'] = find_theme(config['theme'])
+    return os.path.join(cache['themepath'], *append)
 
 
 # Return the output slug list for the specified record type. Append arguments.

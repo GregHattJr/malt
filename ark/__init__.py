@@ -96,11 +96,15 @@ def main():
     # Initialize the site model.
     site.init()
 
+    # Load bundled, installed, and site-directory plugins.
+    extensions.load()
+
     # Process the application's command-line arguments.
     cli.parse()
 
-    # Load plugins.
-    extensions.load()
+    # Load theme plugins. Theme plugins are loaded 'late' because we need to
+    # parse the command-line arguments first to locate the appropriate theme.
+    extensions.load_theme()
 
     # Fire the 'init' event. (Runs callbacks registered on the 'init' hook.)
     hooks.event('init')

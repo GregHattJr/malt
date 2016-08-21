@@ -23,13 +23,17 @@ def build_site():
     # Fire the 'init_build' event.
     hooks.event('init_build')
 
+    # Make sure we have a valid theme directory.
+    if not site.theme():
+        sys.exit("Error: cannot locate theme directory.")
+
     # Copy the site's resource files to the output directory.
     if os.path.exists(site.res()):
         utils.copydir(site.res(), site.out())
 
     # Copy the theme's resource files to the output directory.
     for name in ('assets', 'resources'):
-        if os.path.exists(site.theme(name)):
+        if os.path.isdir(site.theme(name)):
             utils.copydir(site.theme(name), site.out())
 
     # Build the individual record pages and directory indexes.

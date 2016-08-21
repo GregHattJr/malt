@@ -2,7 +2,7 @@
 title: Changelog
 ---
 
-Ark adheres to [semantic versioning][semver].
+Ark adheres to [semantic versioning][semver] for changes which affect its theme or plugin API.
 
 [semver]: http://semver.org
 
@@ -12,7 +12,11 @@ Ark adheres to [semantic versioning][semver].
 
 * This release obsoletes the bracketed naming convention for `[type]` directories in `src`. The `src` directory should now contain *only* unbracketed type directories, e.g. `pages`, `posts`.
 
-* Static resource files should be placed in the site's `res` directory. Resource files will no longer be loaded from `src`.
+* Static resource files should be placed in the site's resources directory, `res`. Resource files are no longer loaded from `src`.
+
+* Extension loading has been refactored to enable plugins to add their own custom commands and options to the application's command-line interface.
+
+* Support for a global extensions directory has been removed and replaced with support for pip-installed extensions.
 
 
 
@@ -20,7 +24,7 @@ Ark adheres to [semantic versioning][semver].
 
 * Add support for record classes.
 
-* Add support for a site resources directory `res`.
+* Add support for a site resources directory, `res`.
 
 * Move the `.arkcache/` directory to `~/.cache/ark/`.
 
@@ -62,7 +66,7 @@ Ark adheres to [semantic versioning][semver].
 
 * The site configuration file has been renamed from `config.py` to `ark.py`.
 
-* Ark no longer requires an empty `.ark` sentinel file to locate the home directory. Instead it will use the presence of *either* an `ark.py` file *or* both `src` and `out` directories.
+* Ark no longer requires an empty `.ark` sentinel file to locate the home directory. Instead it will use the presence of either an `ark.py` file or both `src` and `out` directories.
 
 * The preprocessor system for parsing record metadata (e.g. YAML file headers) has been replaced by a single filter hook, `file_text`.
 

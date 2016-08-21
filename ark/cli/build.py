@@ -15,15 +15,14 @@ Usage: %s build [FLAGS] [OPTIONS]
   any of its subdirectories.
 
   The --theme option can be used to override the theme specified in the site's
-  configuration file. Its argument can be a path to a theme directory or the
-  name of a theme directory in 1) the site's theme library, 2) the global
-  theme library, or 3) the default theme library bundled with Ark.
+  configuration file. It accepts either a theme name or an explicit path to a
+  theme directory.
 
 Options:
-  -e, --ext <path>      Override the default 'ext' directory.
   -i, --inc <path>      Override the default 'inc' directory.
   -l, --lib <path>      Override the default 'lib' directory.
   -o, --out <path>      Override the default 'out' directory.
+  -r, --res <path>      Override the default 'res' directory.
   -s, --src <path>      Override the default 'src' directory.
   -t, --theme <name>    Override the default theme.
 
@@ -43,7 +42,7 @@ def callback(parser):
     if parser['src']: ark.site.cache['src'] = parser['src']
     if parser['lib']: ark.site.cache['lib'] = parser['lib']
     if parser['inc']: ark.site.cache['inc'] = parser['inc']
-    if parser['ext']: ark.site.cache['ext'] = parser['ext']
+    if parser['res']: ark.site.cache['res'] = parser['res']
 
     if parser['theme']:
         ark.site.config['theme'] = parser['theme']

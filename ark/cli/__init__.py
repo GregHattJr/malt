@@ -13,6 +13,7 @@ from . import serve
 from . import watch
 
 from .. import meta
+from .. import hooks
 
 
 # We want the root ArgParser instance to be available to extensions.
@@ -49,9 +50,6 @@ def parse():
 
     # Root parser.
     parser = clio.ArgParser(helptext, meta.__version__)
-    parser.add_flag("no-global-ext")
-    parser.add_flag("no-site-ext")
-    parser.add_flag("no-theme-ext")
 
     # Register the 'build' command.
     cmd_build = parser.add_cmd("build", build.helptext, build.callback)
@@ -60,14 +58,14 @@ def parse():
     cmd_build.add_str("src s", None)
     cmd_build.add_str("lib l", None)
     cmd_build.add_str("inc i", None)
-    cmd_build.add_str("ext e", None)
+    cmd_build.add_str("res r", None)
     cmd_build.add_str("theme t", None)
 
     # Register the 'clear' command.
     parser.add_cmd("clear", clear.helptext, clear.callback)
 
     # Register the 'init' command.
-    cmd_init = parser.add_cmd("init", init.helptext, init.callback)
+    parser.add_cmd("init", init.helptext, init.callback)
 
     # Register the 'serve' command.
     cmd_serve = parser.add_cmd("serve", serve.helptext, serve.callback)
@@ -83,8 +81,12 @@ def parse():
     cmd_watch.add_str("src s", None)
     cmd_watch.add_str("lib l", None)
     cmd_watch.add_str("inc i", None)
-    cmd_watch.add_str("ext e", None)
+    cmd_watch.add_str("res r", None)
     cmd_watch.add_str("theme t", None)
+
+    # Fire the 'cli' event. Plugins can use this event to register their own
+    # custom commands and options.
+    hooks.event('cli', parser)
 
     # Parse the application's command line arguments.
     parser.parse()
