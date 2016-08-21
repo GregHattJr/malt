@@ -8,7 +8,7 @@ Ark adheres to [semantic versioning][semver].
 
 
 
-## Unreleased
+## 2.3.0
 
 * Add support for record classes.
 

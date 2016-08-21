@@ -118,7 +118,6 @@ Flags:
 Commands:
   build             Build the current site.
   clear             Clear the output directory.
-  edit              Edit an existing record or create a new file.
   init              Initialize a new site directory.
   serve             Run a web server on the site's output directory.
   watch             Monitor the site directory and rebuild on changes.
@@ -126,6 +125,9 @@ Commands:
 Command Help:
   help &lt;command&gt;    Print the specified command's help text and exit.
 </pre>
+<p>
+Run <code>ark help &lt;command&gt;</code> to view the help text for a specific command.
+</p>
 <h2 id="site-structure">
 Site Structure
 </h2>
@@ -142,7 +144,7 @@ site/
     src/         # source directory for text files
 </pre>
 <p>
-In use Ark will generate a <code>.arkcache</code> directory for its own use. You can add this directory to your <code>.gitignore</code> file or equivalent if your site is stored in a version control repository.
+Ark uses the presence of an <code>ark.py</code> file <em>or</em> both <code>src</code> and <code>out</code> directories to identify a site directory.
 </p>
 <h2 id="records">
 Records
@@ -174,7 +176,7 @@ slug: my-custom-slug
 ---
 </pre>
 <p>
-Every record has a <em>type</em>, determined by its parent <code>[type]</code> directory in the site's <code>src</code> directory:
+Every record has a <em>type</em>, determined by its root <code>[type]</code> directory in the site's <code>src</code> directory:
 </p>
 <pre>
 src/
@@ -341,7 +343,7 @@ classes: foo, bar, baz
 ---
 </pre>
 <p>
-Specified classes are added to the record page's <code>&lt;body&gt;</code> element.
+Specified classes are added to the page's <code>&lt;body&gt;</code> element.
 </p>
 <h2 id="links">
 Links
