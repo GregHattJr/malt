@@ -47,7 +47,7 @@ def load():
 
 
 # Load the named module from the specified directory.
-def load_module(dirpath, modname):
-    sys.path.insert(0, dirpath)
-    loaded[modname] = importlib.import_module(modname)
+def load_module(directory, name):
+    sys.path.insert(0, directory)
+    loaded[name] = importlib.import_module(name)
     sys.path.pop(0)
