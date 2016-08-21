@@ -25,7 +25,7 @@ def build_site():
 
     # Copy the site's resource files to the output directory.
     if os.path.exists(site.res()):
-        utils.copydir(site.src(), site.out())
+        utils.copydir(site.res(), site.out())
 
     # Deprecated: copy resource files from the source directory to the output
     # directory. This will be removed in the next major release.
