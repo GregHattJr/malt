@@ -16,7 +16,9 @@ Ark adheres to [semantic versioning][semver] for changes which affect its theme 
 
 * Extension loading has been refactored to enable plugins to add their own custom commands and options to the application's command-line interface.
 
-* Support for a global extensions directory has been removed and replaced with support for pip-installed extensions.
+* Support for a global extensions directory has been removed and replaced with support for installed extensions.
+
+* Minimum Python version has been updated to 3.5.
 
 
 
