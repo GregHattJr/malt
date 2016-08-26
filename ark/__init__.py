@@ -84,6 +84,7 @@ from . import records
 from . import renderers
 from . import site
 from . import templates
+from . import theme
 from . import utils
 
 
@@ -102,9 +103,8 @@ def main():
     # Process the application's command-line arguments.
     cli.parse()
 
-    # Load theme plugins. Theme plugins are loaded 'late' because we need to
-    # parse the command-line arguments first to locate the appropriate theme.
-    extensions.load_theme()
+    # Load theme plugins.
+    theme.load()
 
     # Fire the 'init' event. (Runs callbacks registered on the 'init' hook.)
     hooks.event('init')

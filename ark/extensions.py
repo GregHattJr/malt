@@ -31,30 +31,24 @@ def load_directory(directory):
 
 
 # Load Ark's default set of extensions.
-def load_bundled():
+def load_bundled_extensions():
     load_directory(os.path.join(os.path.dirname(__file__), 'ext'))
 
 
 # Load extensions from the site directory.
-def load_site():
+def load_site_extensions():
     if os.path.isdir(site.ext()):
         load_directory(site.ext())
 
 
 # Load installed extensions listed in the site's configuration file.
-def load_installed():
+def load_installed_extensions():
     for name in site.config.get('extensions', []):
         loaded[name] = importlib.import_module(name)
 
 
-# Load extensions bundled with the active theme.
-def load_theme():
-    if site.theme() and os.path.isdir(site.theme('code')):
-        load_directory(site.theme('code'))
-
-
 # Load bundled, installed, and site-directory extensions.
 def load():
-    load_bundled()
-    load_installed()
-    load_site()
+    load_bundled_extensions()
+    load_installed_extensions()
+    load_site_extensions()
