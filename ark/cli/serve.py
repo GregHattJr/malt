@@ -2,11 +2,12 @@
 # Logic for the 'serve' command.
 # --------------------------------------------------------------------------
 
-import ark
 import sys
 import os
 import http.server
 import webbrowser
+
+from .. import site
 
 
 # Command help text.
@@ -42,11 +43,11 @@ def callback(parser):
             sys.exit("Error: '%s' does not exist." % parser['directory'])
         os.chdir(parser['directory'])
     else:
-        if not ark.site.home():
+        if not site.home():
             sys.exit("Error: cannot locate the site's home directory.")
-        if not os.path.exists(ark.site.out()):
+        if not os.path.exists(site.out()):
             sys.exit("Error: cannot locate the site's output directory.")
-        os.chdir(ark.site.out())
+        os.chdir(site.out())
 
     try:
         server = http.server.HTTPServer(
@@ -61,7 +62,7 @@ def callback(parser):
     address = server.socket.getsockname()
 
     print("-" * 80)
-    print("Root: %s" % ark.site.out())
+    print("Root: %s" % site.out())
     print("Host: %s"  % address[0])
     print("Port: %s" % address[1])
     print("Stop: Ctrl-C")

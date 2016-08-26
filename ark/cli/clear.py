@@ -2,9 +2,11 @@
 # Logic for the 'clear' command.
 # --------------------------------------------------------------------------
 
-import ark
 import sys
 import os
+
+from .. import site
+from .. import utils
 
 
 # Command help text.
@@ -21,10 +23,10 @@ Flags:
 
 # Command callback.
 def callback(parser):
-    if not ark.site.home():
+    if not site.home():
         sys.exit("Error: cannot locate the site's home directory.")
 
-    if not os.path.exists(ark.site.out()):
+    if not os.path.exists(site.out()):
         sys.exit("Error: cannot locate the site's output directory.")
 
-    ark.utils.cleardir(ark.site.out())
+    utils.cleardir(site.out())

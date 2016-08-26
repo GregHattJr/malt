@@ -2,9 +2,13 @@
 # Logic for the 'build' command.
 # --------------------------------------------------------------------------
 
-import ark
 import os
 import sys
+
+from .. import site
+from .. import utils
+from .. import hooks
+from .. import build
 
 
 # Command help text.
@@ -35,24 +39,24 @@ Flags:
 
 # Command callback.
 def callback(parser):
-    if not ark.site.home():
+    if not site.home():
         sys.exit("Error: cannot locate the site's home directory.")
 
-    if parser['out']: ark.site.cache['out'] = parser['out']
-    if parser['src']: ark.site.cache['src'] = parser['src']
-    if parser['lib']: ark.site.cache['lib'] = parser['lib']
-    if parser['inc']: ark.site.cache['inc'] = parser['inc']
-    if parser['res']: ark.site.cache['res'] = parser['res']
+    if parser['out']: site.cache['out'] = parser['out']
+    if parser['src']: site.cache['src'] = parser['src']
+    if parser['lib']: site.cache['lib'] = parser['lib']
+    if parser['inc']: site.cache['inc'] = parser['inc']
+    if parser['res']: site.cache['res'] = parser['res']
 
     if parser['theme']:
-        ark.site.config['theme'] = parser['theme']
+        site.config['theme'] = parser['theme']
 
     if parser['clear']:
-        ark.utils.cleardir(ark.site.out())
+        utils.cleardir(site.out())
 
-    @ark.hooks.register('main')
+    @hooks.register('main')
     def build_callback():
-        if os.path.isdir(ark.site.src()):
-            ark.build.build_site()
+        if os.path.isdir(site.src()):
+            build.build_site()
         else:
             sys.exit("Error: cannot locate the site's source directory.")

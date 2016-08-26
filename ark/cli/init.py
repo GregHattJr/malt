@@ -2,10 +2,11 @@
 # Logic for the 'init' command.
 # --------------------------------------------------------------------------
 
-import ark
 import os
 import sys
 import shutil
+
+from .. import utils
 
 
 # Command help text.
@@ -40,9 +41,9 @@ def callback(parser):
         shutil.copy2(os.path.join(inidir, 'ark.py'), 'ark.py')
 
     for name in ('ext', 'inc', 'src'):
-        ark.utils.copydir(os.path.join(inidir, name), name, noclobber=True)
+        utils.copydir(os.path.join(inidir, name), name, noclobber=True)
 
-    for dirinfo in ark.utils.subdirs(os.path.join(inidir, 'lib')):
+    for dirinfo in utils.subdirs(os.path.join(inidir, 'lib')):
         if not dirinfo.name in ('debug'):
             theme = os.path.join('lib', dirinfo.name)
-            ark.utils.copydir(dirinfo.path, theme, noclobber=True)
+            utils.copydir(dirinfo.path, theme, noclobber=True)

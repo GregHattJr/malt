@@ -2,13 +2,15 @@
 # Logic for the 'watch' command.
 # --------------------------------------------------------------------------
 
-import ark
 import sys
 import os
 import hashlib
 import time
 import subprocess
 import hashlib
+
+from .. import site
+from .. import utils
 
 
 # Command help text.
@@ -37,7 +39,7 @@ Flags:
 # watcher so we hack together one of our own.
 def callback(parser):
 
-    home = ark.site.home()
+    home = site.home()
     if not home:
         sys.exit("Error: cannot locate the site's home directory.")
 
@@ -103,14 +105,14 @@ def hashsite(sitepath):
     hash = hashlib.sha256()
 
     def hashdir(dirpath, is_home):
-        for fileinfo in ark.utils.files(dirpath):
+        for fileinfo in utils.files(dirpath):
             if fileinfo.name.endswith('~'):
                 continue
             mtime = os.path.getmtime(fileinfo.path)
             hash.update(str(mtime).encode())
             hash.update(fileinfo.name.encode())
 
-        for dirinfo in ark.utils.subdirs(dirpath):
+        for dirinfo in utils.subdirs(dirpath):
             if is_home and dirinfo.name == 'out':
                 continue
             hashdir(dirinfo.path, False)
