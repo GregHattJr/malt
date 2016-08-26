@@ -18,20 +18,18 @@ FileInfo = collections.namedtuple('FileInfo', 'path, name, base, ext')
 # Return a list of subdirectories of the specified directory.
 def subdirs(directory):
     directories = []
-    for name in os.listdir(directory):
-        path = os.path.join(directory, name)
-        if os.path.isdir(path):
-            directories.append(DirInfo(path, name))
+    for entry in os.scandir(directory):
+        if entry.is_dir():
+            directories.append(DirInfo(entry.path, entry.name))
     return directories
 
 
 # Return a list of files in the specified directory.
 def files(directory):
     files = []
-    for name in os.listdir(directory):
-        path = os.path.join(directory, name)
-        if os.path.isfile(path):
-            files.append(fileinfo(path))
+    for entry in os.scandir(directory):
+        if entry.is_file():
+            files.append(fileinfo(entry.path))
     return files
 
 

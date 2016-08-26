@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------
-# Ark: a static website generator in Python.
+# Ark: a static website generator.
 #
 # Author: Darren Mulholland <darren@mulholland.xyz>
 # License: Public Domain
@@ -8,9 +8,9 @@
 import sys
 
 
-# Ark requires at least Python 3.4.
-if sys.version_info < (3, 4):
-    sys.exit('Error: Ark requires Python >= 3.4.')
+# Ark requires at least Python 3.5.
+if sys.version_info < (3, 5):
+    sys.exit('Error: Ark requires Python >= 3.5.')
 
 
 # Template for error messages informing the user of any missing libraries.

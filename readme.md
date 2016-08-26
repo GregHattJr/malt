@@ -1,7 +1,7 @@
 
 # Ark
 
-Ark is a static website generator written in Python. It transforms a
+Ark is a static website generator built in Python. It transforms a
 directory of text files into a self-contained website.
 
 * Ark is extensible. It has builtin support for source files written
@@ -28,7 +28,7 @@ Install directly from the Python Package Index using `pip`:
 
     $ pip install ark
 
-Ark requires Python 3.4 or later.
+Ark requires Python 3.5 or later.
 
 
 
