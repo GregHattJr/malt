@@ -37,13 +37,4 @@ def callback(parser):
     for name in ('ext', 'inc', 'lib', 'out', 'res', 'src'):
         os.makedirs(name, exist_ok=True)
 
-    if not os.path.exists('ark.py'):
-        shutil.copy2(os.path.join(inidir, 'ark.py'), 'ark.py')
-
-    for name in ('ext', 'inc', 'src'):
-        utils.copydir(os.path.join(inidir, name), name, noclobber=True)
-
-    for dirinfo in utils.subdirs(os.path.join(inidir, 'lib')):
-        if not dirinfo.name in ('debug'):
-            theme = os.path.join('lib', dirinfo.name)
-            utils.copydir(dirinfo.path, theme, noclobber=True)
+    utils.copydir(inidir, '.', noclobber=True)
