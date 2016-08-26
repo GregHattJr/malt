@@ -77,11 +77,9 @@ def titlecase(s):
     )
 
 
-# Copy the contents of 'srcdir' to 'dstdir'.
-#
-#   * Creates the destination directory if necessary.
-#   * If noclobber is true, will avoid overwriting existing files.
-#
+# Copy the contents of 'srcdir' to 'dstdir'. The destinatio directory will be
+# created if it does not already exist. If 'noclobber' is true, existing files
+# will not be overwritten.
 def copydir(srcdir, dstdir, noclobber=False):
 
     if not os.path.exists(srcdir):
@@ -103,13 +101,10 @@ def copydir(srcdir, dstdir, noclobber=False):
             copydir(src, dst, noclobber)
 
 
-# Copy the file 'src' as 'dst'. If 'noclobber' is true, this function will not
-# overwrite an existing 'dst'.
-#
-# This function attempts to avoid unnecessarily overwriting existing files with
-# identical copies. If 'dst' exists and has the same size and mtime as 'src',
-# 'dst' will left in place. (The goal here is to avoid unnecessary SSD writes
-# when running the 'build' command in a loop.)
+# Copy the file 'src' as 'dst'. If 'noclobber' is true, an existing 'dst' file
+# will not be overwritten. This function attempts to avoid unnecessarily
+# overwriting existing files with identical copies. If 'dst' exists and has the
+# same size and mtime as 'src', the copy will be aborted.
 def copyfile(src, dst, noclobber=False):
     if os.path.isfile(dst):
         if noclobber:
