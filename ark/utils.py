@@ -136,20 +136,3 @@ def writefile(path, content):
 
     with open(path, 'w', encoding='utf-8') as file:
         file.write(content)
-
-
-# Create a redirect page at the specified filepath.
-def make_redirect(filepath, url):
-    html = """\
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="refresh" content="0; url=%s">
-    </head>
-    <body></body>
-</html>
-""" % url
-    if not os.path.exists(os.path.dirname(filepath)):
-        os.makedirs(os.path.dirname(filepath))
-    with open(filepath, 'w', encoding='utf-8') as file:
-        file.write(html)
