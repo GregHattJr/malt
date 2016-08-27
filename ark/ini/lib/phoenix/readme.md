@@ -46,7 +46,7 @@ This theme supports the following include files:
 
 * `footer`
 
-  Suport for three divs containing headings followed by paragraphs or lists
+  Support for three divs containing headings followed by paragraphs or lists
   of links. Each div will be styled as a separate column of footer content.
 
 
