@@ -12,13 +12,15 @@ Ark adheres to [semantic versioning][semver] for changes which affect its theme 
 
 * This release obsoletes the bracketed naming convention for `[type]` directories in `src`. The `src` directory should now contain *only* unbracketed type directories, e.g. `pages`, `posts`.
 
-* Static resource files should be placed in the site's resources directory, `res`. Resource files are no longer loaded from `src`.
+* Static resource files should be placed in the site's resources directory, `res`. Resource files can longer be placed in `src`.
 
 * Extension loading has been refactored to enable plugins to add their own custom commands and options to the application's command-line interface.
 
 * Support for a global extensions directory has been removed and replaced with support for installed extensions.
 
-* Minimum Python version has been updated to 3.5.
+* Minimum Python version has been raised to 3.5.
+
+* The theme resource and plugin directories have been renamed `resources` and `extensions` for consistency with their site directory counterparts.
 
 
 

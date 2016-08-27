@@ -10,5 +10,5 @@ from . import site
 
 # Load extensions bundled with the active theme.
 def load():
-    if site.theme() and os.path.isdir(site.theme('code')):
-        extensions.load_directory(site.theme('code'))
+    if site.theme() and os.path.isdir(site.theme('extensions')):
+        extensions.load_directory(site.theme('extensions'))

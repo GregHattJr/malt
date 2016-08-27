@@ -20,12 +20,12 @@ Ark searches for a named theme first in the site's theme library, then (if it ex
 
 ## Theme Structure
 
-Ark looks for three subdirectories within the theme directory: `assets`, `code`, and `templates`.
+Ark looks for three subdirectories within the theme directory: `resources`, `extensions`, and `templates`.
 
-* The content of the `assets` directory is copied to the output directory during building.
+* The content of the `resources` directory is copied to the output directory during building.
 
 * Themes can bundle extensions for Ark by placing Python modules or packages in
-  the `code` directory.
+  the `extensions` directory.
 
 * The `templates` directory is where Ark looks for the theme's template files.
 
