@@ -1,0 +1,15 @@
+{% extends "base.ibis" %}
+
+{% block title %}
+    {{ record.meta_title || record.title || record.html|firsth|striptags }}
+{% endblock %}
+
+{% block main %}
+    <article id="main" class="main">
+        {% if record.title %}
+            <h1>{{ record.title }}</h1>
+        {% endif %}
+
+        {{ record.html }}
+    </article>
+{% endblock %}
