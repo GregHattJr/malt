@@ -22,6 +22,8 @@ Ark adheres to [semantic versioning][semver] for changes which affect its theme 
 
 * The theme resource and plugin directories have been renamed `resources` and `extensions` for consistency with their site directory counterparts.
 
+* Add bundled `vanilla` theme.
+
 
 
 ## 2.3.0
