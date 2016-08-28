@@ -1,9 +1,6 @@
 # --------------------------------------------------------------------------
 # This extension adds support for user-defined record tags. Tags can be
 # added as a comma-separated list via a 'tags' attribute.
-# 
-# Author: Darren Mulholland <darren@mulholland.xyz>
-# License: Public Domain
 # --------------------------------------------------------------------------
 
 import ark

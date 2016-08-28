@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------
-# This extension adds support for YAML metadata headers in source files. 
+# This extension adds support for YAML metadata headers in source files.
 # YAML headers are identified by opening and closing '---' lines, e.g.
 #
 #   ---
@@ -7,8 +7,6 @@
 #   author: John Doe
 #   ---
 #
-# Author: Darren Mulholland <darren@mulholland.xyz>
-# License: Public Domain
 # --------------------------------------------------------------------------
 
 import ark

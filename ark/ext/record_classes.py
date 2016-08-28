@@ -1,9 +1,6 @@
 # --------------------------------------------------------------------------
 # This extension adds support for user-defined record classes. Classes can
 # be added as a comma-separated list via a 'classes' attribute.
-#
-# Author: Darren Mulholland <darren@mulholland.xyz>
-# License: Public Domain
 # --------------------------------------------------------------------------
 
 import ark

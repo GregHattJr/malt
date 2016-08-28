@@ -1,8 +1,5 @@
 # --------------------------------------------------------------------------
-# This extension adds support for Jinja templates to Ark.
-#
-# Author: Darren Mulholland <darren@mulholland.xyz>
-# License: Public Domain
+# This extension adds support for Jinja templates.
 # --------------------------------------------------------------------------
 
 import ark

@@ -1,8 +1,5 @@
 # --------------------------------------------------------------------------
-# This extension adds support for shortcodes to Ark.
-#
-# Author: Darren Mulholland <darren@mulholland.xyz>
-# License: Public Domain
+# This extension adds support for shortcodes.
 # --------------------------------------------------------------------------
 
 import ark

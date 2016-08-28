@@ -1,8 +1,5 @@
 # --------------------------------------------------------------------------
-# This extension prints a simple report at the end of each build.
-#
-# Author: Darren Mulholland <darren@mulholland.xyz>
-# License: Public Domain
+# This extension prints a simple stats report at the end of each build.
 # --------------------------------------------------------------------------
 
 import ark

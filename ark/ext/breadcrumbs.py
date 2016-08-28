@@ -1,9 +1,6 @@
 # --------------------------------------------------------------------------
 # This extension assembles a 'breadcrumb trail' of links for each directory
 # in a page's path.
-#
-# Author: Darren Mulholland <darren@mulholland.xyz>
-# License: Public Domain
 # --------------------------------------------------------------------------
 
 import ark

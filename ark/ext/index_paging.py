@@ -19,9 +19,6 @@
 #         'multiples': 2,    # number of larger/smaller multiples to include
 #         'multiple': 10,    # multiplication factor
 #     }
-#
-# Author: Darren Mulholland <darren@mulholland.xyz>
-# License: Public Domain
 # --------------------------------------------------------------------------
 
 from ark import hooks, site
