@@ -315,9 +315,12 @@ Only the options to be changed need to be specified.
 
 ## Dependencies
 
-Installing Ark via `pip` automatically installs the following libraries:
+Installing Ark via `pip` automatically installs the following required dependencies:
 
 * [Clio](https://pypi.python.org/pypi/libclio)
+
+Installing via `pip` also automatically installs the following optional dependencies:
+
 * [Ibis](https://pypi.python.org/pypi/ibis)
 * [Jinja](https://pypi.python.org/pypi/Jinja2)
 * [Markdown](https://pypi.python.org/pypi/Markdown)
@@ -325,3 +328,5 @@ Installing Ark via `pip` automatically installs the following libraries:
 * [PyYAML](https://pypi.python.org/pypi/PyYAML)
 * [Shortcodes](https://pypi.python.org/pypi/shortcodes)
 * [Syntex](https://pypi.python.org/pypi/syntex)
+
+Ark will run without any of these optional dependencies but the associated functionality will not be available.
