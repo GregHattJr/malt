@@ -2,28 +2,22 @@
 # This extension prints a simple stats report at the end of each build.
 # --------------------------------------------------------------------------
 
-import ark
+from ark import hooks, site
 
 
-# Register a callback on the 'exit' event hook.
-@ark.hooks.register('exit')
+# Register a callback on the 'exit_build' event hook.
+@hooks.register('exit_build')
 def print_stats():
 
     # The site module maintains a count of the number of pages that have been
     # rendered into html and written to disk.
-    rendered, written = ark.site.rendered(), ark.site.written()
-
-    # We only want to print a report after a build run.
-    if rendered == 0:
-        return
+    rendered, written = site.rendered(), site.written()
 
     # The runtime() function gives the application's running time in seconds.
-    time = ark.site.runtime()
-    average = time / rendered
+    time = site.runtime()
+    average = time / rendered if rendered else 0
 
     # Print stats.
-    print(
-        "Rendered: %5d  |  Written: %5d  |  Time: %5.2f sec  |  Avg: %.4f sec/page" % (
-            rendered, written, time, average
-        )
-    )
+    report =  "Rendered: %5d  |  Written: %5d  |  "
+    report += "Time: %5.2f sec  |  Avg: %.4f sec/page"
+    print(report % (rendered, written, time, average))

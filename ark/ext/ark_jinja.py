@@ -34,7 +34,6 @@ if jinja2:
         global env
         env = jinja2.Environment(**settings)
 
-
     # Register our template engine callback for files with a .jinja extension.
     @templates.register('jinja')
     def callback(page, filename):
