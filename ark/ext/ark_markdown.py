@@ -4,18 +4,23 @@
 # --------------------------------------------------------------------------
 
 import ark
-import markdown
+
+try:
+    import markdown
+except ImportError:
+    markdown = None
 
 
-# Check the config file for custom settings for the markdown renderer.
-settings = ark.site.config.get('markdown', {})
+# The markdown package is an optional dependency.
+if markdown:
 
+    # Check the config file for custom settings for the markdown renderer.
+    settings = ark.site.config.get('markdown', {})
 
-# Initialize a markdown renderer.
-renderer = markdown.Markdown(**settings)
+    # Initialize a markdown renderer.
+    renderer = markdown.Markdown(**settings)
 
-
-# Register a callback to render files with a .md extension.
-@ark.renderers.register('md')
-def render(text):
-    return renderer.reset().convert(text)
+    # Register a callback to render files with a .md extension.
+    @ark.renderers.register('md')
+    def render(text):
+        return renderer.reset().convert(text)

@@ -21,51 +21,9 @@ error = """Error: Ark requires the %s library. Try:
 
 # Check that all the application's dependencies are available.
 try:
-    import yaml
-except ImportError:
-    sys.exit(error % ('PyYaml', 'pyyaml'))
-
-
-try:
-    import markdown
-except ImportError:
-    sys.exit(error % ('Markdown', 'markdown'))
-
-
-try:
-    import syntex
-except ImportError:
-    sys.exit(error % ('Syntex', 'syntex'))
-
-
-try:
-    import ibis
-except ImportError:
-    sys.exit(error % ('Ibis', 'ibis'))
-
-
-try:
-    import pygments
-except ImportError:
-    sys.exit(error % ('Pygments', 'pygments'))
-
-
-try:
     import clio
 except ImportError:
     sys.exit(error % ('Clio', 'libclio'))
-
-
-try:
-    import shortcodes
-except ImportError:
-    sys.exit(error % ('Shortcodes', 'shortcodes'))
-
-
-try:
-    import jinja2
-except ImportError:
-    sys.exit(error % ('Jinja', 'jinja2'))
 
 
 # We import the package's modules so users can access 'ark.foo' via a simple
