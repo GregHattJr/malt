@@ -6,7 +6,7 @@
 import ark
 
 
-# This dictionary maps tag-slugs to lists of record filepaths indexed by type.
+# Maps tag-slugs to lists of record filepaths indexed by type.
 tags = {}
 
 
@@ -28,8 +28,8 @@ class Tag:
         return '<a href="%s">%s</a>' % (self.url, self.name)
 
 
-# Register a callback on the 'init_record' event hook to process and register
-# the record's tags.
+# Register a callback on the 'init_record' event hook to process and
+# register the record's tags.
 @ark.hooks.register('init_record')
 def register_tags(record):
     tagstr, record['tags'] = record.get('tags', ''), []
