@@ -19,8 +19,8 @@ from . import cli
 # A Page object represents a single html page in the site's output.
 class Page(dict):
 
-    # Regex for locating @root/ urls for rewriting. Note that we only rewrite
-    # urls encosed in quotes or angle brackets.
+    # Regex for locating @root/ urls for rewriting. Note that we only
+    # rewrite urls encosed in quotes or angle brackets.
     re_url = re.compile(r'''(["'<])@root(/.*?)(#.*?)?(\1|>)''')
 
     def __init__(self, rectype):
@@ -69,7 +69,8 @@ class Page(dict):
         # Rewrite all '@root/' urls.
         html = self._rewrite_urls(html, depth)
 
-        # Write the page to disk. Avoid overwriting identical existing files.
+        # Write the page to disk. Avoid overwriting identical existing
+        # files.
         if not hashes.match(self['path'], html):
             utils.writefile(self['path'], html)
             site.written(1)
@@ -77,7 +78,8 @@ class Page(dict):
     # Determine the output filepath for the page.
     def _get_output_filepath(self):
 
-        # Directory-style urls require us to append an extra 'index' element.
+        # Directory-style urls require us to append an extra 'index'
+        # element.
         slugs = self['slugs'][:]
         if site.config['extension'] == '/':
             if slugs[-1] == 'index':
@@ -102,18 +104,18 @@ class Page(dict):
 
         return filepath, len(slugs)
 
-    # Rewrite @root/ urls to their final form. Note that we only rewrite urls
-    # encosed in quotes or angle brackets.
+    # Rewrite @root/ urls to their final form. Note that we only rewrite
+    # urls encosed in quotes or angle brackets.
     #
-    # We rewrite @root/ urls to page-relative form by appending an appropriate
-    # number of '../' elements.
+    # We rewrite @root/ urls to page-relative form by appending an
+    # appropriate number of '../' elements.
     #
-    # Only urls ending in '//' have their endings rewritten to match the site's
-    # 'extension' setting.
+    # Only urls ending in '//' have their endings rewritten to match the
+    # site's 'extension' setting.
     #
-    # Note that the native format for links to the homepage is '@root/index//',
-    # but for convenience we treat the strings '@root/' and '@root//' in an
-    # identical manner.
+    # Note that the native format for links to the homepage is
+    # '@root/index//', but for convenience we treat the strings '@root/'
+    # and '@root//' in an identical manner.
     def _rewrite_urls(self, html, depth):
 
         def rewrite_callback(match):
@@ -235,7 +237,8 @@ class Index:
             if i == 1:
                 page['slugs'].append('index')
             else:
-                page['slugs'].append('page-%s' % i)
+                slug = hooks.filter('paging_slug', 'page-%s' % i, i)
+                page['slugs'].append(slug)
 
             page['is_homepage_index'] = (len(page['slugs']) == 1)
             page['is_homepage'] = (page['slugs'] == ['index'])
