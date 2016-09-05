@@ -12,7 +12,7 @@ Ark adheres to [semantic versioning][semver] for changes which affect its theme 
 
 * This release obsoletes the bracketed naming convention for `[type]` directories in `src`. The `src` directory should henceforth contain *only* unbracketed type directories, e.g. `pages`, `posts`.
 
-* Static resource files should now be placed in the site's resources directory, `res`. Resource files can longer be placed in `src`.
+* Static resource files should be placed in the dedicated resources directory, `res`. Resource files can longer be placed in `src`.
 
 * Extension loading has been refactored to enable plugins to add their own custom commands and options to the application's command-line interface.
 
@@ -27,6 +27,8 @@ Ark adheres to [semantic versioning][semver] for changes which affect its theme 
 * The minimum Ibis version has been updated to 1.6.0.
 
 * A builtin `\[% code %]` shortcode has been bundled for adding syntax-highlighting to code samples.
+
+* Most dependency packages are now optional. Ark will run in their absence but the associated functionality will not be available.
 
 
 
