@@ -51,9 +51,8 @@ def render(page):
                 if finfo.ext in callbacks:
                     return callbacks[finfo.ext](page, finfo.name)
                 else:
-                    sys.exit(
-                        "Error: unrecognised template extension '.%s'." % finfo.ext
-                    )
+                    msg = "Error: unrecognised template extension '.%s'."
+                    sys.exit(msg % finfo.ext)
 
     # Missing template file. Print an error message and exit.
     sys.exit(

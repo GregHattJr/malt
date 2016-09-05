@@ -8,7 +8,7 @@
 import sys
 
 
-# Ark requires at least Python 3.5.
+# Minimum Python version.
 if sys.version_info < (3, 5):
     sys.exit('Error: Ark requires Python >= 3.5.')
 
