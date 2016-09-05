@@ -9,6 +9,8 @@ import re
 import shutil
 import datetime
 
+from . import hooks
+
 
 # Named tuples for file and directory information.
 DirInfo = collections.namedtuple('DirInfo', 'path, name')
@@ -40,9 +42,9 @@ def fileinfo(path):
     return FileInfo(path, name, base, ext.strip('.'))
 
 
-# Return the creation time of the specified file. This function works on OSX,
-# BSD, and Windows. On Linux it returns the time of the file's last metadata
-# change.
+# Return the creation time of the specified file. This function works on
+# OSX, BSD, and Windows. On Linux it returns the time of the file's last
+# metadata change.
 def get_creation_time(path):
     stat = os.stat(path)
     if hasattr(stat, 'st_birthtime') and stat.st_birthtime:
@@ -52,18 +54,16 @@ def get_creation_time(path):
 
 
 # Default slug-preparation function; returns a slugified version of the
-# specified string. This function is used to sanitize url components, etc.
-# Plugins can implement custom slugification via simple patching, i.e. by
-# setting ark.utils.slugify to an arbitrary function with a compatible
-# interface.
-def slugify(s):
-    s = unicodedata.normalize('NFKD', s)
-    s = s.encode('ascii', 'ignore').decode('ascii')
-    s = s.lower()
-    s = s.replace("'", '')
-    s = re.sub(r'[^a-z0-9-]+', '-', s)
-    s = re.sub(r'--+', '-', s)
-    return s.strip('-')
+# supplied string. This function is used to sanitize url components, etc.
+def slugify(arg):
+    out = unicodedata.normalize('NFKD', arg)
+    out = out.encode('ascii', 'ignore').decode('ascii')
+    out = out.lower()
+    out = out.replace("'", '')
+    out = re.sub(r'[^a-z0-9-]+', '-', out)
+    out = re.sub(r'--+', '-', out)
+    out = out.strip('-')
+    return hooks.filter('slugify', out, arg)
 
 
 # Return a titlecased version of the supplied string.
@@ -75,9 +75,9 @@ def titlecase(s):
     )
 
 
-# Copy the contents of 'srcdir' to 'dstdir'. The destinatio directory will be
-# created if it does not already exist. If 'noclobber' is true, existing files
-# will not be overwritten.
+# Copy the contents of 'srcdir' to 'dstdir'. The destination directory will
+# be created if it does not already exist. If 'noclobber' is true, existing
+# files will not be overwritten.
 def copydir(srcdir, dstdir, noclobber=False):
 
     if not os.path.exists(srcdir):
@@ -99,10 +99,10 @@ def copydir(srcdir, dstdir, noclobber=False):
             copydir(src, dst, noclobber)
 
 
-# Copy the file 'src' as 'dst'. If 'noclobber' is true, an existing 'dst' file
-# will not be overwritten. This function attempts to avoid unnecessarily
-# overwriting existing files with identical copies. If 'dst' exists and has the
-# same size and mtime as 'src', the copy will be aborted.
+# Copy the file 'src' as 'dst'. If 'noclobber' is true, an existing 'dst'
+# file will not be overwritten. This function attempts to avoid
+# unnecessarily overwriting existing files with identical copies. If 'dst'
+# exists and has the same size and mtime as 'src', the copy will be aborted.
 def copyfile(src, dst, noclobber=False):
     if os.path.isfile(dst):
         if noclobber:
