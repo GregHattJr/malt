@@ -11,7 +11,6 @@
 {% endblock %}
 
 {% block content %}
-
     <h2>Records</h2>
     <ul>
         {% for record in records %}
@@ -43,5 +42,4 @@
 
     <h2>Page Context</h2>
     <pre>{{ context.stack|index:2|dbdedup|pprint|pygmentize:'python' }}</pre>
-
 {% endblock %}

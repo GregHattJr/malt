@@ -1,6 +1,5 @@
 # --------------------------------------------------------------------------
 # This extension adds a dictionary deduplication filter to Ibis templates.
-#
 # The filter accepts an input dictionary and returns a copy with duplicate
 # values marked as aliases.
 # --------------------------------------------------------------------------
