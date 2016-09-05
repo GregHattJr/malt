@@ -3,9 +3,8 @@
 Ark
 ===
 
-Ark is a static website generator in Python. It transforms a directory of
-text files into a self-contained website that can be viewed locally or
-served remotely.
+Ark is a static website generator built in Python. It transforms a directory
+of text files into a self-contained website.
 
 * `Documentation <http://mulholland.xyz/docs/ark/>`_
 * `Sample Site <http://ark.mulholland.xyz/phoenix/>`_
