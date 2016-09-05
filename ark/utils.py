@@ -67,12 +67,13 @@ def slugify(arg):
 
 
 # Return a titlecased version of the supplied string.
-def titlecase(s):
-    return re.sub(
+def titlecase(arg):
+    out = re.sub(
         r"[A-Za-z]+('[A-Za-z]+)?",
         lambda m: m.group(0)[0].upper() + m.group(0)[1:],
-        s
+        arg
     )
+    return hooks.filter('titlecase', out, arg)
 
 
 # Copy the contents of 'srcdir' to 'dstdir'. The destination directory will
