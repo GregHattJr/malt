@@ -3,9 +3,6 @@
 #
 # The filter accepts an input dictionary and returns a copy with duplicate
 # values marked as aliases.
-#
-# Author: Darren Mulholland <darren@mulholland.xyz>
-# License: Public Domain
 # --------------------------------------------------------------------------
 
 import ibis
