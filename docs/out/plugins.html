@@ -53,7 +53,36 @@
 The extensions directory, <code>ext</code>, is intended for plugins that extend or enhance Ark's functionality. Python modules or packages placed in this directory will be loaded automatically and can take advantage of Ark's extension hooks to inject their own code into the build process.
 </p>
 <p>
-Ark makes three extension mechanisms available to plugins: i) event and filter <a href="#hooks">hooks</a>, ii) pluggable rendering and parsing <a href="#engines">engines</a>, and iii) WordPress-style <a href="#shortcodes">shortcodes</a>.
+Ark makes three extension mechanisms available to plugins:
+</p>
+<ol>
+<li>
+<a href="#hooks">Event and filter hooks.</a>
+</li>
+<li>
+<a href="#engines">Pluggable rendering and parsing engines.</a>
+</li>
+<li>
+<a href="#shortcodes">WordPress-style shortcodes.</a>
+</li>
+</ol>
+<p>
+Much of Ark's builtin functionality is in fact implemented by a set of default plugins bundled in the <code>ark/ext/</code> directory.
+</p>
+<h2 id="installing-plugins">
+Installing Plugins
+</h2>
+<p>
+Extensions placed in a site's <code>ext</code> directory will be loaded automatically. Alternatively, extension modules installed on Python's standard import path can be activated by adding their names to an <code>extensions</code> list in the site's configuration file:
+</p>
+<pre class="lang-python pygments" data-lang="python">
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;some_extension&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;another_extension&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre>
+<p>
+This method can be used to load extensions installed from the package index using <code>pip</code>.
 </p>
 <h2 id="hooks">
 Hooks
@@ -184,10 +213,22 @@ A dictionary of keyword arguments.
 Positional and keyword arguments are passed as strings. The handler function itself should return a string.
 </p>
 <p>
-Note that shortcodes are processed <em>before</em> record text is rendered into HTML.
+Note that shortcodes are processed <em>before</em> the record text is rendered into HTML.
 </p>
 <p>
-Shortcodes are implemented via the <a href="https://github.com/dmulholland/shortcodes">Shortcodes</a> package. See the package documentation for further details.
+Ark ships with a single builtin shortcode, <code>[% code %]</code>, which uses the <a href="http://pygments.org">Pygments</a> package to add syntax highlighting to code samples:
+</p>
+<pre>
+[% code python %]
+def hello():
+    print('hello world!')
+[% endcode %]
+</pre>
+<p>
+The shortcode accepts a single optional argument specifying the language. If no language is specified, Pygments will attempt to guess the correct lexer to use.
+</p>
+<p>
+If the Pygments package is not available or if an appropriate lexer cannot be found the shortcode will return the wrapped content with any HTML special characters escaped.
 </p>
 
     </article>

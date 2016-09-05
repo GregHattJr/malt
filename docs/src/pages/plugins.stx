@@ -4,7 +4,28 @@ title: Plugins
 
 The extensions directory, `ext`, is intended for plugins that extend or enhance Ark's functionality. Python modules or packages placed in this directory will be loaded automatically and can take advantage of Ark's extension hooks to inject their own code into the build process.
 
-Ark makes three extension mechanisms available to plugins: i) event and filter [hooks](#hooks), ii) pluggable rendering and parsing [engines](#engines), and iii) WordPress-style [shortcodes](#shortcodes).
+Ark makes three extension mechanisms available to plugins:
+
+1. [Event and filter hooks.](#hooks)
+2. [Pluggable rendering and parsing engines.](#engines)
+3. [WordPress-style shortcodes.](#shortcodes)
+
+Much of Ark's builtin functionality is in fact implemented by a set of default plugins bundled in the `ark/ext/` directory.
+
+
+
+## Installing Plugins
+
+Extensions placed in a site's `ext` directory will be loaded automatically. Alternatively, extension modules installed on Python's standard import path can be activated by adding their names to an `extensions` list in the site's configuration file:
+
+::: python
+
+    extensions = [
+        'some_extension',
+        'another_extension',
+    ]
+
+This method can be used to load extensions installed from the package index using `pip`.
 
 
 
@@ -127,8 +148,18 @@ Handler functions should accept four arguments:
 
 Positional and keyword arguments are passed as strings. The handler function itself should return a string.
 
-Note that shortcodes are processed *before* record text is rendered into HTML.
+Note that shortcodes are processed *before* the record text is rendered into HTML.
 
-Shortcodes are implemented via the [Shortcodes][] package. See the package documentation for further details.
+Ark ships with a single builtin shortcode, `\[% code %]`, which uses the [Pygments][] package to add syntax highlighting to code samples:
+
+    [% code python %]
+    def hello():
+        print('hello world!')
+    [% endcode %]
+
+The shortcode accepts a single optional argument specifying the language. If no language is specified, Pygments will attempt to guess the correct lexer to use.
+
+If the Pygments package is not available or if an appropriate lexer cannot be found the shortcode will return the wrapped content with any HTML special characters escaped.
 
 [shortcodes]: https://github.com/dmulholland/shortcodes
+[pygments]: http://pygments.org

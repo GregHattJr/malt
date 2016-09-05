@@ -3,8 +3,7 @@ title: Ark
 ---
 
 Ark is a static website generator built in Python. It transforms a
-directory of text files into a self-contained website that can be viewed
-locally or served remotely.
+directory of text files into a self-contained website.
 
 * Ark is extensible. It has builtin support for source files written
   in [Markdown][] and [Syntex][], but can be extended via plugins to support
@@ -35,8 +34,7 @@ Ark requires Python 3.5 or later.
 * [Demo Site](http://ark.mulholland.xyz/phoenix/)
 * [Github Homepage](https://github.com/dmulholland/ark)
 * [Package Index](https://pypi.python.org/pypi/ark/)
-* [Documentation](http://mulholland.xyz/docs/ark/)
-* [Plugins](https://github.com/dmulholland/ark-plugins)
+* [Online Documentation](http://mulholland.xyz/docs/ark/)
 
 
 

@@ -19,7 +19,8 @@ Use the `ark --help` flag to view the full command-line help text:
 
     Usage: ark [FLAGS] [COMMAND]
 
-      Static website generator.
+      Ark is a static website generator. It transforms a directory of text
+      files into a self-contained website.
 
     Flags:
       --help            Print the application's help text and exit.
@@ -52,9 +53,9 @@ Initializing a new site creates the following directory structure:
         res/         # resources directory for static assets
         src/         # source directory for text files
 
-Ark uses the presence of an `ark.py` file or both `src` and `out` directories to identify a site's home directory.
+The `ark.py` site configuration file can be safely deleted if the site does not require custom settings; unused directories can likewise be deleted. (Note however that Ark requires the presence of either an `ark.py` file or both `src` and `out` directories to identify a site's home directory.)
 
-Static assets such as image files should be placed in the site's resources directory, `res`. The content of this directory is copied to the output directory when the site is built.
+Static assets such as image files should be placed in the site's resources directory, `res`. The content of this directory is copied to the output directory each time the site is built.
 
 
 
@@ -94,13 +95,13 @@ Every record has a *type*, determined by its root `type` directory in the site's
 
 Ark has two builtin record types - *pages* and *posts* - but you can add as many custom types as you like simply by creating new `type` directories. Every type can have its own individual set of index and tag index pages.
 
-You can determine the behaviour of your custom types (or alter the behaviour of the builtin types) in your site's `ark.py` file. Assuming we'll be devoting a section of our site to sonnets, we may wish to create a custom type just for them. We can do this by adding a `sonnets` directory to our site's `src` directory.
+You can determine the behaviour of your custom types (or alter the behaviour of the builtin types) in your site's configuration file. Assuming we'll be devoting a section of our site to sonnets, we may wish to create a custom type just for them. We can do this by adding a `sonnets` directory to our site's `src` directory.
 
     src/
         sonnets/
             my-sonnet.md   # this record is a sonnet
 
-New custom types behave, by default, like the builtin *post* type, but we can alter this behaviour by adding a dictionary of type settings to our `ark.py` file:
+New custom types behave, by default, like the builtin *post* type, but we can alter this behaviour by adding a dictionary of type settings to our configuration file:
 
 ::: python
 
@@ -329,4 +330,4 @@ Installing via `pip` also automatically installs the following optional dependen
 * [Shortcodes](https://pypi.python.org/pypi/shortcodes)
 * [Syntex](https://pypi.python.org/pypi/syntex)
 
-Ark will run without any of these optional dependencies but the associated functionality will not be available.
+Ark will run without any of these optional dependencies installed but the associated functionality will not be available.

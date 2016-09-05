@@ -2,13 +2,13 @@
 title: Themes
 ---
 
-A theme is a collection of templates, styles, and scripts that together provide the look and feel for a site. Themes should be placed in the site's `lib` folder, and the name of the active theme directory specified in the site's `ark.py` file.
+A theme is a collection of templates, styles, and scripts that together provide the look and feel for a site. Themes should be placed in the site's `lib` folder, and the name of the active theme directory specified in the site's configuration file.
 
 ::: python
 
     theme = "phoenix"
 
-Ark ships with two bundled themes: `phoenix`, the default theme, and `debug`, a diagnostic tool useful when designing themes or debugging sites.
+Ark ships with a small selection of bundled themes including `phoenix`, the default theme, and `debug`, a diagnostic tool useful when designing themes or debugging sites.
 
 Note that you can override the currently active theme with the `build` command's `--theme` flag:
 

@@ -52,18 +52,18 @@
         <p>
 Ark adheres to <a href="http://semver.org">semantic versioning</a> for changes which affect its theme or plugin API.
 </p>
-<h2 id="unreleased">
-Unreleased
+<h2 id="-0-0">
+3.0.0
 </h2>
 <ul>
 <li>
 <p>
-This release obsoletes the bracketed naming convention for <code>[type]</code> directories in <code>src</code>. The <code>src</code> directory should now contain <em>only</em> unbracketed type directories, e.g. <code>pages</code>, <code>posts</code>.
+This release obsoletes the bracketed naming convention for <code>[type]</code> directories in <code>src</code>. The <code>src</code> directory should henceforth contain <em>only</em> unbracketed type directories, e.g. <code>pages</code>, <code>posts</code>.
 </p>
 </li>
 <li>
 <p>
-Static resource files should be placed in the site's resources directory, <code>res</code>. Resource files can longer be placed in <code>src</code>.
+Static resource files should now be placed in the site's resources directory, <code>res</code>. Resource files can longer be placed in <code>src</code>.
 </p>
 </li>
 <li>
@@ -73,12 +73,12 @@ Extension loading has been refactored to enable plugins to add their own custom 
 </li>
 <li>
 <p>
-Support for a global extensions directory has been removed and replaced with support for installed extensions.
+Support for a global extensions directory has been removed and replaced by support for installed extensions.
 </p>
 </li>
 <li>
 <p>
-Minimum Python version has been raised to 3.5.
+The minimum Python version has been updated to 3.5.
 </p>
 </li>
 <li>
@@ -88,7 +88,17 @@ The theme resource and plugin directories have been renamed <code>resources</cod
 </li>
 <li>
 <p>
-Add bundled <code>vanilla</code> theme.
+The documentation theme, <code>vanilla</code>, is now bundled with the application.
+</p>
+</li>
+<li>
+<p>
+The minimum Ibis version has been updated to 1.6.0.
+</p>
+</li>
+<li>
+<p>
+A builtin <code>[% code %]</code> shortcode has been bundled for adding syntax-highlighting to code samples.
 </p>
 </li>
 </ul>
@@ -151,7 +161,7 @@ This release is identical to 2.0.0. Incrementing the minor version resolves a pa
 </p>
 </li>
 </ul>
-<h2 id="-0-0">
+<h2 id="-0-0-2">
 2.0.0
 </h2>
 <ul>

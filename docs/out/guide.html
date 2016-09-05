@@ -108,7 +108,8 @@ Use the <code>ark --help</code> flag to view the full command-line help text:
 <pre>
 Usage: ark [FLAGS] [COMMAND]
 
-  Static website generator.
+  Ark is a static website generator. It transforms a directory of text
+  files into a self-contained website.
 
 Flags:
   --help            Print the application's help text and exit.
@@ -144,10 +145,10 @@ site/
     src/         # source directory for text files
 </pre>
 <p>
-Ark uses the presence of an <code>ark.py</code> file or both <code>src</code> and <code>out</code> directories to identify a site's home directory.
+The <code>ark.py</code> site configuration file can be safely deleted if the site does not require custom settings; unused directories can likewise be deleted. (Note however that Ark requires the presence of either an <code>ark.py</code> file or both <code>src</code> and <code>out</code> directories to identify a site's home directory.)
 </p>
 <p>
-Static assets such as image files should be placed in the site's resources directory, <code>res</code>. The content of this directory is copied to the output directory when the site is built.
+Static assets such as image files should be placed in the site's resources directory, <code>res</code>. The content of this directory is copied to the output directory each time the site is built.
 </p>
 <h2 id="records">
 Records
@@ -192,7 +193,7 @@ src/
 Ark has two builtin record types - <em>pages</em> and <em>posts</em> - but you can add as many custom types as you like simply by creating new <code>type</code> directories. Every type can have its own individual set of index and tag index pages.
 </p>
 <p>
-You can determine the behaviour of your custom types (or alter the behaviour of the builtin types) in your site's <code>ark.py</code> file. Assuming we'll be devoting a section of our site to sonnets, we may wish to create a custom type just for them. We can do this by adding a <code>sonnets</code> directory to our site's <code>src</code> directory.
+You can determine the behaviour of your custom types (or alter the behaviour of the builtin types) in your site's configuration file. Assuming we'll be devoting a section of our site to sonnets, we may wish to create a custom type just for them. We can do this by adding a <code>sonnets</code> directory to our site's <code>src</code> directory.
 </p>
 <pre>
 src/
@@ -200,7 +201,7 @@ src/
         my-sonnet.md   # this record is a sonnet
 </pre>
 <p>
-New custom types behave, by default, like the builtin <em>post</em> type, but we can alter this behaviour by adding a dictionary of type settings to our <code>ark.py</code> file:
+New custom types behave, by default, like the builtin <em>post</em> type, but we can alter this behaviour by adding a dictionary of type settings to our configuration file:
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="n">sonnets</span> <span class="o">=</span> <span class="p">{</span>                <span class="c1"># type name corresponding to the type directory</span>
@@ -500,7 +501,7 @@ Installing via <code>pip</code> also automatically installs the following option
 </li>
 </ul>
 <p>
-Ark will run without any of these optional dependencies but the associated functionality will not be available.
+Ark will run without any of these optional dependencies installed but the associated functionality will not be available.
 </p>
 
     </article>
