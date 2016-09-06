@@ -35,6 +35,6 @@ if shortcodes:
             msg += "  %s: %s" % (err.__class__.__name__, err)
             if err.__context__:
                 cause = err.__context__
-                msg += "\n\nThe following exception was reported:\n\n"
+                msg += "\n\nThe following cause was reported:\n\n"
                 msg += "%s: %s" % (cause.__class__.__name__, cause)
             sys.exit(msg)

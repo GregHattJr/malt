@@ -40,16 +40,15 @@ if jinja2:
         try:
             template = env.get_template(filename)
             return template.render(page)
-        except jinja2.TemplateError as e:
+        except jinja2.TemplateError as err:
             msg =  "------------------------\n"
             msg += "  Jinja Template Error  \n"
             msg += "------------------------\n\n"
             msg += "  Template: %s\n" % filename
             msg += "  Page:     %s\n\n" % page['path']
-            msg += "  %s: %s" % (e.__class__.__name__, e)
-            if e.__context__:
-                msg += "\n\nThe following exception was reported:\n\n"
-                msg += "%s: %s" % (
-                    e.__context__.__class__.__name__, e.__context__
-                )
+            msg += "  %s: %s" % (err.__class__.__name__, err)
+            if err.__context__:
+                cause = err.__context__
+                msg += "\n\nThe following cause was reported:\n\n"
+                msg += "%s: %s" % (cause.__class__.__name__, cause)
             sys.exit(msg)
