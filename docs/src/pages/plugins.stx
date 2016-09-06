@@ -21,8 +21,8 @@ Extensions placed in a site's `ext` directory will be loaded automatically. Alte
 ::: python
 
     extensions = [
-        'some_extension',
-        'another_extension',
+        'extension_one',
+        'extension_two',
     ]
 
 This method can be used to load extensions installed from the package index using `pip`.
@@ -152,10 +152,10 @@ Note that shortcodes are processed *before* the record text is rendered into HTM
 
 Ark ships with a single builtin shortcode, `\[% code %]`, which uses the [Pygments][] package to add syntax highlighting to code samples:
 
-    [% code python %]
+    \[% code python %]
     def hello():
         print('hello world!')
-    [% endcode %]
+    \[% endcode %]
 
 The shortcode accepts a single optional argument specifying the language. If no language is specified, Pygments will attempt to guess the correct lexer to use.
 

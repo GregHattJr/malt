@@ -77,8 +77,8 @@ Extensions placed in a site's <code>ext</code> directory will be loaded automati
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;some_extension&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;another_extension&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;extension_one&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;extension_two&#39;</span><span class="p">,</span>
 <span class="p">]</span>
 </pre>
 <p>
@@ -219,13 +219,11 @@ Note that shortcodes are processed <em>before</em> the record text is rendered i
 Ark ships with a single builtin shortcode, <code>[% code %]</code>, which uses the <a href="http://pygments.org">Pygments</a> package to add syntax highlighting to code samples:
 </p>
 <pre>
-&lt;pre class="lang-python" data-lang="python"&gt;
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;hello&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;hello world!&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+[% code python %]
+def hello():
+    print('hello world!')
+[% endcode %]
 </pre>
-<p>
-</pre>
-</p>
 <p>
 The shortcode accepts a single optional argument specifying the language. If no language is specified, Pygments will attempt to guess the correct lexer to use.
 </p>
