@@ -49,7 +49,7 @@ Here's a simple event callback that prints a count of the number of pages that h
     def print_page_count():
         print(ark.site.written())
 
-This callback is registered on the `exit` event hook which fires just before the application exits. (The `exit` hook can be found in the `ark/main.py` file.)
+This callback is registered on the `exit` event hook which fires just before the application exits. (The `exit` hook can be found in the `ark/__init__.py` file.)
 
 
 

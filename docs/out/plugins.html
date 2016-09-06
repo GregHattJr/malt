@@ -107,7 +107,7 @@ Here's a simple event callback that prints a count of the number of pages that h
     <span class="k">print</span><span class="p">(</span><span class="n">ark</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">written</span><span class="p">())</span>
 </pre>
 <p>
-This callback is registered on the <code>exit</code> event hook which fires just before the application exits. (The <code>exit</code> hook can be found in the <code>ark/main.py</code> file.)
+This callback is registered on the <code>exit</code> event hook which fires just before the application exits. (The <code>exit</code> hook can be found in the <code>ark/__init__.py</code> file.)
 </p>
 <h3 id="filters">
 Filters
@@ -219,11 +219,13 @@ Note that shortcodes are processed <em>before</em> the record text is rendered i
 Ark ships with a single builtin shortcode, <code>[% code %]</code>, which uses the <a href="http://pygments.org">Pygments</a> package to add syntax highlighting to code samples:
 </p>
 <pre>
-[% code python %]
-def hello():
-    print('hello world!')
-[% endcode %]
+&lt;pre class="lang-python" data-lang="python"&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;hello&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;hello world!&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 </pre>
+<p>
+</pre>
+</p>
 <p>
 The shortcode accepts a single optional argument specifying the language. If no language is specified, Pygments will attempt to guess the correct lexer to use.
 </p>
