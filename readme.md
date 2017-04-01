@@ -22,6 +22,16 @@ See Ark's [documentation][docs] or the Ark [demo site][demo] for further details
 
 
 
+## Installation
+
+Install directly from the Python Package Index using `pip`:
+
+    $ pip install ark
+
+Ark requires Python 3.5 or later.
+
+
+
 ## Interface
 
 Run `ark --help` to view the application's command-line help text:
@@ -46,16 +56,6 @@ Run `ark --help` to view the application's command-line help text:
       help <command>    Print the specified command's help text and exit.
 
 Run `ark help <command>` to view the help text for a specific command.
-
-
-
-## Installation
-
-Install directly from the Python Package Index using `pip`:
-
-    $ pip install ark
-
-Ark requires Python 3.5 or later.
 
 
 
