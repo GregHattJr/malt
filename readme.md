@@ -24,7 +24,7 @@ See Ark's [documentation][docs] or the Ark [demo site][demo] for further details
 
 ## Interface
 
-Use the `ark --help` flag to view the application's command-line help text:
+Run`ark --help` to view the application's command-line help text:
 
     Usage: ark [FLAGS] [COMMAND]
 
