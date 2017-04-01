@@ -24,7 +24,7 @@ A static website generator built in Python.
     Command Help:
       help <command>    Print the specified command's help text and exit.
 
-  See the [documentation][docs] or the [demo site][demo] for further details.
+  See the [documentation][docs] or [demo site][demo] for further details.
 
   [docs]: http://mulholland.xyz/docs/ark/
   [demo]: http://ark.mulholland.xyz/phoenix/
