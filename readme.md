@@ -1,7 +1,7 @@
 
 # Malt
 
-Malt is a static website generator built in Python. It transforms a directory of text files into a WordPress-style posts-and-pages website.
+Malt is a static website generator built in Python. It transforms a directory of text files into a WordPress-style website with support for pages, posts, and custom post types.
 
     $ malt --help
 

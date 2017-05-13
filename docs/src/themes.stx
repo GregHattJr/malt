@@ -14,7 +14,7 @@ Note that you can override the currently active theme with the `build` command's
 
     $ malt build --theme debug
 
-Malt searches for a named theme first in the site's theme library, then (if it exists) in the global theme library specified by the `$ARK_THEMES` environment variable. Finally it searches among the default themes bundled with Malt itself.
+Malt searches for a named theme first in the site's theme library, then (if it exists) in the global theme library specified by the `$MALT_THEMES` environment variable. Finally it searches among the default themes bundled with Malt itself.
 
 
 
