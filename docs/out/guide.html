@@ -2,7 +2,9 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Guide</title>
+    <title>
+        Guide
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="css/pygments.css">
@@ -11,7 +13,7 @@
     <![endif]-->
 </head>
 
-<body class="type-pages single">
+<body class="node-guide node">
 
     <header id="head" class="head">
         <input id="menu-check" type="checkbox"/>
@@ -22,7 +24,7 @@
         </label>
         <ul>
 <li>
-<a href="index.html">Ark</a>
+<a href="index.html">Malt</a>
 </li>
 <li>
 <a href="quickstart.html">Quickstart</a>
@@ -43,7 +45,6 @@
 
     </header>
 
-    
     <article id="main" class="main">
         
             <h1>Guide</h1>
@@ -94,21 +95,21 @@ Command Line Interface
 To initialize a new site, create a site directory, <code>cd</code> into it, and run the <code>init</code> command:
 </p>
 <pre>
-$ ark init
+$ malt init
 </pre>
 <p>
 To build an existing site, run the <code>build</code> command from the site directory or any of its subdirectories:
 </p>
 <pre>
-$ ark build
+$ malt build
 </pre>
 <p>
-Use the <code>ark --help</code> flag to view the full command-line help text:
+Use the <code>malt --help</code> flag to view the full command-line help text:
 </p>
 <pre>
-Usage: ark [FLAGS] [COMMAND]
+Usage: malt [FLAGS] [COMMAND]
 
-  Ark is a static website generator. It transforms a directory of text
+  Malt is a static website generator. It transforms a directory of text
   files into a self-contained website.
 
 Flags:
@@ -126,7 +127,7 @@ Command Help:
   help &lt;command&gt;    Print the specified command's help text and exit.
 </pre>
 <p>
-Run <code>ark help &lt;command&gt;</code> to view the help text for a specific command.
+Run <code>malt help &lt;command&gt;</code> to view the help text for a specific command.
 </p>
 <h2 id="site-structure">
 Site Structure
@@ -136,7 +137,7 @@ Initializing a new site creates the following directory structure:
 </p>
 <pre>
 site/
-    ark.py       # site configuration file
+    site.py      # site configuration file
     ext/         # extensions directory for plugins
     inc/         # includes directory for menus, etc.
     lib/         # library directory for themes
@@ -145,7 +146,7 @@ site/
     src/         # source directory for text files
 </pre>
 <p>
-The <code>ark.py</code> site configuration file can be safely deleted if the site does not require custom settings; unused directories can likewise be deleted. (Note however that Ark requires the presence of either an <code>ark.py</code> file or both <code>src</code> and <code>out</code> directories to identify a site's home directory.)
+The <code>site.py</code> site configuration file can be safely deleted if the site does not require custom settings; unused directories can likewise be deleted. (Note however that Malt requires the presence of either a <code>site.py</code> file or both <code>src</code> and <code>out</code> directories to identify a site's home directory.)
 </p>
 <p>
 Static assets such as image files should be placed in the site's resources directory, <code>res</code>. The content of this directory is copied to the output directory each time the site is built.
@@ -154,10 +155,10 @@ Static assets such as image files should be placed in the site's resources direc
 Records
 </h2>
 <p>
-A record is a text file stored in a site's <code>src</code> directory. Ark searches the <code>src</code> directory for record files and generates a HTML page in the <code>out</code> directory for each one it finds. It can also generate a set of index pages for each directory of records.
+A record is a text file stored in a site's <code>src</code> directory. Malt searches the <code>src</code> directory for record files and generates a HTML page in the <code>out</code> directory for each one it finds. It can also generate a set of index pages for each directory of records.
 </p>
 <p>
-Ark has builtin support for record files written in <a href="http://daringfireball.net/projects/markdown/">Markdown</a> and <a href="https://github.com/dmulholland/syntex">Syntex</a>. Files with a <code>.md</code> extension are rendered as Markdown, files with a <code>.stx</code> extension are rendered as Syntex. Ark can be extended via plugins to support other formats and extensions.
+Malt has builtin support for record files written in <a href="http://daringfireball.net/projects/markdown/">Markdown</a> and <a href="https://github.com/dmulholland/syntex">Syntex</a>. Files with a <code>.md</code> extension are rendered as Markdown, files with a <code>.stx</code> extension are rendered as Syntex. Malt can be extended via plugins to support other formats and extensions.
 </p>
 <p>
 A record file can begin with a <a href="http://en.wikipedia.org/wiki/YAML">YAML</a> header specifying metadata for the record:
@@ -190,7 +191,7 @@ src/
         my-post.md     # this record is a post
 </pre>
 <p>
-Ark has two builtin record types - <em>pages</em> and <em>posts</em> - but you can add as many custom types as you like simply by creating new <code>type</code> directories. Every type can have its own individual set of index and tag index pages.
+Malt has two builtin record types - <em>pages</em> and <em>posts</em> - but you can add as many custom types as you like simply by creating new <code>type</code> directories. Every type can have its own individual set of index and tag index pages.
 </p>
 <p>
 You can determine the behaviour of your custom types (or alter the behaviour of the builtin types) in your site's configuration file. Assuming we'll be devoting a section of our site to sonnets, we may wish to create a custom type just for them. We can do this by adding a <code>sonnets</code> directory to our site's <code>src</code> directory.
@@ -220,13 +221,13 @@ New custom types behave, by default, like the builtin <em>post</em> type, but we
 All the settings above are in fact defaults, and in practice we would only need to include those we wished to change.
 </p>
 <p>
-Within a <code>type</code> directory, Ark will preserve any directory structure it finds, so you can use subdirectories to organise your record files by category or date. If the record type is indexed, Ark will generate an individual set of index pages for each subdirectory in the tree.
+Within a <code>type</code> directory, Malt will preserve any directory structure it finds, so you can use subdirectories to organise your record files by category or date. If the record type is indexed, Malt will generate an individual set of index pages for each subdirectory in the tree.
 </p>
 <h2 id="record-attributes">
 Record Attributes
 </h2>
 <p>
-Ark has builtin support for record metadata in <a href="http://en.wikipedia.org/wiki/YAML">YAML</a> format; support for additional formats can be added via plugins.
+Malt has builtin support for record metadata in <a href="http://en.wikipedia.org/wiki/YAML">YAML</a> format; support for additional formats can be added via plugins.
 </p>
 <p>
 Note that a record file's metadata keys are converted to lowercase and spaces are replaced by underscores so the YAML attribute:
@@ -350,7 +351,7 @@ Specified classes are added to the page's <code>&lt;body&gt;</code> element.
 Links
 </h2>
 <p>
-Ark generates page-relative urls and files with a <code>.html</code> extension by default, but you can customize this behaviour to suit your needs.
+Malt generates page-relative urls and files with a <code>.html</code> extension by default, but you can customize this behaviour to suit your needs.
 </p>
 <p>
 First, you can specify a root url in your site configuration file. Use an explicit domain, e.g. <code>"http://example.com/"</code>, for absolute urls, or a single forward slash, <code>"/"</code>, for site-relative urls.
@@ -359,7 +360,7 @@ First, you can specify a root url in your site configuration file. Use an explic
 <span class="n">root</span> <span class="o">=</span> <span class="s2">&quot;http://example.com/&quot;</span>
 </pre>
 <p>
-Second, you can specify a file extension in your site configuration file. You can choose an arbitrary file extension, e.g. <code>".html"</code>, or pass an empty string, <code>""</code>, to use no file extension at all. If you specify a single forward slash, <code>"/"</code>, Ark will generate directory-style urls ending in a slash.
+Second, you can specify a file extension in your site configuration file. You can choose an arbitrary file extension, e.g. <code>".html"</code>, or pass an empty string, <code>""</code>, to use no file extension at all. If you specify a single forward slash, <code>"/"</code>, Malt will generate directory-style urls ending in a slash.
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="n">extension</span> <span class="o">=</span> <span class="s2">&quot;.html&quot;</span>
@@ -371,10 +372,10 @@ To link to files within your site from records or templates use site-relative ur
 @root/scripts/jquery.js
 </pre>
 <p>
-Ark will automatically rewrite these urls in the appropriate format.
+Malt will automatically rewrite these urls in the appropriate format.
 </p>
 <p>
-Use two trailing slashes when linking to files generated by Ark itself - this tells Ark to rewrite the ending to suit your extension settings.
+Use two trailing slashes when linking to files generated by Malt itself - this tells Malt to rewrite the ending to suit your extension settings.
 </p>
 <pre>
 @root/posts/my-post//
@@ -414,10 +415,10 @@ Files with a <code>.html</code>/<code>.js</code>/<code>.css</code>/<code>.txt</c
 Markdown Options
 </h2>
 <p>
-Ark uses the <a href="https://pythonhosted.org/Markdown/">Markdown</a> package to render record files with a <code>.md</code> extension. You can add a dictionary of keyword arguments for the renderer to your site configuration file via a <code>markdown</code> attribute.
+Malt uses the <a href="https://pythonhosted.org/Markdown/">Markdown</a> package to render record files with a <code>.md</code> extension. You can add a dictionary of keyword arguments for the renderer to your site configuration file via a <code>markdown</code> attribute.
 </p>
 <p>
-For example, to turn on the 'Markdown Extra' extension, add the following snippet to your <code>ark.py</code> file:
+For example, to turn on the 'Markdown Extra' extension, add the following snippet to your <code>malt.py</code> file:
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="n">markdown</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;extensions&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;markdown.extensions.extra&#39;</span><span class="p">]</span> <span class="p">}</span>
@@ -429,19 +430,19 @@ See the Markdown package's <a href="https://pythonhosted.org/Markdown/">document
 Jinja Options
 </h2>
 <p>
-Ark uses the <a href="http://jinja.pocoo.org">Jinja2</a> package to render template files with a <code>.jinja</code> extension. You can add a dictionary of keyword arguments for the Jinja environment to your site configuration file via a <code>jinja</code> attribute.
+Malt uses the <a href="http://jinja.pocoo.org">Jinja2</a> package to render template files with a <code>.jinja</code> extension. You can add a dictionary of keyword arguments for the Jinja environment to your site configuration file via a <code>jinja</code> attribute.
 </p>
 <h2 id="shortcode-options">
 Shortcode Options
 </h2>
 <p>
-Ark uses the <a href="https://github.com/dmulholland/shortcodes">Shortcodes</a> package to process shortcodes in record files. You can add a dictionary of keyword arguments for the shortcode parser to your site configuration file via a <code>shortcodes</code> attribute.
+Malt uses the <a href="https://github.com/dmulholland/shortcodes">Shortcodes</a> package to process shortcodes in record files. You can add a dictionary of keyword arguments for the shortcode parser to your site configuration file via a <code>shortcodes</code> attribute.
 </p>
 <h2 id="paging-options">
 Paging Options
 </h2>
 <p>
-Ark's bundled paging extension generates a customizable string of page navigation links for index pages. The links can be accessed in templates via the <code>paging</code> attribute.
+Malt's bundled paging extension generates a customizable string of page navigation links for index pages. The links can be accessed in templates via the <code>paging</code> attribute.
 </p>
 <p>
 Default settings can be overridden by including a <code>paging</code> dictionary in
@@ -465,7 +466,7 @@ Only the options to be changed need to be specified.
 Dependencies
 </h2>
 <p>
-Installing Ark via <code>pip</code> automatically installs the following required dependencies:
+Installing Malt via <code>pip</code> automatically installs the following required dependencies:
 </p>
 <ul>
 <li>
@@ -501,40 +502,10 @@ Installing via <code>pip</code> also automatically installs the following option
 </li>
 </ul>
 <p>
-Ark will run without any of these optional dependencies installed but the associated functionality will not be available.
+Malt will run without any of these optional dependencies installed but the associated functionality will not be available.
 </p>
 
     </article>
 
-
-    <footer id="foot" class="foot">
-        <ul>
-<li>
-<a href="index.html">Ark</a>
-</li>
-<li>
-<a href="quickstart.html">Quickstart</a>
-</li>
-<li>
-<a href="guide.html">Guide</a>
-</li>
-<li>
-<a href="themes.html">Themes</a>
-</li>
-<li>
-<a href="plugins.html">Plugins</a>
-</li>
-<li>
-<a href="changelog.html">Changelog</a>
-</li>
-</ul>
-
-    </footer>
-
 </body>
 </html>
-
-
-
-
-

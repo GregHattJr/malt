@@ -1,0 +1,88 @@
+---
+title: Changelog
+---
+
+
+### 3.1.0
+
+* The application has been renamed *Malt*, a return to its original pre-1.0 name.
+
+* The site configuration file has been renamed `site.py`. Old `ark.py` configuration files will continue to be recognised.
+
+
+
+### 3.0.0
+
+* This release obsoletes the bracketed naming convention for `[type]` directories in `src`. The `src` directory should henceforth contain *only* unbracketed type directories, e.g. `pages`, `posts`.
+
+* Static resource files should be placed in the dedicated resources directory, `res`. Resource files can longer be placed in `src`.
+
+* Extension loading has been refactored to enable plugins to add their own custom commands and options to the application's command-line interface.
+
+* Support for a global extensions directory has been removed and replaced by support for installed extensions.
+
+* The minimum Python version has been updated to 3.5.
+
+* The theme resource and plugin directories have been renamed `resources` and `extensions` for consistency with their site directory counterparts.
+
+* The documentation theme, `vanilla`, is now bundled with the application.
+
+* The minimum Ibis version has been updated to 1.6.0.
+
+* A builtin `\[% code %]` shortcode has been bundled for adding syntax-highlighting to code samples.
+
+* Most dependency packages are now optional. Ark will run in their absence but the associated functionality will not be available.
+
+
+
+### 2.3.0
+
+* Add support for record classes.
+
+* Add support for a site resources directory, `res`.
+
+* Move the `.arkcache/` directory to `~/.cache/ark/`.
+
+* Remove the `edit` command.
+
+* Remove the `--empty` flag from the `init` command.
+
+
+
+### 2.2.0
+
+* The `ark` package is now directly executable. An installed `ark` package can be run as:
+
+      $ python3 -m ark
+
+  A non-installed `ark` package can be run by specifying the path to the package directory:
+
+      $ python3 /path/to/ark
+
+
+
+### 2.1.0
+
+* This release is identical to 2.0.0. Incrementing the minor version resolves a packaging issue.
+
+
+
+### 2.0.0
+
+* Major release containing breaking changes to the theme and plugin API.
+
+* Numerous enhancements to the application's command line interface.
+
+* New default theme, `phoenix`.
+
+* Themes can now bundle plugins in a `code` directory.
+
+* Command line arguments are now parsed *before* extensions are loaded.
+
+* The site configuration file has been renamed from `config.py` to `ark.py`.
+
+* Ark no longer requires an empty `.ark` sentinel file to locate the home directory. Instead it will use the presence of either an `ark.py` file or both `src` and `out` directories.
+
+* The preprocessor system for parsing record metadata (e.g. YAML file headers) has been replaced by a single filter hook, `file_text`.
+
+* A bundled `breadcrumbs` plugin replaces and enhances the functionality of the old `trail` page attribute.

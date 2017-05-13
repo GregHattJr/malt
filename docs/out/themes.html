@@ -2,7 +2,9 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Themes</title>
+    <title>
+        Themes
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="css/pygments.css">
@@ -11,7 +13,7 @@
     <![endif]-->
 </head>
 
-<body class="type-pages single">
+<body class="node-themes node">
 
     <header id="head" class="head">
         <input id="menu-check" type="checkbox"/>
@@ -22,7 +24,7 @@
         </label>
         <ul>
 <li>
-<a href="index.html">Ark</a>
+<a href="index.html">Malt</a>
 </li>
 <li>
 <a href="quickstart.html">Quickstart</a>
@@ -43,7 +45,6 @@
 
     </header>
 
-    
     <article id="main" class="main">
         
             <h1>Themes</h1>
@@ -56,22 +57,22 @@ A theme is a collection of templates, styles, and scripts that together provide 
 <span class="n">theme</span> <span class="o">=</span> <span class="s2">&quot;phoenix&quot;</span>
 </pre>
 <p>
-Ark ships with a small selection of bundled themes including <code>phoenix</code>, the default theme, and <code>debug</code>, a diagnostic tool useful when designing themes or debugging sites.
+Malt ships with a small selection of bundled themes including <code>phoenix</code>, the default theme, and <code>debug</code>, a diagnostic tool useful when designing themes or debugging sites.
 </p>
 <p>
 Note that you can override the currently active theme with the <code>build</code> command's <code>--theme</code> flag:
 </p>
 <pre>
-$ ark build --theme debug
+$ malt build --theme debug
 </pre>
 <p>
-Ark searches for a named theme first in the site's theme library, then (if it exists) in the global theme library specified by the <code>$ARK_THEMES</code> environment variable. Finally it searches among the default themes bundled with Ark itself.
+Malt searches for a named theme first in the site's theme library, then (if it exists) in the global theme library specified by the <code>$ARK_THEMES</code> environment variable. Finally it searches among the default themes bundled with Malt itself.
 </p>
 <h2 id="theme-structure">
 Theme Structure
 </h2>
 <p>
-Ark looks for three subdirectories within the theme directory: <code>resources</code>, <code>extensions</code>, and <code>templates</code>.
+Malt looks for three subdirectories within the theme directory: <code>resources</code>, <code>extensions</code>, and <code>templates</code>.
 </p>
 <ul>
 <li>
@@ -81,24 +82,24 @@ The content of the <code>resources</code> directory is copied to the output dire
 </li>
 <li>
 <p>
-Themes can bundle extensions for Ark by placing Python modules or packages in
+Themes can bundle extensions for Malt by placing Python modules or packages in
 the <code>extensions</code> directory.
 </p>
 </li>
 <li>
 <p>
-The <code>templates</code> directory is where Ark looks for the theme's template files.
+The <code>templates</code> directory is where Malt looks for the theme's template files.
 </p>
 </li>
 </ul>
 <p>
-Ark has builtin support for templates written in <a href="http://jinja.pocoo.org">Jinja</a> (using a <code>.jinja</code> extension) and <a href="https://github.com/dmulholland/ibis">Ibis</a> (using a <code>.ibis</code> extension). Support for other template languages can be added via plugins.
+Malt has builtin support for templates written in <a href="http://jinja.pocoo.org">Jinja</a> (using a <code>.jinja</code> extension) and <a href="https://github.com/dmulholland/ibis">Ibis</a> (using a <code>.ibis</code> extension). Support for other template languages can be added via plugins.
 </p>
 <h2 id="template-files">
 Template Files
 </h2>
 <p>
-When Ark generates a HTML page it searches for the appropriate template file in the following order, where <code>&lt;type&gt;</code> indicates the record type in question, e.g. <code>posts</code>:
+When Malt generates a HTML page it searches for the appropriate template file in the following order, where <code>&lt;type&gt;</code> indicates the record type in question, e.g. <code>posts</code>:
 </p>
 <p>
 <em>Single Record page</em>
@@ -137,35 +138,5 @@ Note that the file extension should be omitted from the template name.
 
     </article>
 
-
-    <footer id="foot" class="foot">
-        <ul>
-<li>
-<a href="index.html">Ark</a>
-</li>
-<li>
-<a href="quickstart.html">Quickstart</a>
-</li>
-<li>
-<a href="guide.html">Guide</a>
-</li>
-<li>
-<a href="themes.html">Themes</a>
-</li>
-<li>
-<a href="plugins.html">Plugins</a>
-</li>
-<li>
-<a href="changelog.html">Changelog</a>
-</li>
-</ul>
-
-    </footer>
-
 </body>
 </html>
-
-
-
-
-

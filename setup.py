@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
-Ark
-===
+Malt
+====
 
-Ark is a static website generator built in Python. It transforms a directory
+Malt is a static website generator built in Python. It transforms a directory
 of text files into a self-contained website.
 
-* `Documentation <http://mulholland.xyz/docs/ark/>`_
-* `Sample Site <http://ark.mulholland.xyz/phoenix/>`_
-* `Github Homepage <https://github.com/dmulholland/ark>`_
+* `Documentation <http://mulholland.xyz/docs/malt/>`_
+* `Sample Site <http://malt.mulholland.xyz/phoenix/>`_
+* `Github Homepage <https://github.com/dmulholland/malt>`_
 
 """
 
@@ -22,8 +22,8 @@ from setuptools import setup, find_packages
 # MANIFEST.in file content.
 manifest = """\
 include license.txt readme.md
-recursive-include ark/ini *
-recursive-include ark/ext *
+recursive-include malt/ini *
+recursive-include malt/ext *
 """
 
 
@@ -34,7 +34,7 @@ with io.open(manpath, 'w', encoding='utf-8') as manfile:
 
 
 # Load the package's metadata into the meta dict.
-metapath = os.path.join(os.path.dirname(__file__), 'ark', 'meta.py')
+metapath = os.path.join(os.path.dirname(__file__), 'malt', 'meta.py')
 with io.open(metapath, encoding='utf-8') as metafile:
     regex = r'''^__([a-z]+)__ = ["'](.*)["']'''
     meta = dict(re.findall(regex, metafile.read(), flags=re.MULTILINE))
@@ -42,13 +42,13 @@ with io.open(metapath, encoding='utf-8') as metafile:
 
 # Standard setup routine.
 setup(
-    name = 'ark',
+    name = 'maltapp',
     version = meta['version'],
     packages =  find_packages(),
     include_package_data = True,
     entry_points = {
         'console_scripts': [
-            'ark = ark:main',
+            'malt = malt:main',
         ],
     },
     install_requires = [
@@ -62,7 +62,7 @@ setup(
         'libclio >= 2.0.0, < 3.0.0',
     ],
     author = 'Darren Mulholland',
-    url='https://github.com/dmulholland/ark',
+    url='https://github.com/dmulholland/malt',
     license = 'Public Domain',
     description = 'A static website generator.',
     long_description = __doc__,

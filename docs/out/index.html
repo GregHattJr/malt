@@ -2,7 +2,9 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Ark</title>
+    <title>
+        Malt
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="css/pygments.css">
@@ -11,7 +13,7 @@
     <![endif]-->
 </head>
 
-<body class="type-pages single homepage">
+<body class="node">
 
     <header id="head" class="head">
         <input id="menu-check" type="checkbox"/>
@@ -22,7 +24,7 @@
         </label>
         <ul>
 <li>
-<a href="index.html">Ark</a>
+<a href="index.html">Malt</a>
 </li>
 <li>
 <a href="quickstart.html">Quickstart</a>
@@ -43,60 +45,64 @@
 
     </header>
 
-    
     <article id="main" class="main">
         
-            <h1>Ark</h1>
+            <h1>Malt</h1>
         
 
         <p>
-Ark is a static website generator built in Python. It transforms a
-directory of text files into a self-contained website.
+Malt is a static website generator built in Python. It transforms a
+directory of text files into a WordPress-style posts-and-pages website.
 </p>
-<ul>
-<li>
-<p>
-Ark is extensible. It has builtin support for source files written
-in <a href="http://daringfireball.net/projects/markdown/">Markdown</a> and <a href="https://github.com/dmulholland/syntex">Syntex</a>, but can be extended via plugins to support
-any similar text-to-html format.
-</p>
-</li>
-<li>
-<p>
-Ark is flexible. By default it produces sites with page-relative links
-that can be viewed locally without any need for a web server (ideal for
-distributing project documentation in html format), but it can easily
-produce sites with resource or directory-style urls.
-</p>
-</li>
-</ul>
+<pre>
+$ malt --help
+
+Usage: malt [FLAGS] [COMMAND]
+
+  Malt is a static website generator. It transforms a directory of text
+  files into a self-contained website.
+
+Flags:
+  --help            Print the application's help text and exit.
+  --version         Print the application's version number and exit.
+
+Commands:
+  build             Build the current site.
+  clear             Clear the output directory.
+  init              Initialize a new site directory.
+  serve             Run a web server on the site's output directory.
+  watch             Monitor the site directory and rebuild on changes.
+
+Command Help:
+  help &lt;command&gt;    Print the specified command's help text and exit.
+</pre>
 <h2 id="installation">
 Installation
 </h2>
 <p>
-Install Ark from the Python Package Index using <code>pip</code>:
+Install Malt from the Python Package Index using <code>pip</code>:
 </p>
 <pre>
-$ pip install ark
+$ pip install maltapp
 </pre>
 <p>
-Ark requires Python 3.5 or later.
+Malt requires Python 3.5 or later.
 </p>
 <h2 id="links">
 Links
 </h2>
 <ul>
 <li>
-<a href="http://ark.mulholland.xyz/phoenix/">Ark Demo Site</a>
+<a href="http://malt.mulholland.xyz/phoenix/">Malt Demo Site</a>
 </li>
 <li>
-<a href="https://github.com/dmulholland/ark">Github Homepage</a>
+<a href="https://github.com/dmulholland/malt">Github Homepage</a>
 </li>
 <li>
-<a href="https://pypi.python.org/pypi/ark/">Python Package Index</a>
+<a href="https://pypi.python.org/pypi/maltapp/">Python Package Index</a>
 </li>
 <li>
-<a href="http://mulholland.xyz/docs/ark/">Online Documentation</a>
+<a href="http://mulholland.xyz/docs/malt/">Online Documentation</a>
 </li>
 </ul>
 <h2 id="license">
@@ -108,35 +114,5 @@ This work has been placed in the public domain.
 
     </article>
 
-
-    <footer id="foot" class="foot">
-        <ul>
-<li>
-<a href="index.html">Ark</a>
-</li>
-<li>
-<a href="quickstart.html">Quickstart</a>
-</li>
-<li>
-<a href="guide.html">Guide</a>
-</li>
-<li>
-<a href="themes.html">Themes</a>
-</li>
-<li>
-<a href="plugins.html">Plugins</a>
-</li>
-<li>
-<a href="changelog.html">Changelog</a>
-</li>
-</ul>
-
-    </footer>
-
 </body>
 </html>
-
-
-
-
-

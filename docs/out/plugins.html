@@ -2,7 +2,9 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Plugins</title>
+    <title>
+        Plugins
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="css/pygments.css">
@@ -11,7 +13,7 @@
     <![endif]-->
 </head>
 
-<body class="type-pages single">
+<body class="node-plugins node">
 
     <header id="head" class="head">
         <input id="menu-check" type="checkbox"/>
@@ -22,7 +24,7 @@
         </label>
         <ul>
 <li>
-<a href="index.html">Ark</a>
+<a href="index.html">Malt</a>
 </li>
 <li>
 <a href="quickstart.html">Quickstart</a>
@@ -43,17 +45,16 @@
 
     </header>
 
-    
     <article id="main" class="main">
         
             <h1>Plugins</h1>
         
 
         <p>
-The extensions directory, <code>ext</code>, is intended for plugins that extend or enhance Ark's functionality. Python modules or packages placed in this directory will be loaded automatically and can take advantage of Ark's extension hooks to inject their own code into the build process.
+The extensions directory, <code>ext</code>, is intended for plugins that extend or enhance Malt's functionality. Python modules or packages placed in this directory will be loaded automatically and can take advantage of Malt's extension hooks to inject their own code into the build process.
 </p>
 <p>
-Ark makes three extension mechanisms available to plugins:
+Malt makes three extension mechanisms available to plugins:
 </p>
 <ol>
 <li>
@@ -67,7 +68,7 @@ Ark makes three extension mechanisms available to plugins:
 </li>
 </ol>
 <p>
-Much of Ark's builtin functionality is in fact implemented by a set of default plugins bundled in the <code>ark/ext/</code> directory.
+Much of Malt's builtin functionality is in fact implemented by a set of default plugins bundled in the <code>malt/ext/</code> directory.
 </p>
 <h2 id="installing-plugins">
 Installing Plugins
@@ -88,7 +89,7 @@ This method can be used to load extensions installed from the package index usin
 Hooks
 </h2>
 <p>
-Ark exports a flexible framework of event and filter hooks. Plugins can extend Ark by registering callback functions on these hooks.
+Malt exports a flexible framework of event and filter hooks. Plugins can extend Malt by registering callback functions on these hooks.
 </p>
 <h3 id="events">
 Events
@@ -100,14 +101,14 @@ Events
 Here's a simple event callback that prints a count of the number of pages that have been written to disk:
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="kn">import</span> <span class="nn">ark</span>
+<span class="kn">import</span> <span class="nn">malt</span>
 
-<span class="nd">@ark.hooks.register</span><span class="p">(</span><span class="s1">&#39;exit&#39;</span><span class="p">)</span>
+<span class="nd">@malt.hooks.register</span><span class="p">(</span><span class="s1">&#39;exit&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">print_page_count</span><span class="p">():</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">ark</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">written</span><span class="p">())</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">malt</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">written</span><span class="p">())</span>
 </pre>
 <p>
-This callback is registered on the <code>exit</code> event hook which fires just before the application exits. (The <code>exit</code> hook can be found in the <code>ark/__init__.py</code> file.)
+This callback is registered on the <code>exit</code> event hook which fires just before the application exits. (The <code>exit</code> hook can be found in the <code>malt/__init__.py</code> file.)
 </p>
 <h3 id="filters">
 Filters
@@ -119,14 +120,14 @@ Filters
 Here's a simple filter callback that changes every instance of the word "foo" in records to "bar":
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="kn">import</span> <span class="nn">ark</span>
+<span class="kn">import</span> <span class="nn">malt</span>
 
-<span class="nd">@ark.hooks.register</span><span class="p">(</span><span class="s1">&#39;record_text&#39;</span><span class="p">)</span>
+<span class="nd">@malt.hooks.register</span><span class="p">(</span><span class="s1">&#39;record_text&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">foo_to_bar</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
 </pre>
 <p>
-This callback is registered on the <code>record_text</code> filter hook which fires just before a record's text is rendered into HTML. (The <code>record_text</code> hook can be found in the <code>ark/records.py</code> file).
+This callback is registered on the <code>record_text</code> filter hook which fires just before a record's text is rendered into HTML. (The <code>record_text</code> hook can be found in the <code>malt/records.py</code> file).
 </p>
 <p>
 Note that this hook supplies us with the <code>Record</code> instance itself as an additional argument which we here ignore.
@@ -135,18 +136,18 @@ Note that this hook supplies us with the <code>Record</code> instance itself as 
 Engines
 </h2>
 <p>
-Ark relies for most of its functionality on a suite of pluggable rendering and parsing engines, e.g. the <a href="http://jinja.pocoo.org">Jinja</a> template-engine for handling <code>.jinja</code> template files. Plugins can register support for additional rendering and parsing engines using a system of <code>@register</code> decorators.
+Malt relies for most of its functionality on a suite of pluggable rendering and parsing engines, e.g. the <a href="http://jinja.pocoo.org">Jinja</a> template-engine for handling <code>.jinja</code> template files. Plugins can register support for additional rendering and parsing engines using a system of <code>@register</code> decorators.
 </p>
 <h3 id="templates">
 Templates
 </h3>
 <p>
-Ark has builtin support for <a href="http://jinja.pocoo.org">Jinja</a> and <a href="https://github.com/dmulholland/ibis">Ibis</a> templates. Plugins can register support for additional formats using the <code>@templates.register()</code> decorator. Template-engine callbacks are registered per file-extension, e.g.
+Malt has builtin support for <a href="http://jinja.pocoo.org">Jinja</a> and <a href="https://github.com/dmulholland/ibis">Ibis</a> templates. Plugins can register support for additional formats using the <code>@templates.register()</code> decorator. Template-engine callbacks are registered per file-extension, e.g.
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="kn">import</span> <span class="nn">ark</span>
+<span class="kn">import</span> <span class="nn">malt</span>
 
-<span class="nd">@ark.templates.register</span><span class="p">(</span><span class="s1">&#39;jinja&#39;</span><span class="p">)</span>
+<span class="nd">@malt.templates.register</span><span class="p">(</span><span class="s1">&#39;jinja&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">jinja_callback</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="k">return</span> <span class="n">html</span>
@@ -158,12 +159,12 @@ A template-engine callback should accept a <code>Page</code> object and a templa
 Records
 </h3>
 <p>
-Ark has builtin support for records written in <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> and <a href="https://github.com/dmulholland/syntex">Syntex</a>. Plugins can register support for additional formats using the <code>@renderers.register()</code> decorator. Rendering-engine callbacks are registered per file-extension, e.g.
+Malt has builtin support for records written in <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> and <a href="https://github.com/dmulholland/syntex">Syntex</a>. Plugins can register support for additional formats using the <code>@renderers.register()</code> decorator. Rendering-engine callbacks are registered per file-extension, e.g.
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="kn">import</span> <span class="nn">ark</span>
+<span class="kn">import</span> <span class="nn">malt</span>
 
-<span class="nd">@ark.renderers.register</span><span class="p">(</span><span class="s1">&#39;md&#39;</span><span class="p">)</span>
+<span class="nd">@malt.renderers.register</span><span class="p">(</span><span class="s1">&#39;md&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">markdown_callback</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="k">return</span> <span class="n">html</span>
@@ -175,7 +176,7 @@ A rendering-engine callback should accept a single string argument containing pl
 Shortcodes
 </h2>
 <p>
-Ark has builtin support for WordPress-style <a href="https://github.com/dmulholland/shortcodes">shortcodes</a> with space-separated positional and keyword arguments:
+Malt has builtin support for WordPress-style <a href="https://github.com/dmulholland/shortcodes">shortcodes</a> with space-separated positional and keyword arguments:
 </p>
 <pre>
 [% tag arg1 key=arg2 %] ... [% endtag %]
@@ -216,7 +217,7 @@ Positional and keyword arguments are passed as strings. The handler function its
 Note that shortcodes are processed <em>before</em> the record text is rendered into HTML.
 </p>
 <p>
-Ark ships with a single builtin shortcode, <code>[% code %]</code>, which uses the <a href="http://pygments.org">Pygments</a> package to add syntax highlighting to code samples:
+Malt ships with a single builtin shortcode, <code>[% code %]</code>, which uses the <a href="http://pygments.org">Pygments</a> package to add syntax highlighting to code samples:
 </p>
 <pre>
 [% code python %]
@@ -233,35 +234,5 @@ If the Pygments package is not available or if an appropriate lexer cannot be fo
 
     </article>
 
-
-    <footer id="foot" class="foot">
-        <ul>
-<li>
-<a href="index.html">Ark</a>
-</li>
-<li>
-<a href="quickstart.html">Quickstart</a>
-</li>
-<li>
-<a href="guide.html">Guide</a>
-</li>
-<li>
-<a href="themes.html">Themes</a>
-</li>
-<li>
-<a href="plugins.html">Plugins</a>
-</li>
-<li>
-<a href="changelog.html">Changelog</a>
-</li>
-</ul>
-
-    </footer>
-
 </body>
 </html>
-
-
-
-
-
