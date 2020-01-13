@@ -32,7 +32,7 @@ if yaml:
             match = re.match(r"^---\n(.*?\n)---\n+", text, re.DOTALL)
             if match:
                 text = text[match.end(0):]
-                data = yaml.load(match.group(1))
+                data = yaml.safe_load(match.group(1))
                 if isinstance(data, dict):
                     meta.update(data)
 

@@ -6,10 +6,6 @@ Malt
 Malt is a static website generator built in Python. It transforms a directory
 of text files into a self-contained website.
 
-* `Documentation <http://mulholland.xyz/docs/malt/>`_
-* `Sample Site <http://malt.mulholland.xyz/phoenix/>`_
-* `Github Homepage <https://github.com/dmulholland/malt>`_
-
 """
 
 import os
@@ -54,15 +50,15 @@ setup(
     install_requires = [
         'markdown >= 2.6.6, < 3.0.0',
         'pygments >= 2.1.3, < 3.0.0',
-        'pyyaml >= 3.11, < 4.0',
+        'pyyaml',
         'jinja2 >= 2.8, < 3.0',
-        'syntex >= 0.17.0, < 0.18.0',
+        'syntex',
         'ibis >= 1.6.0, < 2.0.0',
         'shortcodes >= 2.1.0, < 3.0.0',
         'libclio >= 2.0.0, < 3.0.0',
     ],
     author = 'Darren Mulholland',
-    url='https://github.com/dmulholland/malt',
+    url='https://github.com/dmulholl/malt',
     license = 'Public Domain',
     description = 'A static website generator.',
     long_description = __doc__,
