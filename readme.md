@@ -26,5 +26,5 @@ Malt is a static website generator built in Python. It transforms a directory of
 
   See the [documentation][docs] or [demo site][demo] for details.
 
-  [docs]: https://darrenmulholland.com/docs/malt/
-  [demo]: https://darrenmulholland.com/demos/malt
+  [docs]: http://www.dmulholl.com/docs/malt/
+  [demo]: http://www.dmulholl.com/demos/malt

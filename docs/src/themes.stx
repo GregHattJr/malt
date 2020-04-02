@@ -4,7 +4,7 @@ title: Themes
 
 A theme is a collection of templates, styles, and scripts that together provide the look and feel for a site. Themes should be placed in the site's `lib` folder, and the name of the active theme directory specified in the site's configuration file.
 
-::: python
+::: code python
 
     theme = "phoenix"
 
@@ -40,7 +40,7 @@ Malt has builtin support for templates written in [Jinja][] (using a `.jinja` ex
 
 When Malt generates a HTML page it searches for the appropriate template file in the following order, where `<type>` indicates the record type in question, e.g. `posts`:
 
-*Single Record page*
+*Single record page*
 
     1) <type>-single
     2) single

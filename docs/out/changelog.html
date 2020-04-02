@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="utf-8">
-    <title>
-        Changelog
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Changelog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fonts.css">
     <link rel="stylesheet" href="theme.css">
     <link rel="stylesheet" href="pygments.css">
-    <!--[if lt IE 9]>
-        <script src="html5shiv.js"></script>
-    <![endif]-->
     
-</head>
+    
+  </head>
 
-<body class="node-changelog node">
+  <body class="node-changelog node">
 
-    <header id="head" class="head">
+    <header class="masthead">
+      <h1><a href="index.html">Malt</a></h1>
+      
+        <p class="tagline">A WordPress-style static website and blog generator.</p>
+      
+      
+      <nav class="menu">
         <input id="menu-check" type="checkbox"/>
         <label id="menu-label" for="menu-check" class="unselectable">
-            <span class="icon close">✕</span>
-            <span class="icon open">☰</span>
-            <span class="text">MENU</span>
+          <span class="icon close-icon">✕</span>
+          <span class="icon open-icon">☰</span>
+          <span class="text">Menu</span>
         </label>
         <ul>
 <li>
@@ -44,189 +47,133 @@
 </li>
 </ul>
 
+      </nav>
     </header>
 
-    <article id="main" class="main">
+    <article class="main">
+      <header class="title">
+        <h1>Changelog</h1>
         
-            <h1>Changelog</h1>
-        
-        <h3 id="-1-0">
+        <hr>
+      </header>
+      <h3 id="id-3-1-0">
 3.1.0
 </h3>
 <ul>
 <li>
-<p>
 The application has been renamed <em>Malt</em>, a return to its original pre-1.0 name.
-</p>
 </li>
 <li>
-<p>
 The site configuration file has been renamed <code>site.py</code>. Old <code>ark.py</code> configuration files will continue to be recognised.
-</p>
 </li>
 </ul>
-<h3 id="-0-0">
+<h3 id="id-3-0-0">
 3.0.0
 </h3>
 <ul>
 <li>
-<p>
 This release obsoletes the bracketed naming convention for <code>[type]</code> directories in <code>src</code>. The <code>src</code> directory should henceforth contain <em>only</em> unbracketed type directories, e.g. <code>pages</code>, <code>posts</code>.
-</p>
 </li>
 <li>
-<p>
 Static resource files should be placed in the dedicated resources directory, <code>res</code>. Resource files can longer be placed in <code>src</code>.
-</p>
 </li>
 <li>
-<p>
 Extension loading has been refactored to enable plugins to add their own custom commands and options to the application's command-line interface.
-</p>
 </li>
 <li>
-<p>
 Support for a global extensions directory has been removed and replaced by support for installed extensions.
-</p>
 </li>
 <li>
-<p>
 The minimum Python version has been updated to 3.5.
-</p>
 </li>
 <li>
-<p>
 The theme resource and plugin directories have been renamed <code>resources</code> and <code>extensions</code> for consistency with their site directory counterparts.
-</p>
 </li>
 <li>
-<p>
 The documentation theme, <code>vanilla</code>, is now bundled with the application.
-</p>
 </li>
 <li>
-<p>
 The minimum Ibis version has been updated to 1.6.0.
-</p>
 </li>
 <li>
-<p>
 A builtin <code>[% code %]</code> shortcode has been bundled for adding syntax-highlighting to code samples.
-</p>
 </li>
 <li>
-<p>
 Most dependency packages are now optional. Ark will run in their absence but the associated functionality will not be available.
-</p>
 </li>
 </ul>
-<h3 id="-3-0">
+<h3 id="id-2-3-0">
 2.3.0
 </h3>
 <ul>
 <li>
-<p>
 Add support for record classes.
-</p>
 </li>
 <li>
-<p>
 Add support for a site resources directory, <code>res</code>.
-</p>
 </li>
 <li>
-<p>
 Move the <code>.arkcache/</code> directory to <code>~/.cache/ark/</code>.
-</p>
 </li>
 <li>
-<p>
 Remove the <code>edit</code> command.
-</p>
 </li>
 <li>
-<p>
 Remove the <code>--empty</code> flag from the <code>init</code> command.
-</p>
 </li>
 </ul>
-<h3 id="-2-0">
+<h3 id="id-2-2-0">
 2.2.0
 </h3>
 <ul>
 <li>
-<p>
 The <code>ark</code> package is now directly executable. An installed <code>ark</code> package can be run as:
-</p>
-<pre>
-$ python3 -m ark
-</pre>
-<p>
+
+    $ python3 -m ark
+
 A non-installed <code>ark</code> package can be run by specifying the path to the package directory:
-</p>
-<pre>
-$ python3 /path/to/ark
-</pre>
+
+    $ python3 /path/to/ark
 </li>
 </ul>
-<h3 id="-1-0-2">
+<h3 id="id-2-1-0">
 2.1.0
 </h3>
 <ul>
 <li>
-<p>
 This release is identical to 2.0.0. Incrementing the minor version resolves a packaging issue.
-</p>
 </li>
 </ul>
-<h3 id="-0-0-2">
+<h3 id="id-2-0-0">
 2.0.0
 </h3>
 <ul>
 <li>
-<p>
 Major release containing breaking changes to the theme and plugin API.
-</p>
 </li>
 <li>
-<p>
 Numerous enhancements to the application's command line interface.
-</p>
 </li>
 <li>
-<p>
 New default theme, <code>phoenix</code>.
-</p>
 </li>
 <li>
-<p>
 Themes can now bundle plugins in a <code>code</code> directory.
-</p>
 </li>
 <li>
-<p>
 Command line arguments are now parsed <em>before</em> extensions are loaded.
-</p>
 </li>
 <li>
-<p>
 The site configuration file has been renamed from <code>config.py</code> to <code>ark.py</code>.
-</p>
 </li>
 <li>
-<p>
 Ark no longer requires an empty <code>.ark</code> sentinel file to locate the home directory. Instead it will use the presence of either an <code>ark.py</code> file or both <code>src</code> and <code>out</code> directories.
-</p>
 </li>
 <li>
-<p>
 The preprocessor system for parsing record metadata (e.g. YAML file headers) has been replaced by a single filter hook, <code>file_text</code>.
-</p>
 </li>
 <li>
-<p>
 A bundled <code>breadcrumbs</code> plugin replaces and enhances the functionality of the old <code>trail</code> page attribute.
-</p>
 </li>
 </ul>
 
@@ -234,5 +181,5 @@ A bundled <code>breadcrumbs</code> plugin replaces and enhances the functionalit
 
     
 
-</body>
+  </body>
 </html>

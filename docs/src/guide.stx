@@ -2,7 +2,7 @@
 title: Guide
 ---
 
-:insert toc
+::: insert toc
 
 
 ## Command Line Interface
@@ -103,7 +103,7 @@ You can determine the behaviour of your custom types (or alter the behaviour of 
 
 New custom types behave, by default, like the builtin *post* type, but we can alter this behaviour by adding a dictionary of type settings to our configuration file:
 
-::: python
+::: code python
 
     sonnets = {                # type name corresponding to the type directory
         "title": "Sonnets",    # defaults to the titlecased type name
@@ -138,52 +138,52 @@ will be accessible in template files as `record.date_of_birth`.
 All records have the following default attributes:
 
 
-||  `date`  ||
+[[  `date`  ]]
 
     A default datetime stamp. If the record has a `date` attribute, this will be used. If not, the file creation time will be used if available (OSX, BSD, Windows), or else the time of the file's last metadata change (Linux).
 
 
-||  `ext`  ||
+[[  `ext`  ]]
 
     The record's file extension, e.g. `md` or `stx`.
 
 
-||  `html`  ||
+[[  `html`  ]]
 
     The record's content, rendered into HTML.
 
 
-||  `slug`  ||
+[[  `slug`  ]]
 
     The record's url slug.
 
 
-||  `slugs`  ||
+[[  `slugs`  ]]
 
     A list of output-path slugs.
 
 
-||  `src`  ||
+[[  `src`  ]]
 
     The record's source filepath.
 
 
-||  `srcdir`  ||
+[[  `srcdir`  ]]
 
     The record's source directory.
 
 
-||  `text`  ||
+[[  `text`  ]]
 
     The record's text content.
 
 
-||  `type`  ||
+[[  `type`  ]]
 
     The record's type, determined by its parent `type` directory.
 
 
-||  `url`  ||
+[[  `url`  ]]
 
     The record's URL.
 
@@ -213,13 +213,13 @@ Malt generates page-relative urls and files with a `.html` extension by default,
 
 First, you can specify a root url in your site configuration file. Use an explicit domain, e.g. `"http://example.com/"`, for absolute urls, or a single forward slash, `"/"`, for site-relative urls.
 
-::: python
+::: code python
 
     root = "http://example.com/"
 
 Second, you can specify a file extension in your site configuration file. You can choose an arbitrary file extension, e.g. `".html"`, or pass an empty string, `""`, to use no file extension at all. If you specify a single forward slash, `"/"`, Malt will generate directory-style urls ending in a slash.
 
-::: python
+::: code python
 
     extension = ".html"
 
@@ -265,7 +265,7 @@ Malt uses the [Markdown][mddocs] package to render record files with a `.md` ext
 
 For example, to turn on the 'Markdown Extra' extension, add the following snippet to your `malt.py` file:
 
-::: python
+::: code python
 
     markdown = { 'extensions': ['markdown.extensions.extra'] }
 
@@ -298,7 +298,7 @@ Malt's bundled paging extension generates a customizable string of page navigati
 Default settings can be overridden by including a `paging` dictionary in
 the site's configuration file containing one or more of the following options:
 
-::: python
+::: code python
 
     paging = {
         'first': 'First',  # text for link to first page

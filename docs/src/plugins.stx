@@ -18,7 +18,7 @@ Much of Malt's builtin functionality is in fact implemented by a set of default 
 
 Extensions placed in a site's `ext` directory will be loaded automatically. Alternatively, extension modules installed on Python's standard import path can be activated by adding their names to an `extensions` list in the site's configuration file:
 
-::: python
+::: code python
 
     extensions = [
         'extension_one',
@@ -41,7 +41,7 @@ Malt exports a flexible framework of event and filter hooks. Plugins can extend 
 
 Here's a simple event callback that prints a count of the number of pages that have been written to disk:
 
-::: python
+::: code python
 
     import malt
 
@@ -59,7 +59,7 @@ This callback is registered on the `exit` event hook which fires just before the
 
 Here's a simple filter callback that changes every instance of the word "foo" in records to "bar":
 
-::: python
+::: code python
 
     import malt
 
@@ -88,7 +88,7 @@ Malt has builtin support for [Jinja][] and [Ibis][] templates. Plugins can regis
 [jinja]: http://jinja.pocoo.org
 [ibis]: https://github.com/dmulholland/ibis
 
-::: python
+::: code python
 
     import malt
 
@@ -108,7 +108,7 @@ Malt has builtin support for records written in [Markdown][] and [Syntex][]. Plu
 [markdown]: https://en.wikipedia.org/wiki/Markdown
 [syntex]: https://github.com/dmulholland/syntex
 
-::: python
+::: code python
 
     import malt
 
@@ -129,7 +129,7 @@ Malt has builtin support for WordPress-style [shortcodes][] with space-separated
 
 Plugins can register shortcode tags using the `@shortcodes.register()` decorator:
 
-::: python
+::: code python
 
     import shortcodes
 
@@ -161,5 +161,5 @@ The shortcode accepts a single optional argument specifying the language. If no 
 
 If the Pygments package is not available or if an appropriate lexer cannot be found the shortcode will return the wrapped content with any HTML special characters escaped.
 
-[shortcodes]: https://github.com/dmulholland/shortcodes
+[shortcodes]: https://github.com/dmulholl/shortcodes
 [pygments]: http://pygments.org

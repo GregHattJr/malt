@@ -27,7 +27,7 @@ directory of text files into a WordPress-style website with support for pages, p
       help <command>    Print the specified command's help text and exit.
 
 
-## Installation
+### Installation
 
 Install Malt from the Python Package Index using `pip`:
 
@@ -37,21 +37,20 @@ Malt requires Python 3.5 or later.
 
 
 
-## Status
+### Status
 
 This application is no longer actively maintained.
 
 
 
-## Links
+### Links
 
-* [Malt Demo Site](https://darrenmulholland.com/demos/malt/)
-* [Github Homepage](https://github.com/dmulholland/malt)
+* [Malt Demo Site](http://www.dmulholl.com/demos/malt/)
+* [Github Homepage](https://github.com/dmulholl/malt)
 * [Python Package Index](https://pypi.python.org/pypi/maltapp/)
-* [Online Documentation](https://darrenmulholland.com/docs/malt/)
 
 
 
-## License
+### License
 
 This work has been placed in the public domain.

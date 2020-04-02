@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="utf-8">
-    <title>
-        Guide
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Guide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fonts.css">
     <link rel="stylesheet" href="theme.css">
     <link rel="stylesheet" href="pygments.css">
-    <!--[if lt IE 9]>
-        <script src="html5shiv.js"></script>
-    <![endif]-->
     
-</head>
+    
+  </head>
 
-<body class="node-guide node">
+  <body class="node-guide node">
 
-    <header id="head" class="head">
+    <header class="masthead">
+      <h1><a href="index.html">Malt</a></h1>
+      
+        <p class="tagline">A WordPress-style static website and blog generator.</p>
+      
+      
+      <nav class="menu">
         <input id="menu-check" type="checkbox"/>
         <label id="menu-label" for="menu-check" class="unselectable">
-            <span class="icon close">✕</span>
-            <span class="icon open">☰</span>
-            <span class="text">MENU</span>
+          <span class="icon close-icon">✕</span>
+          <span class="icon open-icon">☰</span>
+          <span class="text">Menu</span>
         </label>
         <ul>
 <li>
@@ -44,13 +47,16 @@
 </li>
 </ul>
 
+      </nav>
     </header>
 
-    <article id="main" class="main">
+    <article class="main">
+      <header class="title">
+        <h1>Guide</h1>
         
-            <h1>Guide</h1>
-        
-        <ul class="stx-toc">
+        <hr>
+      </header>
+      <ul class="stx-toc">
 <li>
 <a href="#command-line-interface">Command Line Interface</a>
 </li>
@@ -64,7 +70,7 @@
 <a href="#record-attributes">Record Attributes</a>
 </li>
 <li>
-<a href="#tags-amp-classes">Tags &amp; Classes</a>
+<a href="#tags-classes">Tags &amp; Classes</a>
 </li>
 <li>
 <a href="#links">Links</a>
@@ -113,18 +119,18 @@ Usage: malt [FLAGS] [COMMAND]
   files into a self-contained website.
 
 Flags:
-  --help            Print the application's help text and exit.
-  --version         Print the application's version number and exit.
+  --help            Print the application&#x27;s help text and exit.
+  --version         Print the application&#x27;s version number and exit.
 
 Commands:
   build             Build the current site.
   clear             Clear the output directory.
   init              Initialize a new site directory.
-  serve             Run a web server on the site's output directory.
+  serve             Run a web server on the site&#x27;s output directory.
   watch             Monitor the site directory and rebuild on changes.
 
 Command Help:
-  help &lt;command&gt;    Print the specified command's help text and exit.
+  help &lt;command&gt;    Print the specified command&#x27;s help text and exit.
 </pre>
 <p>
 Run <code>malt help &lt;command&gt;</code> to view the help text for a specific command.
@@ -209,12 +215,12 @@ New custom types behave, by default, like the builtin <em>post</em> type, but we
     <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Sonnets&quot;</span><span class="p">,</span>    <span class="c1"># defaults to the titlecased type name</span>
     <span class="s2">&quot;slug&quot;</span><span class="p">:</span> <span class="s2">&quot;sonnets&quot;</span><span class="p">,</span>     <span class="c1"># defaults to the slugified type name</span>
     <span class="s2">&quot;tag_slug&quot;</span><span class="p">:</span> <span class="s2">&quot;tags&quot;</span><span class="p">,</span>    <span class="c1"># defaults to &quot;tags&quot;</span>
-    <span class="s2">&quot;indexed&quot;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>       <span class="c1"># build directory indexes for this type?</span>
+    <span class="s2">&quot;indexed&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>       <span class="c1"># build directory indexes for this type?</span>
     <span class="s2">&quot;order_by&quot;</span><span class="p">:</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span>    <span class="c1"># order index entries by this attribute</span>
-    <span class="s2">&quot;reverse&quot;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>       <span class="c1"># display index entries in reverse order?</span>
+    <span class="s2">&quot;reverse&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>       <span class="c1"># display index entries in reverse order?</span>
     <span class="s2">&quot;per_index&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>       <span class="c1"># number of entries per index page</span>
     <span class="s2">&quot;per_tag_index&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>   <span class="c1"># number of entries per tag index page</span>
-    <span class="s2">&quot;homepage&quot;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>     <span class="c1"># use this type&#39;s index as the site homepage?</span>
+    <span class="s2">&quot;homepage&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>     <span class="c1"># use this type&#39;s index as the site homepage?</span>
 <span class="p">}</span>
 </pre>
 <p>
@@ -325,7 +331,7 @@ The record's URL.
 </p>
 </dd>
 </dl>
-<h2 id="tags-amp-classes">
+<h2 id="tags-classes">
 Tags &amp; Classes
 </h2>
 <p>
@@ -354,13 +360,13 @@ Links
 Malt generates page-relative urls and files with a <code>.html</code> extension by default, but you can customize this behaviour to suit your needs.
 </p>
 <p>
-First, you can specify a root url in your site configuration file. Use an explicit domain, e.g. <code>"http://example.com/"</code>, for absolute urls, or a single forward slash, <code>"/"</code>, for site-relative urls.
+First, you can specify a root url in your site configuration file. Use an explicit domain, e.g. <code>&quot;http://example.com/&quot;</code>, for absolute urls, or a single forward slash, <code>&quot;/&quot;</code>, for site-relative urls.
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="n">root</span> <span class="o">=</span> <span class="s2">&quot;http://example.com/&quot;</span>
 </pre>
 <p>
-Second, you can specify a file extension in your site configuration file. You can choose an arbitrary file extension, e.g. <code>".html"</code>, or pass an empty string, <code>""</code>, to use no file extension at all. If you specify a single forward slash, <code>"/"</code>, Malt will generate directory-style urls ending in a slash.
+Second, you can specify a file extension in your site configuration file. You can choose an arbitrary file extension, e.g. <code>&quot;.html&quot;</code>, or pass an empty string, <code>&quot;&quot;</code>, to use no file extension at all. If you specify a single forward slash, <code>&quot;/&quot;</code>, Malt will generate directory-style urls ending in a slash.
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="n">extension</span> <span class="o">=</span> <span class="s2">&quot;.html&quot;</span>
@@ -470,9 +476,7 @@ Installing Malt via <code>pip</code> automatically installs the following requir
 </p>
 <ul>
 <li>
-<p>
 <a href="https://pypi.python.org/pypi/libclio">Clio</a>
-</p>
 </li>
 </ul>
 <p>
@@ -509,5 +513,5 @@ Malt will run without any of these optional dependencies installed but the assoc
 
     
 
-</body>
+  </body>
 </html>
