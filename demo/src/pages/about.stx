@@ -1,0 +1,34 @@
+---
+title: About
+---
+
+Malt is a static website generator built in Python. It transforms a directory
+of text files into a WordPress-style website with support for pages, posts,
+and custom post types.
+
+* Malt is extensible. It has builtin support for source files written
+  in [Markdown][] and [Syntex][], but can be extended via plugins to support
+  any similar text-to-html format.
+
+* Malt is flexible. By default it produces sites with page-relative links
+  that can be viewed locally without any need for a web server (ideal for
+  distributing project documentation in html format), but it can easily
+  produce sites with resource or directory-style urls.
+
+* Malt is free and open source. All of [Malt's code][code] has been placed in
+  the public domain.
+
+* The default theme bundled with Malt incorporates icons from the
+  [Font Awesome][fonts] collection by Dave Gandy. These icons and their
+  accompanying CSS files are released under a mixed [MIT][] and [Open Font][ofl]
+  license.
+
+See [Malt's documentation][docs] for further details.
+
+[markdown]: http://daringfireball.net/projects/markdown/
+[syntex]: https://github.com/dmulholland/syntex
+[code]: https://github.com/dmulholland/malt
+[docs]: http://mulholland.xyz/docs/malt/
+[fonts]: http://fontawesome.io
+[mit]: https://opensource.org/licenses/mit-license.html
+[ofl]: http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL

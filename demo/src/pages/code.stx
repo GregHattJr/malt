@@ -1,0 +1,68 @@
+---
+title: Code
+---
+
+Let's start with a little C:
+
+::: c
+
+    #include <stdio.h>
+
+    // This is a comment.
+    int main(int argc, char *argv[]) {
+        printf("hello world\n");
+        return 0;
+    }
+
+And now some Python:
+
+::: python
+
+    import argparse
+
+    @decorator("foobar")
+    class SomeClass:
+        """ This is a docstring comment. """
+
+        def __init__(self, arg=None):
+            self.arg = arg or 21
+
+        def method(self, arg=5):
+            return arg * 42 + 12.5
+
+    # Lorem ipsum dolor sit amet.
+    def parse_args():
+        parser = argparse.ArgumentParser()
+        parser.add_argument('-v', '--version',
+            action='version',
+            version=__version__,
+        )
+        return parser.parse_args()
+
+Some HTML:
+
+::: html
+
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <title>Sample Page</title>
+        </head>
+        <body>
+            <h1 class="heading">Test Page</h1>
+            <p>Lorem ipsum dolor sit amet.</p>
+            <!-- this is a comment -->
+        </body>
+    </html>
+
+And let's finish with some Django template syntax:
+
+::: django
+
+    {# This is a comment. #}
+
+    {% for post in posts %}
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.content|striptags|truncatewords:50 }}</p>
+    {% endfor %}

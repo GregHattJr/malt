@@ -1,0 +1,119 @@
+#!/usr/bin/env python3
+# -------------------------------------------------------------------------
+# Post Generation Script
+# -------------------------------------------------------------------------
+
+import ipsedixit
+import random
+import os
+import sys
+
+from datetime import date, timedelta
+
+
+activities = """
+Hiking Fishing Shopping Shoplifting Clubbing Dancing Drinking Sightseeing
+Hunting Eating Stranded Kidnapped Murdered Mugged Pickpocketing Skiing
+Swimming Sunbathing Surfing Flashing Fighting Robbed Engaged Married
+Lost Abandoned Pickpocketed Mountaineering Trekking Besmirched
+Drunk Alone
+""".split()
+
+
+ireland = """
+Dublin Dundalk Clonmel Cork Galway Waterford Wexford Belfast Kerry Kilkenny
+Limerick Leitrim Roscommon Tipperary Athlone Newry Drogheda Louth Tralee
+Portlaoise Derry
+""".split()
+
+
+england = """
+London Manchester Liverpool Kent Sheffield Essex Cornwall Hull York Durham
+Newcastle Devon Norfolk Birmingham Oxford Cambridge
+""".split()
+
+
+scotland = """
+Glasgow Edinburgh Aberdeen Dundee Hamilton Inverness Stirling Falkirk
+Dumfries Arbroath Elgin Larkhall
+""".split()
+
+
+wales = """
+Cardiff Swansea Cwmbran Llanelli Caerphilly Pontypridd Aberdare Rhyl
+Maesteg Aberystwyth Caernarfon
+""".split()
+
+
+tags = """
+red green blue orange yellow pink purple violet brown grey lilac crimson
+indigo jade
+""".split()
+
+
+authors = [
+    "John Doe",
+    "Jane Doe",
+]
+
+
+locations = {
+    'ireland': ireland,
+    'england': england,
+    'scotland': scotland,
+    'wales': wales,
+}
+
+
+template = """\
+---
+title: %(title)s
+author: %(author)s
+date: %(date)s
+tags: %(tags)s
+---
+
+%(content)s
+"""
+
+
+start_date = date(2015, 1, 1)
+generator = ipsedixit.Generator()
+titles = []
+
+
+if len(sys.argv) > 1:
+    dstdir = sys.argv[1]
+else:
+    sys.exit("Error: you must specify a destination directory.")
+
+
+for i in range(365):
+
+    while True:
+        activity = random.choice(activities)
+        country = random.choice(list(locations.keys()))
+        location = random.choice(locations[country])
+
+        title = "%s in %s" % (activity, location)
+
+        if title not in titles:
+            titles.append(title)
+            break
+
+    data = {
+        'title': title,
+        'author': random.choice(authors),
+        'date': str(start_date + timedelta(i)),
+        'tags': ', '.join(random.sample(tags, random.randint(2, 4))),
+        'content': '\n\n'.join(generator.paragraphs(4)),
+        'slug': title.lower().replace(' ', '-'),
+    }
+
+    dirpath = os.path.join(dstdir, country)
+    if not os.path.isdir(dirpath):
+        os.makedirs(dirpath)
+
+    filepath = os.path.join(dirpath, '%s.stx' % data['slug'])
+    with open(filepath, 'w', encoding='utf-8') as file:
+        file.write(template % data)

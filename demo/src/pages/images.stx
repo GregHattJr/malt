@@ -1,0 +1,13 @@
+---
+title: Images
+---
+
+Here's an image inside a paragraph tag:
+
+![](@root/images/wasp.jpg)
+
+And here's an image all on its own:
+
+:img @root/images/flower.jpg
+
+And here's a final paragraph so we can check the spacing.
